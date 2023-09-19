@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="css/font.css" />
+    <script src="js/pj229803i_5296.js"></script>
+  </head>
+
+  <body class="body">
+    <div class="container-center">
+      <div class="bottomsheet screen">
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <div class="btn-month prev" onclick="validationBtnMonth(this)">이전달</div>
+            <div class="year-month">2023년 4월</div>
+            <div class="btn-month next active" onclick="validationBtnMonth(this)">다음달</div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-week-name">
+              <div class="calendar-day"><div class="calendar-num">일</div></div>
+              <div class="calendar-day"><div class="calendar-num">월</div></div>
+              <div class="calendar-day"><div class="calendar-num">화</div></div>
+              <div class="calendar-day"><div class="calendar-num">수</div></div>
+              <div class="calendar-day"><div class="calendar-num">목</div></div>
+              <div class="calendar-day"><div class="calendar-num">금</div></div>
+              <div class="calendar-day"><div class="calendar-num">토</div></div>
+            </div>
+            <div class="calendar-week-content">
+              <!-- 
+              * 반복 시작 (첨부파일의 달력안내 png 참조)
+              --조건에 따라 calendar-day에 클래스 추가 : 비활성화(inactive), 휴점일(closed-day), 연장영업일(extended-business-day), 아카데미휴점일(academy-closed-day)
+
+              <div class="calendar-day">
+                <div class="calendar-num">00</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+
+              //반복 끝 -->
+
+              <div class="calendar-day inactive">
+                <div class="calendar-num">26</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">27</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">28</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">29</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">30</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">31</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">1</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">2</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">3</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">4</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">5</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">6</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">7</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">8</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">9</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">10</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">11</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">12</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">13</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">14</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">15</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">16</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive closed-day academy-closed-day">
+                <div class="calendar-num">17</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">18</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day current-day extended-business-day academy-closed-day">
+                <div class="calendar-num">19</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">20</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">21</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">22</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">23</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">24</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">25</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">26</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day">
+                <div class="calendar-num">27</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">28</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">29</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day extended-business-day">
+                <div class="calendar-num">30</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">1</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">2</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">3</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">4</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">5</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+              <div class="calendar-day inactive">
+                <div class="calendar-num">6</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="calendar-footer">
+            <div class="note-item closed-day">휴점일</div>
+            <div class="note-item academy-closed-day">아카데미휴점일</div>
+            <div class="note-item extended-business-day">연장영업일</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

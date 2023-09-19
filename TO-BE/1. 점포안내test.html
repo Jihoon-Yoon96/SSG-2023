@@ -140,6 +140,27 @@
         $('#header').css('background-size','100% 100%');
       }
     });
+
+    // const weatherStore = '[[--ArtFieldValue, stor_cd--]]'
+    // const weatherUrl = "[[--CatAddress, sndzzz_json, form:1--]]";
+    // window.onload = function() {
+    //   fetch(weatherUrl)
+    //     .then(res => res.json())
+    //     .then((data) => {
+    //       for(key in data){
+    //         if(data[key].area == weatherStore){
+    //           funcWeather(data[key].icon12, data[key].temp);
+    //         }
+    //       }
+    //     })
+    // }
+
+    // function funcWeather(icon, temp){
+    //   const imgTarget = document.querySelector('.weather img');
+    //   const tempTaret = document.querySelector('.weatherDegree');
+    //   imgTarget.setAttribute('src', 'img/icons/weather_'+icon+'.gif');
+    //   tempTaret.innerHTML=temp+'°';
+    // }
     </script>
     
 
@@ -173,7 +194,7 @@
           [[--ThenEnd--]][[--IFEnd--]]
         </div>    
         <div class="verticalDivider"></div>
-        <div class="functionBtn" onclick="alert('bottom sheet UI 스크립트 필요!!');">
+        <div class="functionBtn" onclick="location.href='[[--ArtAddress, form:3--]]'">
           <img class="functionIcon" src="[[--ImgRootDir--]]/common/img/icons/icCalendar.svg" />
           <span class="label pretendard-medium-granite-gray-12px">영업 일정</span>
         </div>
@@ -188,7 +209,7 @@
           <span class="label pretendard-medium-granite-gray-12px">매장 검색</span>
         </div>
       </div>
-      <div class="businessInfo" onclick="alert('bottom sheet UI 스크립트 필요!!');" >
+      <div class="businessInfo" onclick="location.href='[[--ArtAddress, form:2--]]'" >
         <span class="titleLarge pretendard-medium-log-cabin-18px">영업시간 안내</span>
         <img class="arrowRightIcon" src="[[--ImgRootDir--]]/common/img/icons/icArrowRight.svg"/>
       </div>

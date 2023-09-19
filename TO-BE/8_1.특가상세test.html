@@ -46,41 +46,106 @@
   <body class="body">[[--RecordStart,cid--]][[--SubStringStart,7--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
 	<div class="container-center">
 		<div class="index screen">
-		<div class="top-visual">
-			[[--IFStart,exist:goos_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,goos_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,goos_nm--]] 대표이미지" class="top-visual-img">[[--ThenEnd--]][[--IFEnd--]]
-		</div>
-		<div class="detail-container">
-			<!-- 1. 상품명 + 판매기간 + 가격  -->
-			<div class="product-title-wrap">
-				<div class="product-tit">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</div>
-			</div>
-			<div class="period-text">
-				[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]] - [[--IfStart,Exist:enddt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtEndDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]]
-			</div>
-			
-			<div class="secondary-text">
-				[[--IFStart,is:[%UpperDispYn%]=Y--]][[--ThenStart--]]
-					[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]
-					[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원
-						[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
-					[[--ThenEnd--]]
-					[[--ElseStart--]]
-						[[--IFStart,exist:goos_pric--]][[--ThenStart--]]
-						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,goos_pric--]][[--ReplaceEnd--]]원
-							[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
-						[[--ThenEnd--]][[--IFEnd--]]
-					[[--ElseEnd--]][[--IFEnd--]]
+			<div class="top-visual">
+				[[--IFStart,exist:repr_img--]][[--ThenStart--]]
+				<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지" class="top-visual-img">
 				[[--ThenEnd--]][[--IFEnd--]]
+				<!-- <div class="btn-brand-follow" id="fit_follow_y" onclick="alert('브랜드 팔로우 API 필요!!')">
+					<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로우</a>
+				</div>
+				<div class="btn-brand-follow" id="fit_follow_n" onclick="alert('브랜드 팔로우 API 필요!!')" style="display:none;">
+					<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로잉</a>
+				</div> -->
 			</div>
-
-			<!-- 2. 상품명만 -->
-			<!-- <div class="product-title-wrap">
-				<div class="product-tit">F&B</div>
-			</div> -->
-		</div>
-		<!-- <div class="content-area"> 
-				//content-area
-		</div>  -->
+			<div class="detail-container">
+				<div class="product-tag-wrap">
+					[[--IFStart,exist:badge1--]][[--ThenStart--]]<div class="custom-chip on">[[--ArtFieldValue,badge1--]]</div>[[--ThenEnd--]][[--IFEnd--]]
+					[[--IFStart,exist:badge2--]][[--ThenStart--]]<div class="custom-chip">[[--ArtFieldValue,badge2--]]</div>[[--ThenEnd--]][[--IFEnd--]]
+				</div>
+				<div class="product-title-wrap">
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]
+					<div class="product-tit">
+						[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]
+					</div>
+					[[--ThenEnd--]][[--IFEnd--]]
+					<div class="btn-box">
+						<div class="btn-product export" onclick="alert('내보내기 API 필요!!')">
+							<a href="new_open_cms_share:" id="open_share" style="display:none;"></a>
+							내보내기
+						</div>
+						<div class="btn-product save" onclick="alert('저장하기 API 필요!!')">저장하기</div> <!-- 클래스 on 추가/삭제-->
+					</div>
+				</div>
+				<!-- <span class="ico_section1">|</span><br> -->
+				
+				<!-- 행사 기간 & 위치 -->
+				<div class="period-text">
+					[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]] - [[--IfStart,Exist:enddt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtEndDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]]
+					<br>
+					[[--IFStart,exist:evt_plac_2--]][[--ThenStart--]][[--ArtFieldValue,evt_plac_2--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]
+				</div>
+				<!-- 가격 -->
+				<div class="secondary-text">
+					[[--IFStart,is:saledispcd=정상가격||saledispcd=일반가||saledispcd=행사가격--]][[--ThenStart--]]
+						[[--IFStart,exist:evtprice1--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원 
+							[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
+						[[--ThenEnd--]]
+						[[--ElseStart--]]
+					    	[[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원 [[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+					    [[--ElseEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=정상가-행사가 비교--]][[--ThenStart--]]
+					<span class="sale">
+					    [[--IFStart,exist:normalprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]]
+                    	[[--ElseStart--]]
+                      		[[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]
+                    	[[--ElseEnd--]][[--IFEnd--]]
+                    </span>
+					<p class="price">
+						[[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					</p>
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=특가격--]][[--ThenStart--]]
+						[[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=할인율 or 할인액--]][[--ThenStart--]]
+					    [[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원 할인
+						[[--ThenEnd--]]
+						[[--ElseStart--]]
+					    	[[--IFStart,exist:discnt--]][[--ThenStart--]]
+							[[--ArtFieldValue,discnt--]]% 할인
+							[[--ThenEnd--]][[--IFEnd--]]
+						[[--ElseEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					  
+					[[--IFStart,is:saledispcd=행사가격\(각1\) 행사가격\(각2\)--]][[--ThenStart--]]
+					각  [[--IFStart,exist:evtprice1--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]]
+                    	[[--ElseStart--]]
+							[[--IFStart,exist:normalprice--]][[--ThenStart--]]
+							[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원
+							[[--ThenEnd--]][[--IFEnd--]]
+                    	[[--ElseEnd--]][[--IFEnd--]]
+					    
+						[[--IFStart,exist:evtprice2--]][[--ThenStart--]]
+						 / [[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice2--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
   </body>

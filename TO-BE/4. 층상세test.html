@@ -56,9 +56,9 @@
     <div class="index screen">
       <div class="floor-info">
         <div class="floor-info-header">
-            <div class="floor-info-num-row">
-                <div class="floor-info-num" onclick="alert('층선택 bottom sheet UI 스크립트 필요!!');">[[--ArtFieldValue,fa00027--]]</div>
-                <img class="btn-floor-map" src="[[--ImgRootDir--]]/common/img/icons/icMap.svg" onclick="location.href='[[--ArtAddress,form:5--]]'">
+            <div class="floor-info-num-row">[[--RecordStart, aid--]][[--ArtID--]][[--RecordEnd--]]
+                <div class="floor-info-num" onclick="location.href='[[--ArtAddress,form:2--]][[--PreviewOnlyStart--]]&[[--PreviewOnlyEnd--]][[--PublishOnlyStart--]]?[[--PublishOnlyEnd--]]bld_cd=[[--Write,bld_cd--]]&aid=[[--Write,aid--]]'">[[--ArtFieldValue,fa00027--]]</div>
+                <img class="btn-floor-map" src="[[--ImgRootDir--]]/common/img/icons/icMap.svg" onclick="location.href='[[--ArtAddress,form:3--]]'">
             </div>
 			<div class="floor-info-subTit">[[--ArtFieldValue,fa00004--]]</div>
 			

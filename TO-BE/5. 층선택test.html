@@ -22,14 +22,15 @@
 		<div class="floor-info">
 			<div class="floor-info-container">
 				<div class="floor-list total-floor">
-                    [[--- 건물코드(buld_cd)로 분기쳐야함 ---]]
+                    [[--RecordStart,buld_cd--]][[--ArtfieldValue, buld_cd--]][[--RecordEnd--]]
+                    [[--RecordStart,flr_nm--]][[--ArtfieldValue, flor_nm--]][[--RecordEnd--]]
                     
-                    [[--ActionStart,[%점코드cid%]21,Row:1,Sort:buld_cd=asc--]]
+                    [[--ActionStart,[%점코드cid%]21,Row:1,Search:buld_cd=[%buld_cd%]--]]
                     [[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]]
                     [[--RecordStart,aidx--]][[--ArtIndex--]][[--RecordEnd--]]
                     [[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]]
                     [[--RecordStart, tab_aid--]][[--ArtID--]][[--RecordEnd--]]
-					<div class="floor active" onclick="floorSelect(this); location.href='[[--ArtAddress, [%new_cid%]22,id:[%tab_aid%]--]]'">
+					<div class="floor[[--IfStart, is:flor_nm=[%flr_nm%]--]][[--ThenStart--]] active[[--ThenEnd--]][[--IfEnd--]]" onclick="floorSelect(this); location.href='[[--ArtAddress, [%new_cid%]22,id:[%tab_aid%], form:1--]]'">
 						<div class="floor-number">[[--ArtFieldValue,fa00027--]]</div>
 						<div class="floor-name">[[--ArtFieldValue,fa00004--]]</div>
 					</div>
