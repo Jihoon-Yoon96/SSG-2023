@@ -326,8 +326,8 @@
 						<img src="[[--ArtFieldValue,goos_img--]]" alt="[[--ArtFieldValue,goos_nm--]] 이미지">
 					</div>
 				</a>
-				[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<div class="product-item-brand"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
-				[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<div class="product-item-name"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<div class="product-item-brand"><a onclick="location.href='[[--ArtAddress--]]'" style="cursor: pointer;" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<div class="product-item-name"><a onclick="location.href='[[--ArtAddress--]]'" style="cursor: pointer;" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
 				[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]<div class="product-item-price">[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원 [[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]</div>[[--ThenEnd--]][[--IFEnd--]]
 			</div>
 			[[--ActionEnd--]]
@@ -344,8 +344,8 @@
 				</div>
 				</a>
 				[[--ThenEnd--]][[--IFEnd--]]
-				[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<div class="product-item-brand"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
-				[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<div class="product-item-name"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<div class="product-item-brand"><a onclick="location.href='[[--ArtAddress--]]'" style="cursor: pointer;" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<div class="product-item-name"><a onclick="location.href='[[--ArtAddress--]]'" style="cursor: pointer;" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</a></div>[[--ThenEnd--]][[--IFEnd--]]
 				[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]<div class="product-item-price">[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원 [[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]</div>[[--ThenEnd--]][[--IFEnd--]]
 			</div>
 			[[--ActionEnd--]]
