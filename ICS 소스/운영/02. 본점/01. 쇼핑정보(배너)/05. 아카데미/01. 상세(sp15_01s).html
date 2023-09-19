@@ -1,0 +1,230 @@
+[[--RecordStart,stor_cid--]][[--SubStringStart,~5--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>신세계백화점</title>[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+    [[--PublishOnlyStart--]]
+    <script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+    <script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+    <script>
+        var width = window.screen.width;
+        var count = 0;
+        if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+            // iOS 아이폰, 아이패드, 아이팟
+            if (width == 320) {
+                document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no, viewport-fit=cover">');
+            } else {
+                document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover">');
+            }
+        } else {
+            // 그 외 디바이스
+            // iOS 아이폰, 아이패드, 아이팟
+            if (width == 320) {
+                document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+            } else {
+                document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+            }
+        }
+
+        var url = window.location.href;
+        var shop_url = url.substr(url.lastIndexOf('/') + 1);
+
+        $(function() {
+            //버튼 press 처리 160608 추가
+            $("button, .btn_lst_more").bind("touchstart",function(event){
+                $(this).addClass("active");
+            });
+            $("button, .btn_lst_more").bind("touchend",function(event){
+                $(this).removeClass("active");
+            });
+            //2019.06.25 샤벳 스키마 변경
+            $("#shop_link").children("a").attr("href",shop_url+"/open_shop:");
+
+            //2019.06.26 화면 집입시 공유하기 표시여부
+            setDefultShare();
+        });
+        /*** 2019.02.28 추가 시작***/
+// 화면 진입시 찜하기 여부에 따라 이미지 표현
+        function setDefultHeart(arg,arg2) {
+            var $this = $(".heart");
+
+            if(arg == "heart" ){
+                $this.animate(000, function() {
+                    $this.toggleClass("like");
+                    $this.find(".span1").animate({opacity:1}, 000, function() {
+                        $this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+                            $this.find(".span3").animate({opacity:1}, 000);
+                        });
+                    });
+                })
+                count =1;
+            }
+
+            if(arg2 == "Y"){
+                $("#shop_link").show();
+            }else{
+                $("#shop_link").hide();
+            }
+        }
+
+        //화면 집입시 샤벳링크 표시여부
+        function setDefultShop(arg) {
+            if(arg == 'Y'){
+                $("#shop_link").show();
+            }else{
+                $("#shop_link").hide();
+            }
+        }
+
+        //2019.06.26 화면 집입시 공유하기 표시여부
+        function setDefultShare() {
+            $("#open_share").show();
+        }
+
+        // 찜하기 버튼 클릭에 따른 효과
+        function setMessage(arg) {
+            var $this = $(".heart");
+
+            if(arg == "heart" ){
+                if(count === 0){
+                    $this.animate(300,function() {
+                        $this.toggleClass("like");
+                        $this.find(".span1").animate({opacity:1}, 300, function() {
+                            $this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+                                $this.find(".span3").animate({opacity:1}, 300);
+                            });
+                        });
+                    })
+                    count =1;
+                } else {
+                    $this.animate(300,function() {
+                        $this.find(".span3").animate({opacity:0}, 300, function() {
+                            $this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+                                $this.find(".span1").animate({opacity:0}, 300,function() {
+                                    $this.toggleClass("like");
+                                });
+                            });
+                        });
+                    })
+                    count =0;
+                }
+            }
+        }
+        /*** 2019.02.28 추가 끝 ***/
+
+        function sendMessage(msg){
+            window.android.setMessage(msg);
+        }
+
+        /*** 20.12.03 FIT 팔로우 ***/
+        function setFitFollow(arg){
+            if(arg == "Y"){
+                $("#fit_follow_y").show();
+                $("#fit_follow_n").hide();
+            }else{
+                $("#fit_follow_y").hide();
+                $("#fit_follow_n").show();
+            }
+        }
+        /*** //FIT 팔로우 ***/
+    </script>
+</head>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+    var width = window.screen.width;
+    if (width == 320) {
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+    } else {
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+    }
+    $(function() {
+        //찜하기
+        $(".heart").click(function(){
+            $(this).toggleClass("like");
+        });
+        //버튼 press 처리 160608 추가
+        $("button, .btn_lst_more").bind("touchstart",function(event){
+            $(this).addClass("active");
+        });
+        $("button, .btn_lst_more").bind("touchend",function(event){
+            $(this).removeClass("active");
+        });
+    });
+</script>
+</head>
+<p>대표이미지(720*720)</p>
+[[--PreviewOnlyEnd--]]
+<body>
+<div id="wrap" class="catalogue">
+    <!-- header -->
+    <div id="header">
+        <h1 class="blind">[[--ArtFieldValue,aca_nm--]] 상세페이지</h1>
+    </div>
+    <!-- //header -->
+    <!-- container -->
+    <div id="container">
+        <!-- top_bx -->
+        <div class="top_bx">
+            <div class="dim"></div>
+            [[--IFStart,exist:repr_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,repr_img--]]" alt="[[--ArtFieldValue,aca_nm--]] 대표이미지">[[--ThenEnd--]][[--IFEnd--]]
+        </div>
+        <!-- //top_bx -->
+        <!-- contents -->
+        <div class="contents">
+            <!-- info -->
+            <div class="info" style="display:none;">
+                <div class="info_bx">
+                    <p class="tag">[[--IFStart,exist:badge1--]][[--ThenStart--]]<span>[[--ArtFieldValue,badge1--]]</span>[[--ThenEnd--]][[--IFEnd--]]
+                        [[--IFStart,exist:badge2--]][[--ThenStart--]]<span class="sub">[[--ArtFieldValue,badge2--]]</span>[[--ThenEnd--]][[--IFEnd--]]</p>
+                    [[--IFStart,exist:aca_nm--]][[--ThenStart--]]<h2 class="ttl">[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,aca_nm--]][[--ReplaceEnd--]]</h2>[[--ThenEnd--]][[--IFEnd--]]
+
+                    <p class="desc">[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]] - [[--IfStart,Exist:enddt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtEndDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]]
+                        <span class="ico_section1">|</span><br>
+                        [[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]]
+                        [[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]]</p>
+                    <!-- <p class="desc">2016.2.1 - 상품 소진시까지<span class="ico_section1">|</span>본관 1F</p> --><!-- 160629 추가 -->
+                </div>
+            </div>
+            <!-- //info -->
+            <!-- detail -->
+            <div class="detail news">
+                <!-- editor 영역 -->
+                <div class="editor">
+                    <!-- 단순 텍스트 -->
+                    <div class="textarea dotted">
+                      [[--IfStart,exist:aca_nm--]][[--ThenStart--]]<p><strong>강좌명</strong><span> [[--ArtFieldValue,aca_nm--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                        [[--IfStart,exist:stor_nm--]][[--ThenStart--]]<p><strong>점포</strong><span>[[--ArtFieldValue,stor_nm--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                        <p><strong>기간/횟수</strong><span>[[--ArtFieldValue,Field:aca_strdt--]] ~ [[--ArtFieldValue,Field:aca_enddt--]] / [[--ArtFieldValue,aca_repeat--]]</span></p>
+                        <p><strong>요일/시간</strong><span>[[--ArtFieldValue,aca_dday--]] / [[--ArtFieldValue,Field:aca_strtm--]] ~ [[--ArtFieldValue,Field:aca_endtm--]]</span></p>
+                        <p><strong>수강대상</strong><span>[[--ArtFieldValue,aca_age--]]</span></p>
+                        [[--IfStart,exist:aca_place--]][[--ThenStart--]]<p><strong>강의실</strong><span>[[--ArtFieldValue,aca_place--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                        [[--IfStart,exist:aca_money--]][[--ThenStart--]]<p><strong>수강료</strong><span>[[--ArtFieldValue,aca_money--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                        [[--IfStart,exist:aca_option--]][[--ThenStart--]]<p><strong>교재/재료비</strong><span>[[--ArtFieldValue,aca_option--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                        [[--IfStart,exist:teacher_nm--]][[--ThenStart--]]<p><strong>강사</strong><span>[[--ArtFieldValue,teacher_nm--]]</span></p>[[--ThenEnd--]][[--IfEnd--]]
+                    </div>
+                    <div class="textarea dotted">
+                      [[--IfStart,exist:aca_summary--]][[--ThenStart--]]<p><b>강좌설명</b><br/></br/>[[--ReplaceStart,regex:\r\n,to:<br/>--]][[--ArtFieldValue,aca_summary--]][[--ReplaceEnd--]]</p>[[--ThenEnd--]][[--IfEnd--]]
+                      [[--IfStart,exist:aca_curricul--]][[--ThenStart--]]<p><b>커리큘럼</b><br/></br/>[[--ReplaceStart,regex:\r\n,to:<br/>--]][[--ArtFieldValue,aca_curricul--]][[--ReplaceEnd--]]</p>[[--ThenEnd--]][[--IfEnd--]]
+                    </div>
+                </div>
+                <!-- //editor 영역 -->
+            </div>
+            <!-- //detail -->
+            <p class="bottom_new_btn"><a href="https://deptmapp.shinsegae.com/culture/academy/lecture.do?yearCode=[[--ArtFieldValue,aca_year--]]&smstCode=[[--ArtFieldValue,aca_sea_cd--]]&storeCode=[[--ArtFieldValue,store_code--]]&lectCode=[[--ArtFieldValue,aca_cd--]]/schema_ipn:outlink:login_compulsion_open:req_get:">수강신청</a></p>
+        </div>
+        <!-- //contents -->
+    </div>
+    <!-- //container -->
+</div>
+</body>
+</html>

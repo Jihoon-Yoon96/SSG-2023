@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>
+[[--PublishOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript" src="[[--CatAddress,spzzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,spzzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,spzzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+    //버튼 press 처리 160504 추가
+    $(".hd_info2 a, .sti_finfo li").bind("touchstart",function(event){
+        $(this).addClass("active");
+    });
+    $(".hd_info2 a, .sti_finfo li").bind("touchend",function(event){
+        $(this).removeClass("active");
+    });
+    $('#container').css('top', $(window).height() - 190);
+    $('.hd_info1').css('bottom', $(window).height() - $("#container").offset().top + 54);
+
+    // 스크롤시 탭 고정 및 dim 이미지 컨트롤
+    var lastScroll = 0;
+    $(window).scroll(function(event){
+        var st = $(this).scrollTop();
+        $('.dim').css({display:'block','opacity':(st)/500});
+
+        if (st < 30){
+            $('.dim').removeAttr("style");
+        }
+        else if (st < $(window).height() - 190){
+            $(".sti_tab").removeClass("fxd");
+        }
+        else if (st > lastScroll){
+            $(".sti_tab").removeClass("fxd");
+        }
+        else {
+            $(".sti_tab").addClass("fxd")
+        }
+        lastScroll = st;
+        if ($('.dim').css('opacity') == 1){
+            $('.dim').css('opacity',1);
+        }
+    });
+
+    // 탭
+	//$(".tab_content").hide(); // [삭제] 2017-09-06
+    //$(".tab_content:first").show(); // [삭제] 2017-09-06
+	// [추가] 2017-09-06, 탭 노출 처리
+	var splitTabCd = document.location.href.split("#");
+	var tabCd = splitTabCd[1];
+	if(!(typeof tabCd != "undefined" && null != tabCd && "" != tabCd)) tabCd = "tab01";
+    display_tab(tabCd);
+
+    $(".sti_tab li").click(function () {
+        $(".sti_tab li").removeClass("active")
+        $(this).addClass("active")
+        $(".tab_content").hide()
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn()
+    });
+
+    // 아코디언
+    function close_accordion_section() {
+        jQuery('.sti_no').removeClass('active');
+        jQuery('.sti_op').slideUp(300).removeClass('open');
+    }
+    $(".sti_op").hide();
+    jQuery('.sti_no').click(function(e) {
+        var currentValue = jQuery(this).next();
+        if(jQuery(this).is('.active') || jQuery(this).is('.noninfo')) { /* 160831 수정 */
+            close_accordion_section();
+        }else {
+            close_accordion_section();
+            jQuery(this).addClass('active');
+            jQuery(currentValue).slideDown(300).addClass('open');
+        }
+        e.preventDefault();
+    });
+
+    var time = new Date().getHours();
+    if (time >= 6 && time < 18) {
+        $('#header').css('background-image','url([[--ArtFieldValue,img_day--]])');
+    }
+    else {
+        $('#header').css('background-image','url([[--ArtFieldValue,img_night--]])');
+    }
+});
+
+// [추가] 2017-09-06, 탭 노출 처리
+function display_tab(tabCd) {
+	$(".sti_tab li").removeClass("active");
+	$(".tab_content").hide();
+	$("#id_" + tabCd).addClass("active");
+	var activeTab = $("#id_" + tabCd).attr("rel");
+	$("#" + activeTab).fadeIn();
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript">[[--jquery_min--]]</script>
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+    //버튼 press 처리 160504 추가
+    $(".hd_info2 a, .sti_finfo li").bind("touchstart",function(event){
+        $(this).addClass("active");
+    });
+    $(".hd_info2 a, .sti_finfo li").bind("touchend",function(event){
+        $(this).removeClass("active");
+    });
+    $('#container').css('top', $(window).height() - 190);
+    $('.hd_info1').css('bottom', $(window).height() - $("#container").offset().top + 54);
+
+    // 스크롤시 탭 고정 및 dim 이미지 컨트롤
+    var lastScroll = 0;
+    $(window).scroll(function(event){
+        var st = $(this).scrollTop();
+        $('.dim').css({display:'block','opacity':(st)/500});
+
+        if (st < 30){
+            $('.dim').removeAttr("style");
+        }
+        else if (st < $(window).height() - 190){
+            $(".sti_tab").removeClass("fxd");
+        }
+        else if (st > lastScroll){
+            $(".sti_tab").removeClass("fxd");
+        }
+        else {
+            $(".sti_tab").addClass("fxd")
+        }
+        lastScroll = st;
+        if ($('.dim').css('opacity') == 1){
+            $('.dim').css('opacity',1);
+        }
+    });
+
+    // 탭
+    $(".tab_content").hide();
+    $(".tab_content:first").show();
+    $(".sti_tab li").click(function () {
+        $(".sti_tab li").removeClass("active")
+        $(this).addClass("active")
+        $(".tab_content").hide()
+        var activeTab = $(this).attr("rel");
+        $("#" + activeTab).fadeIn()
+    });
+
+    // 아코디언
+    function close_accordion_section() {
+        jQuery('.sti_no').removeClass('active');
+        jQuery('.sti_op').slideUp(300).removeClass('open');
+    }
+    $(".sti_op").hide();
+    jQuery('.sti_no').click(function(e) {
+        var currentValue = jQuery(this).next();
+        if(jQuery(this).is('.active') || jQuery(this).is('.noninfo')) { /* 160831 수정 */
+            close_accordion_section();
+        }else {
+            close_accordion_section();
+            jQuery(this).addClass('active');
+            jQuery(currentValue).slideDown(300).addClass('open');
+        }
+        e.preventDefault();
+    });
+
+    var time = new Date().getHours();
+    if (time >= 6 && time < 18) {
+        $('#header').css('background-image','url([[--ArtFieldValue,img_day--]])');
+    }
+    else {
+        $('#header').css('background-image','url([[--ArtFieldValue,img_night--]])');
+    }
+});
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<style>
+#header {background-size:cover;}
+#sa00023_1{ display:none; }
+#sa00023_2{ display:none; }
+#sa00024_1{ display:none; }
+#sa00024_2{ display:none; }
+#rest{ display:none; }
+#diner{ display:none; }
+
+/* 엔터테인먼트&교육 */
+.enter_lst{width:calc(100% - 20px);margin-left:20px;border-top:1px solid #f0f0f0;background:aloceblue}
+.enter_lst li{width:100%;height:67px;border-bottom:1px solid #f0f0f0;background:url("[[--ImgRootDir--]]common/img/common/ico_arrow03.jpg") 97% 50% no-repeat;background-size:20px 20px}
+.enter_lst li:after{display:block;content:"";clear:both}
+.enter_lst li span{display:block;float:left}
+.enter_lst li .logo{width:88px}
+.enter_lst li .logo img{width:100%;height:auto}
+.enter_lst li .txt{width:calc(100% - 100px);font-size:0.85em;line-height:67px;color:#1a1a1a}
+.enter_lst li .txt:before{display:block;content:"";float:left;width:1px;height:13px;margin:27px 10px 0 0;background:#111}
+
+.enter_sub{position:absolute;top:0;left:0;display:inline-block;width:100%;z-index:800}
+.enter_sub li{display:none;width:100%;height:auto}
+.enter_sub li img{width:100%;height:auto}
+
+.location{position:absolute;top:0;left:0;display:none;width:100%;height:auto;z-index:800}
+.location img{width:100%;height:auto}
+</style>
+<script>
+/*
+$.ajax({
+    url: 'https://stg.deptmapp.shinsegae.com/function/jsonpStoreTime.jsp',
+    dataType: "jsonp",
+    jsonpCallback: 'callback',
+    success: function(d){
+        var sdata = JSON.stringify(d);
+        var data = JSON.parse(sdata);
+
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth()+1;
+        if (month < 10) { month = '0' + month; }
+        var date = new Date().getDate();
+        if (date < 10) { date = '0' + date; }
+        var time = year+''+month+''+date;
+        //alert("현재일: "+time); // 현재일
+
+        for(var i=1; i<=data.data.length-1; i++){
+            if('[[--sp_store_code--]]' == data.data[i].code && time == data.data[i].dt){
+
+            	if('D19'== data.data[i].code) {
+                    //$("#trafficInfo").show();
+                    $("#id_tab99").show();
+                } else {
+                    //$("#trafficInfo").hide();
+                    $("#id_tab99").hide();
+                }
+
+
+                console.log(data.data[i].code);
+
+                var trafficInfoInnerDiv ="";
+                trafficInfoInnerDiv += "<div class='link' onclick='location.href=";
+                trafficInfoInnerDiv += '"https://deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=';
+//                trafficInfoInnerDiv += 'SC00001"';
+                trafficInfoInnerDiv += '[[--ArtFieldValue,stor_cd--]]"';
+//                trafficInfoInnerDiv += '&pType=app"';
+                trafficInfoInnerDiv += "'>";
+                trafficInfoInnerDiv += "[[--ArtFieldValue,stor_nm--]]";
+                trafficInfoInnerDiv += " 오시는길</div>";
+
+                $("#trafficInfo").html(trafficInfoInnerDiv);
+                //if(data.data[i].kind == 'N'){ //정상영업
+                    //$("#sa00023_1").css("display", 'block');
+                    //$("#sa00023_2").append("정상영업&nbsp;&nbsp;"+data.data[i].startTime+" - "+data.data[i].endTime);
+                    //$("#sa00023_2").css("display", 'block');
+                    //$("diner").css("display", 'block');
+                //}
+                //if(data.data[i].kind == 'T' || data.data[i].kind == 'M'){ //연장영업
+                    //$("#sa00024_1").css("display", 'block');
+                    //if('D11'== data.data[i].code) {
+                       //$("#sa00024_2").append("금,토요일 1시간 연장 / 일,공휴일 30분 연장");
+                    //} else {
+                       //$("#sa00024_2").append("연장영업&nbsp;&nbsp;"+data.data[i].startTime+" - "+data.data[i].endTime);
+                    //}
+                    //$("#sa00024_2").css("display", 'block');
+                    //$("diner").css("display", 'block');
+                //}
+                //if(data.data[i].kind == 'Y'){ //휴점
+                    //$("#rest").css("display", 'block');
+                //}
+            }
+        }
+    }
+});
+*/
+
+// =========================================================== 이영선 =============================================================
+  // 클라이언트 TIME 초기화
+  var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth()+1
+      var day = date.getDate();
+      if(month < 10){
+          month = "0"+month;
+      }
+      if(day < 10){
+          day = "0"+day;
+      }
+
+   var today = year+"-"+month+"-"+day
+
+   // 서버TIME
+  let serverTime = today;
+  let timeArr = serverTime.split("-");
+  let moveCnt = 0;
+
+  let calYear = parseInt(timeArr[0]);
+  let calMonth = parseInt(timeArr[1]);
+  let calDate = parseInt(timeArr[2]);
+
+  let stateCodeArr = [];
+  let cmsCurM;
+  /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
+  function callbackDate(data){
+    //alert(JSON.stringify(data));
+    //alert(data.resultMsg);
+    //alert(data.today);
+    serverTime = data.today;
+    timeArr = serverTime.split("-");
+    calYear = parseInt(timeArr[0]);
+    calMonth = parseInt(timeArr[1]);
+    calDate = parseInt(timeArr[2]);
+    // alert("serverTime : " + serverTime);
+  };
+  //ALERT([[--sp_store_code--]]);
+  /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
+  $(document).ready(function() {
+    if('[[--ArtFieldValue,stor_cd--]]' == 'SC00013'){
+        $("#id_tab99").show();
+      } else {
+        //$("#trafficInfo").hide();
+        $("#id_tab99").hide();
+     }
+    
+
+    var trafficInfoInnerDiv ="";
+    trafficInfoInnerDiv += "<div class='link' onclick='location.href=";
+    trafficInfoInnerDiv += '"https://deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=';
+//                trafficInfoInnerDiv += 'SC00001"';
+    trafficInfoInnerDiv += '[[--ArtFieldValue,stor_cd--]]"';
+//                trafficInfoInnerDiv += '&pType=app"';
+    trafficInfoInnerDiv += "'>";
+    trafficInfoInnerDiv += "[[--ArtFieldValue,stor_nm--]]";
+    trafficInfoInnerDiv += " 오시는길</div>";
+
+    $("#trafficInfo").html(trafficInfoInnerDiv);
+    
+    $.ajax({
+      url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+      dataType : "jsonp",
+      jsonp : "callback",
+      success: callbackDate
+    });
+    [[--RecordStart,cDateId--]][[--CatId--]]4[[--RecordEnd--]]
+    [[--RecordStart,preId--]]sale_ym[[--RecordEnd--]]
+    [[--ActionStart,[%cDateId%],row:6--]]
+    cmsCurM = "[[--ArtFieldValue,[%preId%]0--]]";
+     console.log(timeArr[0]+timeArr[1], cmsCurM);
+    if (timeArr[0]+timeArr[1] == cmsCurM) {
+      stateCodeArr = [[[--forStart,name:idx,from:0,to:31--]][[--ifStart,is:idx=0--]][[--ElseStart--]],[[--ElseEnd--]][[--ifEnd--]]"[[--ArtFieldValue,[%preId%][%idx%]--]]"[[--forEnd--]]];
+    }
+    [[--ActionEnd--]]
+    console.log("[[--Write,cDateId--]]");
+    console.log(stateCodeArr);
+
+    let checkItem = stateCodeArr[calDate].split("");
+    if(checkItem[0]== 2) { //휴점일
+      // $("#storeState").html("오늘은 휴점일 입니다.");
+      $("#rest").show();
+    } else if(checkItem[0]== 3) { //연장영업
+      // $("#storeState").html("오늘은 연장영업 합니다.");
+      $("#sa00024_1").show();
+      // 충청점인 경우 분기처리
+      [[--ifStart,is:stor_cd=SC00009--]][[--ThenStart--]]$("#sa00024_2").append("금,토요일 1시간 연장 / 일,공휴일 30분 연장");[[--ThenEnd--]]
+      [[--ElseStart--]][[--ifStart,Exist:sa00024--]][[--ThenStart--]]$("#sa00024_2").append("연장영업&nbsp;&nbsp;[[--ArtFieldValue,sa00024--]]");
+      $("#sa00024_2").show();[[--ThenEnd--]][[--ifEnd--]][[--ElseEnd--]][[--ifEnd--]]
+      $("diner").show();
+    } else { //정상영업
+      // $("#storeState").html("오늘은 정상 영업일 입니다.");
+      $("#sa00023_1").show();
+      [[--ifStart,Exist:sa00023--]][[--ThenStart--]]$("#sa00023_2").append("정상영업&nbsp;&nbsp;[[--ArtFieldValue,sa00023--]]");
+      $("#sa00023_2").show();[[--ThenEnd--]][[--ifEnd--]]
+      $("diner").show();
+    }
+  });
+
+</script>
+<body>
+<div id="wrap" class="sti_sec1">
+    <!-- header -->
+    <div id="header">
+        <div class="dim"></div>
+        <div id="trafficInfo"></div>
+        <!--<div id="trafficInfo" class="link" onclick="location.href='[[--ArtAddress,form:10--]]'">대구신세계 오시는길</div>-->
+
+        <div class="hd_info1">
+            <h1><a href="open_storeInfo:">[[--ArtFieldValue,stor_nm--]]</a></h1>
+            <ul class="tm">
+                <li id="sa00023_1">오늘은 정상영업일입니다.</li>
+                <li id="sa00024_1">오늘은 연장영업일 입니다.</li>
+                <li id="rest">오늘은 휴점일 입니다.</li>
+                <li id="sa00023_2"></li>
+                <li id="sa00024_2"></li>
+                <li id="diner">식당가영업&nbsp;&nbsp;[[--ArtFieldValue,sa00025--]]</li>
+            </ul>
+            <a href="[[--ifStart,is:stor_cd=SC00013--]][[--ThenStart--]][[--ArtAddress,form:11--]][[--ThenEnd--]][[--ElseStart--]][[--ArtAddress,form:4--]][[--ElseEnd--]][[--ifEnd--]]" class="dtl">자세히보기</a>
+        </div>
+        <ul class="hd_info2">
+        <li><a href="open_search:" class="sch"><em class="blind">찾기</em></a></li>
+        [[--IFStart,exist:sa00013--]][[--ThenStart--]][[--RecordStart,num_chk--]][[--SubStringStart,1--]][[--ArtFieldValue,sa00013--]][[--SubStringEnd--]][[--RecordEnd--]][[--IFStart,is:[%num_chk%]=0||[%num_chk%]=1||[%num_chk%]=2||[%num_chk%]=3||[%num_chk%]=4||[%num_chk%]=5||[%num_chk%]=6||[%num_chk%]=7||[%num_chk%]=8||[%num_chk%]=9--]][[--ThenStart--]]<li><a href="tel:[[--ReplaceStart,regex:\-,to:--]][[--ArtFieldValue,sa00013--]][[--ReplaceEnd--]]" class="pho"><em class="blind">전화</em></a></li>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+        [[--RecordStart,cid--]][[--CatId--]][[--RecordEnd--]][[--RecordStart,upcid--]][[--SubStringStart,~-1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+        [[--IFStart,is:[%점코드cid%]=sp001||[%점코드cid%]=sp002--]][[--ThenStart--]]<!--<li><a href="open_floorguide:" class="kangnam"><em class="blind">플로어가이드 이동</em></a></li>-->[[--ThenEnd--]][[--IFEnd--]]
+        </ul>[[--RecordStart,gangnam_flag--]]F[[--RecordEnd--]][[--RecordStart,city_flag--]]F[[--RecordEnd--]]
+        [[--ActionStart,ssc02_10,row:1--]][[--RecordStart,gangnam_flag--]]T[[--RecordEnd--]][[--ActionEnd--]]
+        [[--ActionStart,ssc08_10,row:1--]][[--RecordStart,city_flag--]]T[[--RecordEnd--]][[--ActionEnd--]]
+        [[--IFStart,is:[%cid%]=ssc02&&[%gangnam_flag%]=T--]][[--ThenStart--]]<a href="[[--CatAddress,ssc02_10--]]" class="otm">파미에스트리트</a>[[--ThenEnd--]][[--IFEnd--]]
+        [[--IFStart,is:[%cid%]=ssc08&&[%city_flag%]=T--]][[--ThenStart--]]<a href="[[--CatAddress,ssc08_10--]]" class="otm">센텀시티홀</a>[[--ThenEnd--]][[--IFEnd--]]
+    </div>
+    <!-- //header -->
+    <!-- container -->
+    <div id="container">
+        <ul class="sti_tab">[[--ActionStart,[%점코드cid%]21,Row:*,Sort:buld_cd=asc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+            <a href="#tab0[[--ArtIndex--]]"><li id="id_tab0[[--ArtIndex--]]" rel="tab[[--ArtIndex--]]"[[--IFStart,is:[%idx%]=1--]][[--ThenStart--]] class="active"[[--ThenEnd--]][[--IFEnd--]]>[[--ArtFieldValue,buld_nm--]]</li></a>[[--ActionEnd--]]
+            <a href="#tab98"><li id="id_tab98" rel="last">서비스시설</li></a>
+            <a href="#tab99"><li id="id_tab99" rel="entertainment_rel">엔터테인먼트&amp;교육</li></a>
+        </ul>
+        [[--ActionStart,[%점코드cid%]21,Row:*,Sort:buld_cd=asc--]][[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]]
+        <!-- [[--ArtFieldValue,buld_nm--]]층별안내 리스트 -->
+        <div id="tab[[--ArtIndex--]]" class="tab_content">
+            <ul class="sti_finfo">[[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]]
+                <li>
+                    <a href="[[--ArtAddress,form:1--]]">
+                    <span><img src="[[--ImgRootDir--]]common/img/common/s_[[--ArtFieldValue,flor_cd--]].png" width="42" height="21" alt="[[--ArtFieldValue,flor_nm--]]"></span>
+                    <em>[[--ArtFieldValue,fa00004--]]</em>
+                    </a>
+                    [[--IFStart,exist:fa00019--]][[--ThenStart--]]<a href="[[--ifStart,is:stor_cd=SC00013--]][[--ThenStart--]][[--ArtAddress,form:11--]][[--ThenEnd--]][[--ElseStart--]][[--ArtAddress,form:4--]][[--ElseEnd--]][[--ifEnd--]]" class="stimap"><em class="blind">지도보기</em></a>[[--ThenEnd--]][[--IFEnd--]]
+                </li>[[--ActionEnd--]]
+            </ul>
+        </div>
+        <!-- //[[--ArtFieldValue,buld_nm--]]층별안내 리스트 -->[[--ActionEnd--]]
+
+        <!-- 서비스시설 리스트 -->
+        <div id="last" class="tab_content">[[--ActionStart,[%점코드cid%]21,Row:*,Sort:#DEFAULT#--]][[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--RecordStart,field_tmp--]]null[[--RecordEnd--]]
+            [[--RecordStart,flag--]]T[[--RecordEnd--]]
+            [[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]][[--RecordStart,flo_cd--]][[--ArtFieldValue,flor_cd--]][[--RecordEnd--]]
+            [[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%],Row:*,Sort:#DEFAULT#--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]][[--IFStart,is:ub00005=GL00010||ub00005=GL00011||ub00005=GL00012--]][[--ThenStart--]][[--IFStart,is:flag=T--]][[--ThenStart--]]<div class="sti_sinfo_tit">[[--ArtFieldValue,buld_nm--]]</div>[[--ThenEnd--]][[--IFEnd--]][[--RecordStart,flag--]]F[[--RecordEnd--]]
+            [[--IFStart,is:[%field_tmp%]==flor_cd--]][[--ElseStart--]]
+            [[--RecordStart,field_tmp--]][[--write,field_tmp--]][[--ArtFieldValue,field:flor_cd--]];[[--RecordEnd--]]
+            [[--ElseEnd--]][[--IFEnd--]]
+            [[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+            [[--ActionEnd--]]
+            [[--RecordStart,field_tmp--]][[--ReplaceStart,regex:null,to:--]][[--write,field_tmp--]][[--ReplaceEnd--]][[--RecordEnd--]]
+            [[--ForStart,var,in:[%field_tmp%]--]][[--IFStart,is:buld_cd=[%bld_cd%]&&flor_cd=[%var%]--]][[--ThenStart--]]
+            <!-- 층별 시설 그룹 -->
+            <div class="sti_sinfo_lst">
+                <strong>[[--ArtFieldValue,flor_nm--]]</strong>
+                <ul>[[--ActionStart,[%점코드cid%]23,Row:*,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&flor_cd=[%var%],Sort:shop_nm=asc--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]][[--IFStart,is:ub00005=GL00010||ub00005=GL00011||ub00005=GL00012--]][[--ThenStart--]]
+                    <li>
+                        <div class="sti_no[[--IFStart,exist:sh00009--]][[--ThenStart--]][[--ThenEnd--]][[--ElseStart--]] noninfo[[--ElseEnd--]][[--IFEnd--]]">
+                            <p>[[--ArtFieldValue,shop_nm--]]</p>
+                        </div>
+                        <div class="sti_op">
+                            [[--IFStart,exist:sh00028--]][[--ThenStart--]]<p>[[--ArtFieldValue,sh00028--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+                            [[--IFStart,exist:sh00009--]][[--ThenStart--]][[--RecordStart,num_chk--]][[--SubStringStart,1--]][[--ArtFieldValue,sh00009--]][[--SubStringEnd--]][[--RecordEnd--]][[--IFStart,is:[%num_chk%]=0||[%num_chk%]=1||[%num_chk%]=2||[%num_chk%]=3||[%num_chk%]=4||[%num_chk%]=5||[%num_chk%]=6||[%num_chk%]=7||[%num_chk%]=8||[%num_chk%]=9--]][[--ThenStart--]]<a href="tel:[[--ArtFieldValue,sh00009--]]">전화하기</a>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+                        </div>
+                    </li>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]
+                </ul>
+            </div>
+            <!-- //층별 시설 그룹 -->[[--ThenEnd--]][[--IFEnd--]][[--ForEnd--]]
+            [[--ActionEnd--]][[--ActionEnd--]]
+        </div>
+        <!-- //서비스시설 리스트 -->
+		<!-- 엔터테인먼트&교육 (목록) -->
+		<div id="entertainment_rel" class="tab_content">
+			<ul class="enter_lst">
+                <li><span class="logo"><a href="[[--ArtAddress,form:4--]]"><img src="[[--ImgRootDir--]]common/img/logo_littleLand.jpg" alt="리틀란드 로고"></span><span class="txt">리틀란드</span></a></li>
+                <li><span class="logo"><a href="[[--ArtAddress,form:5--]]"><img src="[[--ImgRootDir--]]common/img/logo_zooraji.jpg" alt="주라지 테마파크 로고"></span><span class="txt">주라지 테마파크</span></a></li>
+                <li><span class="logo"><a href="[[--ArtAddress,form:6--]]"><img src="[[--ImgRootDir--]]common/img/logo_alive.jpg" alt="대구 아쿠아리움 로고"></span><span class="txt">대구 아쿠아리움</span></a></li>
+                <li><span class="logo"><a href="[[--ArtAddress,form:7--]]"><img src="[[--ImgRootDir--]]common/img/logo_vaunce.jpg" alt="바운스 트램폴린파크 로고"></span><span class="txt">바운스 트램폴린 파크</span></a></li>
+                <li><span class="logo"><a href="[[--ArtAddress,form:9--]]"><img src="[[--ImgRootDir--]]common/img/logo_megabox.jpg" alt="메가박스 로고"></span><span class="txt">메가박스</span></a></li>
+			</ul>
+        </div>
+        <!--// 엔터테인먼트&교육 (목록) -->
+    </div>
+
+	<!--// 엔터테인먼트&교육 (팝업) -->
+	<!-- 교통캠페인 (팝업) -->
+	<div class="location"><a href="[[--ArtAddress,form:10--]]"></div>
+	<!--// 교통캠페인 (팝업) -->
+	<script>
+	// 스크롤 가장 위로
+	function scrollTop(){
+		$("html, body").animate({scrollTop:0},600);
+		return false;
+	};
+
+	$(function(){
+		// 엔터테인먼트&교육
+		var lstArr = $(".enter_lst").find("li");
+
+		$(lstArr).each(function(){
+			var lst_idx = $(this).index();
+
+			$(this).on("click",function(){
+				// 해당 상세 페이지 팝업 노출
+				//$(".enter_sub").find("li").eq(lst_idx).css("display","block");
+				//scrollTop();
+			});
+		});
+
+		// 교통 캠페인
+		$(".link").on("click",function(){
+			//해당 상세 페이지 팝업 노출
+			$(".location").css("display","block");
+			scrollTop();
+		});
+	});
+	</script>
+</div>
+</body>
+</html>

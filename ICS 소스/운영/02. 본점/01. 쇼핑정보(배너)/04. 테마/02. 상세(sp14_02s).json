@@ -1,0 +1,56 @@
+[[--RecordStart,sbmapcd--]][[--IFStart,exist:submapcd1--]][[--ThenStart--]][[--ArtFieldValue,submapcd1--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd2--]][[--ThenStart--]][[--ArtFieldValue,submapcd2--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd3--]][[--ThenStart--]][[--ArtFieldValue,submapcd3--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd4--]][[--ThenStart--]][[--ArtFieldValue,submapcd4--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd5--]][[--ThenStart--]][[--ArtFieldValue,submapcd5--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd6--]][[--ThenStart--]][[--ArtFieldValue,submapcd6--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd7--]][[--ThenStart--]][[--ArtFieldValue,submapcd7--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd8--]][[--ThenStart--]][[--ArtFieldValue,submapcd8--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd9--]][[--ThenStart--]][[--ArtFieldValue,submapcd9--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd10--]][[--ThenStart--]][[--ArtFieldValue,submapcd10--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd11--]][[--ThenStart--]][[--ArtFieldValue,submapcd11--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd12--]][[--ThenStart--]][[--ArtFieldValue,submapcd12--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd13--]][[--ThenStart--]][[--ArtFieldValue,submapcd13--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd14--]][[--ThenStart--]][[--ArtFieldValue,submapcd14--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd15--]][[--ThenStart--]][[--ArtFieldValue,submapcd15--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd16--]][[--ThenStart--]][[--ArtFieldValue,submapcd16--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd17--]][[--ThenStart--]][[--ArtFieldValue,submapcd17--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd18--]][[--ThenStart--]][[--ArtFieldValue,submapcd18--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd19--]][[--ThenStart--]][[--ArtFieldValue,submapcd19--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd20--]][[--ThenStart--]][[--ArtFieldValue,submapcd20--]];[[--ThenEnd--]][[--IFEnd--]][[--RecordEnd--]]
+
+{
+"stor_cd":"[[--IFStart,exist:stor_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:stor_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"stor_nm":"[[--IFStart,exist:stor_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:stor_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"startDt":"[[--IFStart,exist:startdt--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"endDt":"[[--IFStart,exist:enddt--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"expDt":"[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:expdt--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"md_cd":"[[--IFStart,exist:md_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:md_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"md_nm":"[[--IFStart,exist:md_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:md_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"intg_bran_cd":"[[--IFStart,exist:intg_bran_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:intg_bran_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"intg_bran_nm":"[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:intg_bran_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00005":"[[--IFStart,exist:ub00005--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00005--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00007":"[[--IFStart,exist:ub00007--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00007--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00011":"[[--IFStart,exist:ub00011--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00011--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00013":"[[--IFStart,exist:ub00013--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00013--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00006":"[[--IFStart,exist:ub00006--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00006--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00008":"[[--IFStart,exist:ub00008--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00008--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"ub00010":"[[--IFStart,exist:ub00010--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ub00010--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"shop_id":"[[--IFStart,exist:shop_id--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:shop_id--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"shop_nm":"[[--IFStart,exist:shop_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:shop_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"buld_cd":"[[--IFStart,exist:buld_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:buld_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"buld_nm":"[[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:buld_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"flor_cd":"[[--IFStart,exist:flor_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:flor_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"flor_nm":"[[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:flor_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"maincontcd":"[[--IFStart,exist:maincontcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:maincontcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"mainordernum":"[[--IFStart,exist:mainordernum--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:mainordernum--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"contdtlcd":"[[--IFStart,exist:contdtlcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:contdtlcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"repr_img":"[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:repr_img--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:brndimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"badge1":"[[--IFStart,exist:badge1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"badge2":"[[--IFStart,exist:badge2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"btmmaintit":"[[--IFStart,exist:btmmaintit--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:btmmaintit--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+"fullimg":"[[--IFStart,exist:fullimg--]][[--ThenStart--]][[--ArtFieldValue,Field:fullimg--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForStart,num,From:1,To:20--]]
+"submapcd[[--write,num--]]":"[[--IFStart,Exist:submapcd[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:submapcd[%num%]--]][[--ThenEnd--]][[--IfEnd--]]",[[--ForEnd--]]
+"content1":"[[--IFStart,exist:content1--]][[--ThenStart--]][[--ArtFieldValue,Field:content1--]][[--ThenEnd--]][[--IFEnd--]]",
+"subtheme":[
+[[--RecordStart,리스트--]][[--ForStart,sub_loof,in:[%sbmapcd%]--]][[--ActionStart,Row:*,[%점코드cid%]141,Search:submapcd=[%sub_loof%],Sort:#DEFAULT#--]]
+  {
+      "startDt":"[[--IFStart,exist:startdt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+      "endDt":"[[--IFStart,exist:enddt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--IFEnd--]]",                
+      "submapcd":"[[--IFStart,exist:submapcd--]][[--ThenStart--]][[--ArtFieldValue,Field:submapcd--]][[--ThenEnd--]][[--IFEnd--]]",
+      "mainimg":"[[--IFStart,exist:mainimg--]][[--ThenStart--]][[--ArtFieldValue,Field:mainimg--]][[--ThenEnd--]][[--IFEnd--]]",
+      "brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ArtFieldValue,Field:brndimg--]][[--ThenEnd--]][[--IFEnd--]]",
+      "evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+      "fullimg":"[[--IFStart,exist:fullimg--]][[--ThenStart--]][[--ArtFieldValue,Field:fullimg--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForStart,num,From:1,To:9--]]
+      "itemmapcd[[--write,num--]]":"[[--IFStart,exist:itemmapcd[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:itemmapcd[%num%]--]][[--ThenEnd--]][[--IFEnd--]]",
+      "sectit[[--write,num--]]":"[[--IFStart,Exist:sectit[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:sectit[%num%]--]][[--ThenEnd--]][[--IfEnd--]]",
+      "sectext[[--write,num--]]":"[[--IFStart,Exist:sectit[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:sectext[%num%]--]][[--ThenEnd--]][[--IfEnd--]]",[[--ForEnd--]]
+      "itemmapcd10":"[[--IFStart,exist:itemmapcd10:--]][[--ThenStart--]][[--ArtFieldValue,Field:itemmapcd10:--]][[--ThenEnd--]][[--IFEnd--]]",
+      "sectit10":"[[--IFStart,exist:sectit10--]][[--ThenStart--]][[--ArtFieldValue,Field:sectit10--]][[--ThenEnd--]][[--IFEnd--]]",
+      "sectext10":"[[--IFStart,exist:sectext10--]][[--ThenStart--]][[--ArtFieldValue,Field:sectext10--]][[--ThenEnd--]][[--IFEnd--]]"
+},[[--ActionEnd--]][[--ForEnd--]][[--RecordEnd--]][[--SubStringStart,~-1--]][[--write,리스트--]][[--SubStringEnd--]]
+]
+}

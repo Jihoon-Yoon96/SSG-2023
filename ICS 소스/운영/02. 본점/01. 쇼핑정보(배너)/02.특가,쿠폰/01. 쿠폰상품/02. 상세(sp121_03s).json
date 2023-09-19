@@ -1,0 +1,22 @@
+{
+    [[--12cont_set_json--]] [[---12cont_set 개인화 공통 컬럼 json데이터 ---]]
+     "normalprice":"[[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]]원[[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice1":"[[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice2":"[[--IFStart,exist:evtprice2--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice2--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice":"[[--IFStart,exist:evtprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "discnt":"[[--IFStart,exist:discnt--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,discnt--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "saledispcd":"[[--IFStart,exist:saledispcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:saledispcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "maincontcd":"[[--IFStart,exist:maincontcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:maincontcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "mainordernum":"[[--IFStart,exist:mainordernum--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:mainordernum--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "contdtlcd":"[[--IFStart,exist:contdtlcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:contdtlcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "repr_img":"[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:repr_img--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:brndimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge1":"[[--IFStart,exist:badge1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge2":"[[--IFStart,exist:badge2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "content1":"[[--IFStart,exist:content1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:content1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "detail_nm":"[[--IFStart,exist:detail_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:detail_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "contentdtlcd":"[[--IFStart,Exist:contentdtlcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:contentdtlcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "mainimg":"[[--IFStart,Exist:mainimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:mainimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "title2":"[[--IFStart,exist:title2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:title2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]"
+}

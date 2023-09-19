@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>
+[[--PublishOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:8--]]"></script>[[---../common/js/jquery.hammer.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:9--]]"></script>[[---../common/js/jquery.transit.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript">[[--jquery_min--]]</script>
+<script type="text/javascript">[[--jqueryhammer_min--]]</script>
+<script type="text/javascript">[[--jquerytransit_min--]]</script>
+<style type="text/css">[[--style_css--]]</style>
+<style type="text/css">[[--style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<body>
+<div id="wrap" class="sti_sec3">
+	<!-- header -->
+	<div id="header">
+		<button type="button" class="d_exview_zoom_in"><span class="blind">이미지 확대</span></button>
+		<button type="button" class="d_exview_zoom_out"><span class="blind">이미지 축소</span></button>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<div class="d_exview_viewport">
+			<div class="img"><img src="[[--ArtFieldValue,fa00019--]]" alt="[[--ArtFieldValue,stor_nm--]] [[--ArtFieldValue,buld_nm--]] [[--ArtFieldValue,flor_nm--]]"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:6--]]"></script>[[---../common/js/expandviewer.js---]]
+<script type="text/javascript">
+/**
+ * 핀 위치 설정
+ * @function
+ */
+function setPin() {
+	var $img = $('.img img'),
+		r = 1;
+	
+	if (navigator.userAgent.match(/OS 5(_\d)+ like Mac OS X/i)) {
+		r = ($img[0].naturalWidth * 2) / $img.width();
+	} else {
+		r = $img[0].naturalWidth / $img.width();
+	}
+	
+	$('.my_position').each(function() {
+		var $e = $(this),
+			w = $e.width(),
+			h = $e.height(),
+			x = Number($e.attr('data-x')),
+			y = Number($e.attr('data-y'));
+		
+		x = (x / r) - (w / 2);
+		y = (y / r) - h;
+		
+		$e.css({ left: x, top: y }); 
+	}); 
+};
+
+/**
+ * 핀 포커스
+ * @function
+ * @param {String} itemCd 아이템 코드
+ */
+function focusPin(itemCd) {
+	var $item = $('.my_position[data-itemCd="' + itemCd + '"]'),
+		viewer = window.viewer || {};
+	
+	if ($item.length && viewer) {
+		viewer.setZoom('max');
+		setPin();
+		viewer.moveToElement($item);
+	}
+};
+
+/*
+ * 페이지 로드 이벤트
+ */
+$(function() {
+	window.viewer = new ExpandViewer('wrap', {
+		onReady: function() {
+			focusPin('null');
+		},
+		onTransform: function() {
+			setPin();
+		}
+	});
+});
+</script>
+</body>
+</html>

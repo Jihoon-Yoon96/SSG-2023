@@ -1,0 +1,98 @@
+<table>
+    <!-- header -->
+    <thead>
+        <tr>
+            <th>카테고리 ID</th>
+            <th>1dep</th>
+            <th>2dep</th>
+            <th>3dep</th>
+            <th>4dep</th>
+            <th>5dep</th>
+            <th>템플릿</th>
+            <th>템플릿</th>
+        </tr>
+    </thead>
+    <!-- body -->
+    [[---1dep---]]
+    <tbody>[[--ForCategoryStart, search:parentid=sp_app_root, row:*, sort:#DEFAULT#--]] [[--RecordStart,c1--]][[--CatId--]][[--RecordEnd--]]
+        <tr>
+            <td>[[--write,c1--]]</td> <!-- catid -->
+            <td>[[--CatTitle--]]</td> <!-- 1dep -->
+            <td></td> <!-- 2dep -->
+            <td></td> <!-- 3dep -->
+            <td></td> <!-- 4dep -->
+            <td></td> <!-- 5dep -->
+            <td>
+                [[--ForTemplateStart--]]
+                    - [[--tplName--]]<br>[[--ForTemplateEnd--]]
+            </td>
+        </tr>
+        [[---2dep---]]
+        [[--ForCategoryStart, search:parentId=[%c1%], row:*, sort:#DEFAULT#--]] [[--RecordStart,c2--]][[--CatId--]][[--RecordEnd--]]
+        <tr>
+            <td>[[--write,c2--]]</td> <!-- catid -->
+            <td></td> <!-- 1dep -->
+            <td>[[--CatTitle--]]</td> <!-- 2dep -->
+            <td></td> <!-- 3dep -->
+            <td></td> <!-- 4dep -->
+            <td></td> <!-- 5dep -->
+            <td>
+                [[--ForTemplateStart--]]
+                    - [[--tplName--]]<br>[[--ForTemplateEnd--]]
+            </td>
+        </tr>
+        [[---3dep---]]
+        [[--ForCategoryStart, search:parentId=[%c2%], row:*, sort:#DEFAULT#--]] [[--RecordStart,c3--]][[--CatId--]][[--RecordEnd--]]
+        <tr>
+            <td>[[--write,c3--]]</td> <!-- catid -->
+            <td></td> <!-- 1dep -->
+            <td></td> <!-- 2dep -->
+            <td>[[--CatTitle--]]</td> <!-- 3dep -->
+            <td></td> <!-- 4dep -->
+            <td></td> <!-- 5dep -->
+            <td>
+                [[--ForTemplateStart--]]
+                    - [[--tplName--]]<br>[[--ForTemplateEnd--]]
+            </td>
+        </tr>
+        [[---4dep---]]
+        [[--ForCategoryStart, search:parentId=[%c3%], row:*, sort:#DEFAULT#--]] [[--RecordStart,c4--]][[--CatId--]][[--RecordEnd--]]
+        <tr>
+            <td>[[--write,c4--]]</td> <!-- catid -->
+            <td></td> <!-- 1dep -->
+            <td></td> <!-- 2dep -->
+            <td></td> <!-- 3dep -->
+            <td>[[--CatTitle--]]</td> <!-- 4dep -->
+            <td></td> <!-- 5dep -->
+            <td>
+                [[--ForTemplateStart--]]
+                    - [[--tplName--]]<br>[[--ForTemplateEnd--]]
+            </td>
+        </tr>
+        [[---5dep---]]
+        [[--ForCategoryStart, search:parentId=[%c4%], row:*, sort:#DEFAULT#--]] [[--RecordStart,c5--]][[--CatId--]][[--RecordEnd--]]
+        <tr>
+            <td>[[--write,c5--]]</td> <!-- catid -->
+            <td></td> <!-- 1dep -->
+            <td></td> <!-- 2dep -->
+            <td></td> <!-- 3dep -->
+            <td></td> <!-- 4dep -->
+            <td>[[--CatTitle--]]</td> <!-- 5dep -->
+            <td>
+                [[--ForTemplateStart--]]
+                    - [[--tplName--]]<br>[[--ForTemplateEnd--]]
+            </td>
+        </tr>
+        [[--ForCategoryEnd--]] [[---5dep---]]
+        [[--ForCategoryEnd--]] [[---4dep---]]
+        [[--ForCategoryEnd--]] [[---3dep---]]
+        [[--ForCategoryEnd--]] [[---2dep---]]
+        [[--ForCategoryEnd--]] [[---1dep---]]
+    </tbody>
+</table>
+
+<style>
+    table, tr, th, td{
+        border: 1px solid black
+    }
+</style>

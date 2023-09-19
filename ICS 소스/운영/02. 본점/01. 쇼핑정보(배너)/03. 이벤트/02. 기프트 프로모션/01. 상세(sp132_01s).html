@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+[[--PublishOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+var count = 0;  
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+});
+/*** 2019.02.28 추가 시작***/
+// 화면 진입시 찜하기 여부에 따라 이미지 표현
+function setDefultHeart(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		$this.animate(000, function() {
+			$this.toggleClass("like");
+			$this.find(".span1").animate({opacity:1}, 000, function() {
+				$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+					$this.find(".span3").animate({opacity:1}, 000);
+				});
+			});
+		})
+		count =1;
+	}
+}
+// 찜하기 버튼 클릭에 따른 효과
+function setMessage(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		if(count === 0){
+			$this.animate(300,function() {
+				$this.toggleClass("like");
+				$this.find(".span1").animate({opacity:1}, 300, function() {
+					$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+						$this.find(".span3").animate({opacity:1}, 300);
+					});
+				});
+			})
+			count =1;
+		} else {
+			$this.animate(300,function() {
+				$this.find(".span3").animate({opacity:0}, 300, function() {
+					$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+						$this.find(".span1").animate({opacity:0}, 300,function() {
+							$this.toggleClass("like");
+						});
+					});
+				});
+			})
+			count =0;
+		}
+	}
+}
+/*** 2019.02.28 추가 끝 ***/
+
+function sendMessage(msg){
+	window.android.setMessage(msg);
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//찜하기
+	$(".heart").click(function(){
+		$(this).toggleClass("like");
+	});
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+});
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<body>
+<div id="wrap" class="catalogue">
+	<!-- header -->
+	<div id="header">
+		<h1 class="blind">모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 상세페이지</h1>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<!-- top_bx -->
+		<div class="top_bx">
+			<div class="dim"></div>
+			[[--IFStart,exist:repr_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지">[[--ThenEnd--]][[--IFEnd--]]
+		</div>
+		<!-- //top_bx -->
+		<!-- contents -->
+		<div class="contents">
+			<!-- info -->
+			<div class="info">
+				<a href="open_dibs:">
+                <!-- 2019.02.28 수정 시작-->
+				<!--<div class="heart">Heart</div>-->
+				<div class="heart">Heart
+				    <button type="button" class="heart_btn">
+					    <span class="span1"></span>
+					    <span class="span2"></span>
+					    <span class="span3"></span>
+				    </button>
+				</div>
+				<!-- 2019.02.28 수정 끝-->
+                </a>
+				<div class="info_bx">
+					[[--IFStart,exist:badge1--]][[--ThenStart--]]<p class="tag"><span>[[--ArtFieldValue,badge1--]]</span>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:badge2--]][[--ThenStart--]]<span class="sub">[[--ArtFieldValue,badge2--]]</span>[[--ThenEnd--]][[--IFEnd--]]</p>
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<h2 class="ttl">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]</h2>[[--ThenEnd--]][[--IFEnd--]]
+					<p class="desc">[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]] - [[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy-MM-dd (E)--]] - [[--ArtEndDate,pattern:yyyy-MM-dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]] <span class="ico_section1">|</span><br>[[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_nm--]][[--ThenStart--]] [[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]]</p>
+					<!-- <p class="desc">2016.2.1 - 상품 소진시까지<span class="ico_section1">|</span>본관 1F</p> --><!-- 160629 추가 -->
+				</div>
+			</div>
+			<!-- //info -->
+			<!-- detail -->
+			<div class="detail news">
+				<!-- editor 영역 -->
+				<div class="editor">
+				[[--IFStart,exist:fullimg--]][[--ThenStart--]]
+					<!-- 통 이미지 -->
+					<div class="imgfull">
+						<img src="[[--ArtFieldValue,fullimg--]]" alt="이미지">
+					</div>
+				[[--ThenEnd--]][[--ElseStart--]]
+				[[--IFStart,exist:btmmaintit||btmsubtit--]][[--ThenStart--]]
+					<!-- 단순 텍스트 -->
+					<div class="textarea">
+						[[--IFStart,exist:btmmaintit--]][[--ThenStart--]]<h3>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,btmmaintit--]][[--ReplaceEnd--]]</h3>[[--ThenEnd--]][[--IFEnd--]]
+						[[--IFStart,exist:btmsubtit--]][[--ThenStart--]]<p>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,btmsubtit--]][[--ReplaceEnd--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:prstobject||prstperiod||prstloc||prstcriterio||except||50approval||composition||standard||attention--]][[--ThenStart--]]
+					<!-- 증정 정보 -->
+					<div class="dl_info">
+						<ul>[[--IFStart,exist:prstobject--]][[--ThenStart--]]
+							<li>
+								<dl>
+									<dt>증정대상</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,prstobject--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:prstperiod--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>증정기간</dt>
+									<dd>[[--ArtFieldValue,prstperiod--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:prstloc--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>증정장소</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,prstloc--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:prstcriterio--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>증정기준</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,prstcriterio--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:except--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>제외대상</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,except--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:50approval--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>50%인정</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,50approval--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:composition--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>구성</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,composition--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:standard--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>규격</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,standard--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--IFStart,exist:attention--]][[--ThenStart--]]
+							<li>
+								<dl>
+								<dt>유의사항</dt>
+									<dd>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,attention--]][[--ReplaceEnd--]]</dd>
+								</dl>
+							</li>
+							[[--ThenEnd--]][[--IFEnd--]]
+						</ul>
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:btmsubtext--]][[--ThenStart--]]
+					<!-- 블릿 리스트 -->
+					<div class="bul_lst">
+						<ul>
+							<li>[[--ReplaceStart,regex:\r,to:</li><li>--]][[--ArtFieldValue,btmsubtext--]][[--ReplaceEnd--]]</li>
+						</ul>
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+				[[--ElseEnd--]][[--IFEnd--]]
+				</div>
+				<!-- //editor 영역 -->
+			</div>
+			<!-- //detail -->
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+</div>
+</body>
+</html>

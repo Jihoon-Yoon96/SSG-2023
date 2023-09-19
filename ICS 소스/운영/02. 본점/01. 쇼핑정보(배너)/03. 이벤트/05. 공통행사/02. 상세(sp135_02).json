@@ -1,0 +1,20 @@
+{
+    [[--cont_set_json--]] [[---cont_set 개인화 공통 컬럼 json데이터 ---]]
+     "maincontcd":"[[--IFStart,exist:maincontcd--]][[--ThenStart--]][[--ArtFieldValue,Field:maincontcd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "mainordernum":"[[--IFStart,exist:mainordernum--]][[--ThenStart--]][[--ArtFieldValue,Field:mainordernum--]][[--ThenEnd--]][[--IFEnd--]]",
+     "contdtlcd":"[[--IFStart,exist:contdtlcd--]][[--ThenStart--]][[--ArtFieldValue,Field:contdtlcd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "repr_img":"[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ArtFieldValue,Field:repr_img--]][[--ThenEnd--]][[--IFEnd--]]",
+     "brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ArtFieldValue,Field:brndimg--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "prstplace":"[[--IFStart,exist:prstplace--]][[--ThenStart--]][[--ArtFieldValue,Field:prstplace--]][[--ThenEnd--]][[--IFEnd--]]",
+     "detail_img1":"[[--IFStart,exist:detail_img1--]][[--ThenStart--]][[--ArtFieldValue,Field:detail_img1--]][[--ThenEnd--]][[--IFEnd--]]",
+     "det_img1_ex":"[[--IFStart,exist:det_img1_ex--]][[--ThenStart--]][[--ArtFieldValue,Field:det_img1_ex--]][[--ThenEnd--]][[--IFEnd--]]",
+     "detail_img2":"[[--IFStart,exist:detail_img2--]][[--ThenStart--]][[--ArtFieldValue,Field:detail_img2--]][[--ThenEnd--]][[--IFEnd--]]",
+     "det_img2_ex":"[[--IFStart,exist:det_img2_ex--]][[--ThenStart--]][[--ArtFieldValue,Field:det_img2_ex--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_target":"[[--IFStart,exist:evt_target--]][[--ThenStart--]][[--ArtFieldValue,Field:evt_target--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_content":"[[--IFStart,exist:evt_content--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_content--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "attention":"[[--IFStart,exist:attention--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:attention--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge1":"[[--IFStart,exist:badge1--]][[--ThenStart--]][[--ArtFieldValue,Field:badge1--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge2":"[[--IFStart,exist:badge2--]][[--ThenStart--]][[--ArtFieldValue,Field:badge2--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_cls":"[[--IFStart,exist:evt_cls--]][[--ThenStart--]][[--ArtFieldValue,Field:evt_cls--]][[--ThenEnd--]][[--IFEnd--]]"
+}

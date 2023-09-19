@@ -1,0 +1,9 @@
+{
+    "date":[[[--ActionStart,[%점코드cid%]24,row:*,sort:#DEFAULT#,index:desc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+      {
+      [[--ForStart,num,From:0,To:30--]]
+      "sale_ym[[--Write,num--]]":"[[--IFStart,exist:sale_ym[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:sale_ym[%num%]--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForEnd--]]
+      "sale_ym31":"[[--IFStart,exist:sale_ym31--]][[--ThenStart--]][[--ArtFieldValue,Field:sale_ym31--]][[--ThenEnd--]][[--IFEnd--]]"
+      }[[--IFStart,is:idx=1--]][[--ElseStart--]],[[--ElseEnd--]][[--IFEnd--]][[--ActionEnd--]]
+  ]
+  }

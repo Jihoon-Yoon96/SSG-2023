@@ -1,0 +1,61 @@
+.bottomsheet {
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.branch-info {
+  margin: 8px 17px 0 19px;
+  padding: 24px 0;
+  background: var(--black-haze);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.branch-info .branch-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.branch-info .branch-content .branch-name {
+  margin-bottom: 16px;
+}
+
+.branch-info .branch-content .label {
+  margin-right: 8px;
+}
+
+.branch-info .branch-content .row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.branch-info .branch-content .row:last-of-type {
+  margin-bottom: 0px;
+}
+
+.branch-detail {
+  margin: 24px 18px 0;
+}
+
+.branch-detail .large-title {
+  margin-bottom: 16px;
+}
+
+.branch-detail-content .row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.branch-detail-content .row:last-of-type {
+  margin-bottom: 0;
+}
+
+.branch-detail-content .row .main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

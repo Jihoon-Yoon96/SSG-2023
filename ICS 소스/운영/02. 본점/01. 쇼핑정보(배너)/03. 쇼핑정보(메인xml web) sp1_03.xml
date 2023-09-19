@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssg_web_cms_main version="1">[[--MultiCatActionStart,Row:*,Catids:[%점코드cid%]1;[%점코드cid%]111;[%점코드cid%]112;[%점코드cid%]113;[%점코드cid%]114;[%점코드cid%]121;[%점코드cid%]122;[%점코드cid%]131;[%점코드cid%]132;[%점코드cid%]133;[%점코드cid%]134;[%점코드cid%]135;[%점코드cid%]14;[%점코드cid%]15,Sort:mainordernum=asc,index:asc--]][[--RecordStart,st_cd--]][[--ArtFieldValue,stor_cd--]][[--RecordEnd--]]
+[[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]][[--RecordStart,게시일--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--RecordEnd--]][[--RecordStart,종료일--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--RecordEnd--]][[--ThenEnd--]][[--ElseStart--]][[--RecordStart,게시일--]][[--ArtStartDate--]][[--RecordEnd--]][[--RecordStart,종료일--]][[--ArtEndDate--]][[--RecordEnd--]][[--ElseEnd--]][[--IfEnd--]]
+[[--IfStart,is:[%게시일%]<=[%today+3%]&&[%today%]<=[%종료일%]--]][[--ThenStart--]]
+      <page>
+      <id>[[--ArtId--]]</id>
+      <mainCd>01</mainCd>
+      <contentDtlCd>[[--IFStart,is:contdtlcd=01||contdtlcd=브랜드행사--]][[--ThenStart--]]01[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=02||contdtlcd=묶음행사--]][[--ThenStart--]]02[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=03||contdtlcd=이벤트--]][[--ThenStart--]]03[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=04||contdtlcd=모바일사은--]][[--ThenStart--]]04[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=05||contdtlcd=쿠폰상품--]][[--ThenStart--]]05[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=06||contdtlcd=테마--]][[--ThenStart--]]06[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=07||contdtlcd=배너\(SSG.COM \/ SSG PAY\)--]][[--ThenStart--]]07[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=08||contdtlcd=특가상품--]][[--ThenStart--]]08[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=90||contdtlcd=아카데미--]][[--ThenStart--]]90[[--ThenEnd--]][[--IFEnd--]]</contentDtlCd>
+      <goodsId>[[--IFStart,is:contdtlcd=05||contdtlcd=08||contdtlcd=쿠폰상품||contdtlcd=특가상품--]][[--ThenStart--]][[--ArtId--]][[--ThenEnd--]][[--IFEnd--]]</goodsId>
+      <title1>[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,evt_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=07||contdtlcd=배너\(SSG.COM \/ SSG PAY\)--]][[--ThenStart--]][[--IFStart,exist:banner_tit--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,banner_tit--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]</title1>
+      <content1>[[--IFStart,exist:content1--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,content1--]]]]>[[--ThenEnd--]][[--IFEnd--]]</content1>
+      <imgUrl1>[[--IFStart,exist:repr_img--]][[--ThenStart--]]<![CDATA[[[--ReplaceStart,regex:\&,to:\&amp;--]][[--ArtFieldValue,repr_img--]][[--ReplaceEnd--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:brndimg--]][[--ThenStart--]],<![CDATA[[[--ReplaceStart,regex:\&,to:\&amp;--]][[--ArtFieldValue,brndimg--]][[--ReplaceEnd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</imgUrl1>
+      <badge1>[[--IFStart,exist:badge1--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,badge1--]]]]>[[--ThenEnd--]][[--IFEnd--]]</badge1>
+      <badge2>[[--IFStart,exist:badge2--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,badge2--]]]]>[[--ThenEnd--]][[--IFEnd--]]</badge2>
+      <storeCd>[[--IFStart,exist:stor_cd--]][[--ThenStart--]][[--ArtFieldValue,stor_cd--]][[--ThenEnd--]][[--IFEnd--]]</storeCd>
+      <storeNm>[[--IFStart,exist:stor_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,stor_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</storeNm>
+      <viewCd>[[--IFStart,exist:buld_cd--]][[--ThenStart--]][[--ArtFieldValue,buld_cd--]][[--ThenEnd--]][[--IFEnd--]]</viewCd>
+      <viewNm>[[--IFStart,exist:buld_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,buld_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</viewNm>
+      <floorCd>[[--IFStart,exist:flor_cd--]][[--ThenStart--]][[--ArtFieldValue,flor_cd--]][[--ThenEnd--]][[--IFEnd--]]</floorCd>
+      <floorNm>[[--IFStart,exist:flor_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,flor_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</floorNm>
+      <mdCd>[[--IFStart,exist:md_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,md_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</mdCd>
+      <mdNm>[[--IFStart,exist:md_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,md_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</mdNm>
+      <brandCd>[[--IFStart,exist:intg_bran_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,intg_bran_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</brandCd>
+      <brandNm>[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,intg_bran_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</brandNm>
+      <genreCd>[[--IFStart,exist:ub00005--]][[--ThenStart--]][[--ArtFieldValue,ub00005--]][[--ThenEnd--]][[--IFEnd--]]</genreCd>
+      <genreNm>[[--IFStart,exist:ub00007--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,ub00007--]]]]>[[--ThenEnd--]][[--IFEnd--]]</genreNm>
+      <mainContCd>[[--IFStart,exist:maincontcd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,maincontcd--]]]]>[[--ThenEnd--]][[--ElseStart--]]<![CDATA[F]]>[[--ElseEnd--]][[--IFEnd--]]</mainContCd>
+      <mainOrderNum>[[--IFStart,exist:mainordernum--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,mainordernum--]]]]>[[--ThenEnd--]][[--IFEnd--]]</mainOrderNum>
+      [[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]]<startDt>[[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]]</startDt>
+      <endDt>[[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd HH:mm:ss--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]]</endDt>
+      <expDt>[[--IFStart,exist:expdt--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,expdt--]]]]>[[--ThenEnd--]][[--ElseStart--]]<![CDATA[[[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy.MM.dd (E)--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]] - [[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy.MM.dd (E)--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]]]]>[[--ElseEnd--]][[--IFEnd--]]</expDt>[[--ThenEnd--]][[--ElseStart--]]<startDt>[[--ArtStartDate,pattern:yyyy-MM-dd HH:mm:ss--]]</startDt>
+      <endDt>[[--ArtEndDate,pattern:yyyy-MM-dd HH:mm:ss--]]</endDt>
+      <expDt>[[--IFStart,exist:expdt--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,expdt--]]]]>[[--ThenEnd--]][[--ElseStart--]]<![CDATA[[[--ArtStartDate,pattern:yyyy.MM.dd (E)--]] - [[--ArtEndDate,pattern:yyyy.MM.dd (E)--]]]]>[[--ElseEnd--]][[--IFEnd--]]</expDt>[[--ElseEnd--]][[--IfEnd--]]
+      <link>[[--IFStart,is:contdtlcd=01||contdtlcd=02||contdtlcd=03||contdtlcd=04||contdtlcd=05||contdtlcd=06||contdtlcd=90||contdtlcd=아카데미--]][[--ThenStart--]]<![CDATA[[[--ReplaceStart,regex:\&,to:\&amp;--]][[--ArtAddress,form:2--]][[--ReplaceEnd--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:contdtlcd=07--]][[--ThenStart--]][[--IFStart,exist:ban_url--]][[--ThenStart--]]<![CDATA[[[--ReplaceStart,regex:\&,to:\&amp;--]][[--ArtFieldValue,ban_url--]][[--ReplaceEnd--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]</link>
+      <sortNo>[[--ArtIndex--]]</sortNo>
+      <orgSalePrc>[[--IFStart,is:saledispcd=특가격--]][[--ThenStart--]][[--ArtFieldValue,evtprice--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ArtFieldValue,normalprice--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ArtFieldValue,evtprice1--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]</orgSalePrc>
+      <salePrc>[[--IFStart,is:saledispcd=정상가-행사가 비교||saledispcd=특가격--]][[--ThenStart--]][[--ArtFieldValue,evtprice--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ArtFieldValue,evtprice1--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ArtFieldValue,normalprice--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]</salePrc>
+      <salePrc2>[[--IFStart,exist:evtprice2--]][[--ThenStart--]][[--ArtFieldValue,evtprice2--]][[--ThenEnd--]][[--IFEnd--]]</salePrc2>
+      <saleTpCd>[[--IFStart,exist:discnt--]][[--ThenStart--]]01[[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:evtprice--]][[--ThenStart--]]02[[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:normalprice--]][[--ThenStart--]]02[[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:evtprice1--]][[--ThenStart--]]02[[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]</saleTpCd>
+      <aplyVal>[[--IFStart,exist:evtprice--]][[--ThenStart--]][[--ArtFieldValue,evtprice--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:discnt--]][[--ThenStart--]][[--ArtFieldValue,discnt--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]</aplyVal>
+      <saleDispCd>[[--IFStart,is:saledispcd=정상가격||saledispcd=일반가||saledispcd=특가격--]][[--ThenStart--]]01[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:saledispcd=정상가-행사가 비교--]][[--ThenStart--]]02[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:saledispcd=행사가격--]][[--ThenStart--]]03[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:saledispcd=할인율 or 할인액--]][[--ThenStart--]]04[[--ThenEnd--]][[--IFEnd--]][[--IFStart,is:saledispcd=행사가격\(각1\) 행사가격\(각2\)--]][[--ThenStart--]]05[[--ThenEnd--]][[--IFEnd--]]</saleDispCd>
+	    <limitQty>[[--IFStart,exist:limit_qty--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,limit_qty--]]]]>[[--ThenEnd--]][[--IFEnd--]]</limitQty>
+	    <evtCls2>[[--IFStart,exist:evt_cls_2--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,evt_cls_2--]]]]>[[--ThenEnd--]][[--IFEnd--]]</evtCls2>
+  		<acaNm>[[--IFStart,exist:aca_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaNm>
+    	<acaStdt>[[--IFStart,exist:aca_strdt--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,Field:aca_strdt--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaStdt>
+    	<acaEddt>[[--IFStart,exist:aca_enddt--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,Field:aca_enddt--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaEddt>
+    	<acaDday>[[--IFStart,exist:aca_dday--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_dday--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaDday>
+    	<acaSttm>[[--IFStart,exist:aca_strtm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,Field:aca_strtm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaSttm>
+    	<acaEdtm>[[--IFStart,exist:aca_endtm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,Field:aca_endtm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaEdtm>
+    	<acaRepeat>[[--IFStart,exist:aca_repeat--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_repeat--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaRepeat>
+    	<acaCd>[[--IFStart,exist:aca_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaCd>
+    	<acaYn>[[--IFStart,exist:aca_yn--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_yn--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaYn>
+    	<acaYear>[[--IFStart,exist:aca_year--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_year--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaYear>
+    	<acaSeaCd>[[--IFStart,exist:aca_sea_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,aca_sea_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</acaSeaCd>
+    	<storeCode>[[--IFStart,exist:store_code--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,store_code--]]]]>[[--ThenEnd--]][[--IFEnd--]]</storeCode>
+   </page>
+[[--ThenEnd--]][[--IfEnd--]][[--MultiCatActionEnd--]]
+   <storeCodeGroup>
+       <grpStoreCd>[[--Write,st_cd--]]</grpStoreCd>
+	   [[--ActionStart,Row:*,[%점코드cid%]21,Sort:#DEFAULT#,index:asc--]]
+       <grpView>
+          <grpViewCd>[[--ArtFieldValue,buld_cd--]]</grpViewCd>[[--RecordStart,bl_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]]
+          <grpViewNm>[[--IFStart,exist:buld_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,buld_nm--]]]][[--ThenEnd--]][[--IFEnd--]]></grpViewNm>
+          <grpViewSortNo>[[--ArtIndex--]]</grpViewSortNo>
+		  [[--ActionStart,Row:*,[%점코드cid%]22,Search:buld_cd=[%bl_cd%],Sort:#DEFAULT#,index:asc--]]
+          <grpFloor>
+             <grpFloorCd>[[--ArtFieldValue,flor_cd--]]</grpFloorCd>
+             <grpFloorNm>[[--IFStart,exist:flor_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,flor_nm--]]]][[--ThenEnd--]][[--IFEnd--]]></grpFloorNm>
+             <grpFloorSortNo>[[--ArtIndex--]]</grpFloorSortNo>
+          </grpFloor>[[--ActionEnd--]]
+       </grpView>[[--ActionEnd--]]
+   </storeCodeGroup>
+</ssg_web_cms_main>

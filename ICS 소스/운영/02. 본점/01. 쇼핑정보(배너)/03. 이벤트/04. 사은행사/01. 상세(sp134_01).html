@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+[[--PublishOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+var count = 0;  
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+	
+	//2019.06.28 화면 집입시 공유하기 표시여부
+	setDefultShare();
+});
+/*** 2019.02.28 추가 시작***/
+// 화면 진입시 찜하기 여부에 따라 이미지 표현
+function setDefultHeart(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		$this.animate(000, function() {
+			$this.toggleClass("like");
+			$this.find(".span1").animate({opacity:1}, 000, function() {
+				$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+					$this.find(".span3").animate({opacity:1}, 000);
+				});
+			});
+		})
+		count =1;
+	}
+}
+// 찜하기 버튼 클릭에 따른 효과
+function setMessage(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		if(count === 0){
+			$this.animate(300,function() {
+				$this.toggleClass("like");
+				$this.find(".span1").animate({opacity:1}, 300, function() {
+					$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+						$this.find(".span3").animate({opacity:1}, 300);
+					});
+				});
+			})
+			count =1;
+		} else {
+			$this.animate(300,function() {
+				$this.find(".span3").animate({opacity:0}, 300, function() {
+					$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+						$this.find(".span1").animate({opacity:0}, 300,function() {
+							$this.toggleClass("like");
+						});
+					});
+				});
+			})
+			count =0;
+		}
+	}
+}
+/*** 2019.02.28 추가 끝 ***/
+
+function sendMessage(msg){
+	window.android.setMessage(msg);
+}
+
+//2019.06.28 화면 집입시 공유하기 표시여부
+function setDefultShare() {
+        $("#open_share").show();
+}
+</script>
+</head>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//찜하기
+	$(".heart").click(function(){
+		$(this).toggleClass("like");
+	});
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+});
+</script>
+</head>
+<p>리스트이미지(720*360)</p>
+<img src="[[--ArtFieldValue,brndimg--]]" alt="[[--ArtFieldValue,evt_nm--]]리스트이미" style="
+    width: 100%;
+    max-width: 100%;지
+    height: auto;
+    padding-bottom: 10px;
+">
+<p>대표이미지(720*720)</p>
+[[--PreviewOnlyEnd--]]
+<body>
+<div id="wrap" class="catalogue">
+	<!-- header -->
+	<div id="header">
+		<h1 class="blind">모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 상세페이지</h1>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<!-- top_bx -->
+		<div class="top_bx">
+			<div class="dim"></div>
+			[[--IFStart,exist:repr_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지">[[--ThenEnd--]][[--IFEnd--]]
+		</div>
+		<!-- //top_bx -->
+		<!-- contents -->
+		<div class="contents">
+			<!-- info -->
+			<div class="info">
+				<a href="open_dibs:">
+				<!-- 2019.02.28 송시인 수정 시작-->
+				<!--<div class="heart">Heart</div>-->
+				<div class="heart">Heart
+				    <button type="button" class="heart_btn">
+					    <span class="span1"></span>
+					    <span class="span2"></span>
+					    <span class="span3"></span>
+				    </button>
+				</div>
+				<!-- 2019.02.28 송시인 수정 끝-->
+				</a>
+				<!-- 2019.06.17 추가 -->
+				<a href="new_open_cms_share:" id="open_share" style="display:none;">
+				<div class="share typeSsg">
+					<button type="button" class="btn_share">
+						<img src="/cms12/common/img/img_share.png" alt="공유하기">
+					</button>
+				</div>
+				</a>
+				<!-- 2019.06.17 추가 끝 -->
+				<div class="info_bx">
+					<p class="tag">[[--IFStart,exist:badge1--]][[--ThenStart--]]<span>[[--ArtFieldValue,badge1--]]</span>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:badge2--]][[--ThenStart--]]<span class="sub">[[--ArtFieldValue,badge2--]]</span>[[--ThenEnd--]][[--IFEnd--]]</p>
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<h2 class="ttl">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]</h2>[[--ThenEnd--]][[--IFEnd--]]
+					<p class="desc">[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]] - [[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy-MM-dd (E)--]] - [[--ArtEndDate,pattern:yyyy-MM-dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]] <span class="ico_section1">|</span><br>[[--IFStart,exist:evt_plac_2--]][[--ThenStart--]][[--ArtFieldValue,evt_plac_2--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]</p>
+					<!-- <p class="desc">2016.2.1 - 상품 소진시까지<span class="ico_section1">|</span>본관 1F</p> --><!-- 160629 추가 -->
+				</div>
+			</div>
+			<!-- //info -->
+			<!-- detail -->
+			<div class="detail news">
+				<!-- editor 영역 -->
+				<div class="editor">
+		     <div class="giftCard typeMobile">
+						<div class="payWrap">
+							<div class="payment">
+              [[--RecordStart,사은행사구분--]][[--ArtFieldValue,Field:vchr_dv_cd_2--]][[--RecordEnd--]]
+							[[--RecordStart,디테일--]]
+							    [[--ForStart,var,From:1,To:5--]]
+							        [[--ArtFieldValue,Field:pymnt_mthd[%var%]--]] 
+							    [[--ForEnd--]]
+							[[--RecordEnd--]]
+			                [[--ActionStart,[%점코드cid%]1341,row:*,Sort:id=asc--]]
+			                [[--RecordStart,결제수단--]][[--ArtId--]][[--RecordEnd--]]
+			                [[--IFStart,is:[%디테일%]==[%결제수단%]--]][[--ThenStart--]]
+								<h3 class="title">[[--IFStart,exist:pymnt_phrs--]][[--ThenStart--]][[--ArtFieldValue,Field:pymnt_phrs--]][[--ThenEnd--]][[--IFEnd--]]</h3>
+								<p class="genreDesc1">[[--IFStart,exist:hdr_phrs--]][[--ThenStart--]] [[[--ArtFieldValue,Field:hdr_phrs--]]][[--ThenEnd--]][[--IFEnd--]]</p>
+								[[--IFStart,exist:pymnt_amt--]][[--ThenStart--]]
+								    <p class="genreDesc2"> [[--ArtFieldValue,Field:pymnt_amt--]] </p>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prst_item--]][[--ThenStart--]]
+								    <p class="genreDesc2"> [[--ArtFieldValue,Field:prst_item--]] </p>
+								[[--ThenEnd--]][[--IFEnd--]]
+                            [[--IFStart,exist:btmsubtit	--]][[--ThenStart--]]
+	                            <div class="eventPeriod">
+								    <p class="benefit">[[--ArtFieldValue,Field:btmsubtit--]]</p>
+								</div>
+						    [[--ThenEnd--]][[--IFEnd--]]
+                            <div class="gridListWrap">
+							    <ul class="gridList">
+                  
+                  [[--IFStart,is:[%사은행사구분%]==02--]][[--ThenStart--]]
+                  [[--IFStart,exist:prstperiod--]][[--ThenStart--]]
+									<li>
+										<strong>사 용 기 간</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstperiod--]][[--ReplaceEnd--]]</p>
+									</li>
+									  [[--ThenEnd--]][[--IFEnd--]]
+									 [[--IFStart,exist:prstplace--]][[--ThenStart--]]
+									<li>
+										<strong>사 용 장 소</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstplace--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstobject--]][[--ThenStart--]]
+									<li>
+										<strong>사 용 대 상</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstobject--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstcriteria--]][[--ThenStart--]]
+									<li>
+										<strong>사 용 기 준</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstcriteria--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstexcluded--]][[--ThenStart--]]
+									<li>
+										<strong>제 외 대 상</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstexcluded--]][[--ReplaceEnd--]]</p>
+									</li>
+							        [[--ThenEnd--]][[--IFEnd--]]
+							        [[--IFStart,exist:50approval--]][[--ThenStart--]]
+									<li>
+										<strong>50% 인 정</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,50approval--]][[--ReplaceEnd--]]</p>
+									</li>
+							        [[--ThenEnd--]][[--IFEnd--]]
+								 [[--ThenEnd--]]
+								 [[--ElseStart--]]
+									[[--IFStart,exist:prstperiod--]][[--ThenStart--]]
+									<li>
+										<strong>증 정 기 간</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstperiod--]][[--ReplaceEnd--]]</p>
+									</li>
+									  [[--ThenEnd--]][[--IFEnd--]]
+									 [[--IFStart,exist:prstplace--]][[--ThenStart--]]
+									<li>
+										<strong>증 정 장 소</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstplace--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstobject--]][[--ThenStart--]]
+									<li>
+										<strong>증 정 대 상</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstobject--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstcriteria--]][[--ThenStart--]]
+									<li>
+										<strong>증 정 기 준</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstcriteria--]][[--ReplaceEnd--]]</p>
+									</li>
+									[[--ThenEnd--]][[--IFEnd--]]
+									[[--IFStart,exist:prstexcluded--]][[--ThenStart--]]
+									<li>
+										<strong>제 외 대 상</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstexcluded--]][[--ReplaceEnd--]]</p>
+									</li>
+							        [[--ThenEnd--]][[--IFEnd--]]
+							        [[--IFStart,exist:50approval--]][[--ThenStart--]]
+									<li>
+										<strong>50% 인 정</strong>
+										<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,50approval--]][[--ReplaceEnd--]]</p>
+									</li>
+							        [[--ThenEnd--]][[--IFEnd--]]
+									 [[--ElseEnd--]]
+								 [[--IFEnd--]]
+							    </ul>
+						    </div>
+                            [[--IFStart,exist:cmmn_hdr--]][[--ThenStart--]]
+								<div class="except">
+									<span class="kinds">[[--ArtFieldValue,Field:cmmn_hdr--]]</span>
+									<p class="kindsList">[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,Field:cmmn_cntn--]][[--ReplaceEnd--]]</p>
+                            	</div>
+							[[--ThenEnd--]][[--IFEnd--]]
+							[[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]
+							</div>
+						</div>
+						[[--IFStart,exist:btmsubtit--]][[--ThenStart--]]
+						<div class="eventPeriod">
+							<p class="benefit">[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,btmsubtit--]][[--ReplaceEnd--]]</p>
+							<!--<div class="period">
+								<span class="datePeriod">행 사 기 간</span>
+								<p class="dateDetail">7.1(일) - 7.31(화)</p>
+							</div>-->
+						</div>
+						[[--ThenEnd--]][[--IFEnd--]]
+						<!-- master 영역 -->
+						<div class="gridListWrap">
+							<ul class="gridList">
+							  [[--IFStart,is:vchr_dv_cd_2<>02--]][[--ThenStart--]]
+								[[--IFStart,exist:prstperiod--]][[--ThenStart--]]
+								<li>
+									<strong>증정기간</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstperiod--]][[--ReplaceEnd--]]</p>
+								</li>
+								  [[--ThenEnd--]][[--IFEnd--]]
+								 [[--IFStart,exist:prstplace--]][[--ThenStart--]]
+								<li>
+									<strong>증정장소</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstplace--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstobject--]][[--ThenStart--]]
+								<li>
+									<strong>증정대상</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstobject--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstcriteria--]][[--ThenStart--]]
+								<li>
+									<strong>증정기준</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstcriteria--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstexcluded--]][[--ThenStart--]]
+								<li>
+									<strong>제외대상</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstexcluded--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:50approval--]][[--ThenStart--]]
+								<li>
+									<strong>50% 인정</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,50approval--]][[--ReplaceEnd--]]</p>
+								</li>
+						        [[--ThenEnd--]][[--IFEnd--]]
+  						  [[--ThenEnd--]][[--IFEnd--]]
+  						  [[--IFStart,is:vchr_dv_cd_2==02--]][[--ThenStart--]]
+  						    [[--IFStart,exist:prstperiod--]][[--ThenStart--]]
+								<li>
+									<strong>사용기간</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstperiod--]][[--ReplaceEnd--]]</p>
+								</li>
+								  [[--ThenEnd--]][[--IFEnd--]]
+								 [[--IFStart,exist:prstplace--]][[--ThenStart--]]
+								<li>
+									<strong>사용장소</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstplace--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstobject--]][[--ThenStart--]]
+								<li>
+									<strong>사용대상</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstobject--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstcriteria--]][[--ThenStart--]]
+								<li>
+									<strong>사용기준</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstcriteria--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:prstexcluded--]][[--ThenStart--]]
+								<li>
+									<strong>제외대상</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,prstexcluded--]][[--ReplaceEnd--]]</p>
+								</li>
+								[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:50approval--]][[--ThenStart--]]
+								<li>
+									<strong>50% 인정</strong>
+									<p>[[--ReplaceStart,regex:\r,to:<br>--]][[--ArtFieldValue,50approval--]][[--ReplaceEnd--]]</p>
+								</li>
+						        [[--ThenEnd--]][[--IFEnd--]]
+  						  [[--ThenEnd--]][[--IFEnd--]]
+							</ul>
+						</div>
+						<!-- 2020.08.24 결제카드구분 유의사항 문구 개선-->
+						<div class="cautionBox">
+                <ul class="dotList">
+                
+                <!-- 결제카드구분 액션필드가 있을경우 -->
+				[[--IFStart,exist:pymnt_card--]]
+                	[[--ThenStart--]]
+                    	<!-- 결제카드구분이 01, 신한일때 -->                
+                    	[[--IFStart,is:pymnt_card==01--]]
+                      		[[--ThenStart--]]
+                            <li>
+                              <ul class="minusList">
+                                <li>
+                                  ※ 계약을 체결 전, 상품설명서와 약관을 확인하시기 바랍니다.
+                                  <br>※ 금융소비자는 금융소비자보호법 제19조 제1항에 따라 해당 금융상품 또는 서비스에 대하여 설명받을 권리가 있습니다.
+                                  <br>※ 연체이자율은 "회원별, 이용상품별 약정금리 + 최대 3%, 법정 최고금리(20%)이내"에서 적용됩니다.
+                                  <br> 단,연체 발생 시점에 약정금리가 없는 경우 약정금리는 아래와 같이 적용함
+                                  <br>-일시불 거래 연체 시 : 거래 발생 시점의 최소기간(2개월) 유이자 할부 금리
+                                  <br>-무이자 할부 거래 연체 시 : 거래 발생 시점의 동일한 할부 계약기간의 유이자 할부 금리
+                                  <br>※ 신용카드 발급이 부적정한 경우(개인신용평점 낮음,연체(단기 포함)사유 발생 등), 카드발급이 제한될 수 있습니다.
+                                  <br>※ 카드 이용대금과 이에 수반되는 모든 수수료는 고객님께서 지정하신 결제일에 상환하여야 합니다.
+                                </li>
+                              </ul>
+                            </li>
+                            <li><b><span class="standardSpan">※</span> <span class="minusSpan">상환능력에 비해 신용카드 사용액이 과도할 경우, 귀하의 개인신용평점이 하락할 수 있습니다.</span></b></li>
+                            <li><b><span class="standardSpan">※</span>  <span class="minusSpan">개인신용평점 하락시 금융거래와 관련된 불이익이 발생할 수 있습니다.</span></b></li>
+                            <li><b><span class="standardSpan">※</span>  <span class="minusSpan">일정기간 신용카드 이용대금을 연체할 경우, 결제일이 도래하지 않은 모든 신용카드 이용대금을 변제할 의무가 발생할 수 있습니다.</span></b></li>
+                            <li><span class="standardSpan">※</span> 준법감시 심의필 <span class="minusDetail">제[[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs1--]][[--ThenEnd--]][[--IFEnd--]]호 ([[--IFStart,exist:fnncl_phrs2--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs2--]][[--ThenEnd--]][[--IFEnd--]])</span></li>
+                      		[[--ThenEnd--]]
+                      		[[--ElseStart--]]
+                            	[[--IFStart,is:pymnt_card==02--]]
+                                	[[--ThenStart--]]
+                                    <!-- 결제카드구분이 02, 씨티 일때 -->
+                                    <li>
+                                        <ul class="minusList">
+                                            <li>
+                                                <span class="standardSpan">※</span> 
+                                                <span class="minusSpan">연체이자율(약정이율+최대 연3%)은 정상이자율(회원별,이용상품별)에 따라 차등 적용되며, 법정 최고금리(최대 24%이내)를 초과하지 않습니다.</span>
+                                                                        <br> * 약정이율이 없는 상품의 경우, 일시불은 거래발생 시점의 2개월 유이자할부 정상이자율,무이자할부는 거래발생 시점의 동일 할부 계약기간의 유이자할부 정상이자율이 적용됩니다.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><b><span class="standardSpan">※</span> <span class="minusSpan">신용카드 남용은 가계 경제에 위협이 됩니다.</span></b></li>
+                                    <li><b><span class="standardSpan">※</span>  <span class="minusSpan">여신금융상품 이용 시 귀하의 신용등급 또는 개인신용평점이 하락할 수 있습니다.</span></b></li>
+                                    <li><span class="standardSpan">※</span> 준법감시 심의필 <span class="minusDetail">제[[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs1--]][[--ThenEnd--]][[--IFEnd--]] ([[--IFStart,exist:fnncl_phrs2--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs2--]][[--ThenEnd--]][[--IFEnd--]])</span></li>
+                                    [[--ThenEnd--]]
+                              	[[--IFEnd--]]
+                  			[[--ElseEnd--]]
+                  			[[--ElseStart--]]
+								[[--IFStart,is:pymnt_card==03--]]
+                        			[[--ThenStart--]]
+                                    <!-- 결제카드구분이 03, BC일때 -->
+                                    <li>
+                                      <ul class="minusList">
+                                        <li>
+                                          · 연체이자율 : 회원별, 이용상품별 약정금리+최대 3%(p), 법정최고금리(20%) 이내 
+                                                                  <br>단, 연체발생 시점에 약정 금리가 없는 경우는 아래와 같이 적용 합니다.
+                                                                  <br>- 일시불 거래 연체 시 : 거래발생 시점의 최소기간(2개월) 유이자 할부금리
+                                                                  <br>- 무이자 할부 거래 연체 시 : 거래 발생 시점의 동일한 할부 계약기간의 유이자 할부금리
+                                                                  <br>- 그 외의 경우 : 약정금리는 상법상 상사법정이율과 상호금융 가계자금 대출금리* 중 높은 금리 적용
+                                                                  <br>* 한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관 가중평균 대출금리 (신규대출 기준)
+                                                                  <br>· 계약을 체결하기 전에 금융상품설명서와 약관을 확인하시기 바랍니다.
+                                                                  <br>· 신용카드 발급이 부적정한 경우(연체금 보유, 신용점수 등 낮음) 카드발급이 제한될 수 있습니다.
+                                                                  <br>· 카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환합니다.
+                                                                  <br>· 상환능력에 비해 신용카드 사용액이 과도할 경우, 귀하의 개인신용평점이 하락할 수 있습니다.
+                                                                  <br>· 개인신용평점 하락 시 금융거래와 관련된 불이익이 발생할 수 있습니다.
+                                                                  <br>· 일정기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.
+                                                                  <br>· 금융소비자는 금소법 제19조제1항에 따라 해당상품 또는 서비스에 대하여 설명을 받을 권리가 있으며, 그 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.
+                                                                  <br>· 준법감시인 2022-08-68호 (2022.06.15~2023.06.14)
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li><span class="standardSpan">※</span> 준법감시 심의필 <span class="minusDetail">제[[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs1--]][[--ThenEnd--]][[--IFEnd--]]호 ([[--IFStart,exist:fnncl_phrs2--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs2--]][[--ThenEnd--]][[--IFEnd--]])</span></li>
+                         			[[--ThenEnd--]]
+                          		[[--IFEnd--]]
+                      		[[--ElseEnd--]]
+                  			[[--ElseStart--]]
+								[[--IFStart,is:pymnt_card==04--]]
+                        			[[--ThenStart--]]
+                                    <!-- 결제카드구분이 04, 삼성일때 -->
+                                    <li>
+                                      <ul class="minusList">
+                                        <li>
+                                          - 금융상품 이용 전 상품설명서, 홈페이지, 약관을 통해 이용조건을 확인해 주시기 바랍니다.
+                                          <br>- 금융소비자는 해당 상품 또는 서비스에 대하여 설명을 받을 권리가 있습니다.
+                                          <br>- 신용카드 발급이 부적정한 경우(개인신용평점 낮음 등) 카드 발급이 제한될 수 있습니다.
+                                          <br>- 카드 이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환합니다.
+                                          <br>- 상환 능력에 비해 신용카드 사용액이 과도할 경우 귀하의 개인신용평점이 하락할 수 있습니다.
+                                          <br>- 개인신용평점 하락 시 금융거래 관련된 불이익이 발생할 수 있습니다.
+                                          <br>- 일정 기간 원리금을 연체할 경우, 모든 원리금을 변제할 의무가 발생할 수 있습니다.
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li><span class="standardSpan">※</span> 준법감시 심의필 <span class="minusDetail">제[[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs1--]][[--ThenEnd--]][[--IFEnd--]]호 ([[--IFStart,exist:fnncl_phrs2--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs2--]][[--ThenEnd--]][[--IFEnd--]])</span></li>
+                         			[[--ThenEnd--]]
+                          		[[--IFEnd--]]
+                      		[[--ElseEnd--]]
+                  		[[--IFEnd--]]
+                <!-- 결제카드구분 액션필드가 없을경우(기타카드 or 기존데이터) -->
+                	[[--ThenEnd--]]
+                  	[[--ElseStart--]]
+                  <!-- 기존데이터 (여신문구만 존재) -->
+                  [[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]]
+    								<li>
+    									<ul class="minusList">
+    									    <li>
+                            <span class="standardSpan">*</span> 
+                            <span class="minusSpan">연체이자율 : 약정금리 + 최대 3%, (최고 연 24%)</span>
+    									    	<br>단, 연체 발생 시점에 약정금리가 없는 경우
+												<br>- 일시불 연체 시 : 거래 발생 시점의 2개월 할부 금리
+    									    	<br>- 무이자 할부 연체 시 : 거래 발생 시점의 동일한 할부기간 할부 금리
+    									    	<br>- 그 외의 경우 : 상시법정 이율+3%적용
+    									    </li>
+    									</ul>
+    								</li>
+                    <li><b><span class="standardSpan">*</span> <span class="minusSpan">신용카드 사용, 갚아야 할 빚입니다.</span></b></li>
+    								<li><b><span class="standardSpan">*</span>  <span class="minusSpan">여신금융상품 이용 시 신용등급 하락 가능.</span></b></li>
+    								<li>준법감시 심의필 <span class="minusDetail">제[[--IFStart,exist:fnncl_phrs1--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs1--]][[--ThenEnd--]][[--IFEnd--]]호 ([[--IFStart,exist:fnncl_phrs2--]][[--ThenStart--]][[--ArtFieldValue,field:fnncl_phrs2--]][[--ThenEnd--]][[--IFEnd--]])</span></li>
+  								[[--ThenEnd--]][[--IFEnd--]]
+  							[[--ElseEnd--]][[--IfEnd--]]		
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- //editor 영역 -->
+			</div>
+			<!-- //detail -->
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+</div>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>
+[[--PublishOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript">[[--jquery_min--]]</script>
+<style type="text/css">[[--style_css--]]</style>
+<style type="text/css">[[--style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<script>
+var gStoreCd = "[[--sd_store_code--]]";
+var week = new Array('', '일', '월', '화', '수', '목', '금', '토');
+var day = "";
+
+//alert(gStoreCd);
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function callback(data){
+    //점포명
+    $("#storeName").html(data.storeMap.name);
+
+    //영업상태
+    if(data.storeTimeJson.kind == "Y") { //휴점일
+        $("#storeState").html("오늘은 휴점일 입니다.");
+    } else if(data.storeTimeJson.kind == "T" || data.storeTimeJson.kind == "M") { //연장영업
+        $("#storeState").html("오늘은 연장영업 합니다.");
+    } else { //정상영업
+        $("#storeState").html("오늘은 정상 영업일 입니다.");
+    }
+
+    //영업시간
+    var storeTimeHtml = "";
+    if(gStoreCd == "D09") storeTimeHtml += "<ul style='overflow:hidden;margin-bottom:5px;padding:2px 0 0 2px;font-size:1.0em;color:#1a1a1a;font-weight:bold'>백화점</ul>"
+    storeTimeHtml += "<li>정상영업&nbsp;&nbsp;";
+    storeTimeHtml += data.storeMap.shoppingTime.replace('~', ' - ');
+
+    
+    //센텀시티, 인천점
+    if(gStoreCd == "D09" || gStoreCd == "D05") {
+        storeTimeHtml += "(월-목)";
+    }
+    
+    storeTimeHtml += "</li>";
+
+    if(data.storeMap.shoppingTimeExpandYn == "Y") {
+        storeTimeHtml += "<li>연장영업&nbsp;&nbsp;";
+        storeTimeHtml += data.storeMap.shoppingTimeExpand.replace('~', ' - ');
+        if(gStoreCd == "D09") {
+            storeTimeHtml += "(금-일, 공휴일)";
+        }
+        
+        if(gStoreCd == "D05") {
+            storeTimeHtml += "(금-일)";
+        }
+        
+        storeTimeHtml += "</li>";
+    } else if(gStoreCd == "D11") {
+      storeTimeHtml += "<li>연장영업&nbsp;&nbsp;";
+        storeTimeHtml += "금,토요일 1시간 연장 / 일,공휴일 30분 연장"
+        storeTimeHtml += "</li>";
+    }
+
+    if(data.storeMap.shoppingTimeRestaurantYn == "Y") {
+        if(gStoreCd == "D05"){
+            storeTimeHtml += "<li>6층 식당가&nbsp;&nbsp;";
+        }else if(gStoreCd == "D17"){
+            storeTimeHtml += "<li>식당가&nbsp;&nbsp;";
+        }else{
+            storeTimeHtml += "<li>식당가영업&nbsp;&nbsp;";
+        }
+        
+        storeTimeHtml += data.storeMap.shoppingTimeRestaurant.replace('~', ' - ');
+        //141126 영등포점일 경우 내용 추가
+        if(gStoreCd == "D03" || gStoreCd == "D08") storeTimeHtml += "(주문 마감시간 21시)";
+        if(gStoreCd == "D09" || gStoreCd == "D13") storeTimeHtml += "(주문 마감시간 21:00)";
+        
+        if(gStoreCd == "D05") storeTimeHtml += "(주문 20:30까지)";
+        
+        storeTimeHtml += "</li>";
+    }
+    //130905 인천점일 경우 내용 추가
+    if(gStoreCd == "D05") {
+        storeTimeHtml += "<li>지하 1층 패션스트리트&amp;푸드마켓&nbsp;11:00 - 21:00</li>";
+        storeTimeHtml += "<li>지하 1층 푸드홀/델리존 11:00 - 21:00</li><br><br>";
+       
+        storeTimeHtml += "<ul style='margin:0;padding:0;'>* 인천점 영업종료 : 2018.12.28(금)까지</ul>";
+        storeTimeHtml += "<li>12.28(금)은 백화점 전층 20:30분까지 영업합니다</li>";
+        
+        //storeTimeHtml += "<ul style='margin:0;padding:0;'>* 이마트 인천점 영업종료 : 2018.12.16(일)까지</ul>";
+        //storeTimeHtml += "<li>9.23(일) 지하1층 정상영업<br>- 패션스트리트/푸드마켓/델리존/푸드홀 20시 까지<br>- 이마트 22시 까지</li>";
+        //storeTimeHtml += "<li>H&M 추석 영업안내<br>9.23(일) 13:00 - 21:00<br>9.24(월) 휴점<br>9.25(화)~9.26(수) 11:00 - 22:00 정상영업</li>";
+        
+        //이마트처리
+        //$('#bul_close2').show();
+        $('#bul_close1').hide();
+    }
+    //141126 영등포점일 경우 내용 추가
+    /** 171229 영등포점 패션스트리트 업무시간 동일해짐
+    if(gStoreCd == "D03") {
+        storeTimeHtml += "<li>패션 스트리트(A/B관 지하2층) 영업&nbsp;&nbsp;10:30 - 22:00<br>";
+        storeTimeHtml += "[패션스트리트 영업시간 변경 안내]<br>";
+        storeTimeHtml += "- 2018년 1월2일(화)부터는 백화점 영업시간과 동일하게 변경됩니다</li>";
+    }**/
+    //강남점
+    if(gStoreCd == "D02") {
+        storeTimeHtml += "<li>지하1층 파미에스트리트&nbsp;&nbsp;10:30~22:00(연중무휴)</li>";
+
+        //아카데미처리
+        $('#bul_close2').html("아카데미휴점일");
+        $('#bul_close2').show();
+    }
+    //160518 센텀시티 추가
+    if(gStoreCd == "D09") {
+        storeTimeHtml += "<li>1F 스파랜드 06:00 - 24:00</li>";
+        storeTimeHtml += "<li>4F 아이스링크 11:00 - 20:00(월-목)/ -20:30(금-일, 공휴일)</li>";
+        storeTimeHtml += "<li>5F CGV (백화점 7층)/씨네드 쉐프(백화점 5층)<br>&nbsp;&nbsp;&nbsp;&nbsp;홈페이지 영화상영 시간표 참조</li>";
+        storeTimeHtml += "<li>9F 전문식당가 11:00 - 21:30(주문마감 21:00까지)</li>";
+        storeTimeHtml += "<li>11F 골프레인지 06:00 - 23:00</li>";
+        storeTimeHtml += "<ul style='overflow:hidden;margin-bottom:5px;padding:2px 0 0 2px;font-size:1.0em;color:#1a1a1a;font-weight:bold'>센텀시티 몰</ul>";
+        storeTimeHtml += "<li>1-3F 정상영업 11:00 - 20:00(월-목)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연장영업 11:00 - 20:30(금-일, 공휴일)</li>";
+        storeTimeHtml += "<li>3F 피에프창, 4F 파미에스테이션 11:00 - 21:30(주문 마감시간 21:00)</li>";
+        storeTimeHtml += "<li>B1-1F 면세점 09:30 - 20:00(월-목)/ -20:30(금-일)</li>";
+        storeTimeHtml += "<li>4-6F 키자니아 10:00 - 19:30</li>";
+        //storeTimeHtml += "<li>7F 데블스도어 11:00 - 22:00(일-월)/ -24:00(화-토)</li>";
+        
+        
+        $('#bul_close1').html('휴점<br>(단, 센텀시티 몰 內 신세계면세점, 키자니아는 연중무휴)<br>');
+    }
+
+    //161214 대구점추가
+    if(gStoreCd == "D19") {
+        storeTimeHtml += "<li>루앙스트리트(식당가)&nbsp;&nbsp;11:00 - 21:30<br>(라스트오더 21:00)</li>";
+        storeTimeHtml += "<li><table><tr><td rowspan='2' width='124px'>주라지 테마파크 (실내)</td><td>&nbsp;&nbsp;주중 11:00 - 20:00</td></tr><tr><td>&nbsp;&nbsp;주말 11:00 - 20:30</td></tr></table></li>";
+        storeTimeHtml += "<li>주라지 테마파크 (실외)&nbsp;&nbsp;11:00 - 일몰 시까지</li>";
+        storeTimeHtml += "<li>메가박스(8층)&nbsp;&nbsp;홈페이지 상영시간표 참조</li>";
+        storeTimeHtml += "<li>반디앤루니스(파미에타운 6층)&nbsp;&nbsp;11:00 - 22:00</li>";
+        storeTimeHtml += "<li>바운스 트램폴린 파크(파미에타운 7층)&nbsp;&nbsp;11:00 - 22:00</li>";
+    }
+    
+    //171229 광주점 추가
+    if(gStoreCd == "D07") {
+        storeTimeHtml += "<li>패션스트리트(이마트 지하 1층) : 11:00 - 21:00 (마트 휴점시 20:30)</li>";
+        //storeTimeHtml += "<li>이마트(광주점) : 10:00 - 23:00(매월 둘째주/넷째주 일요일 정기 휴무)</li>";   
+    }
+    
+    //171229 김해점 추가
+    if(gStoreCd == "D17") {
+        storeTimeHtml += "<li>4층 식당가 / 1층 미즈컨테이너 11:00 - 21:00</li>";
+        storeTimeHtml += "<li>2층 웰컴스트리트 / 4층 반디앤루니스 11:00 - 21:00</li>";
+        storeTimeHtml += "<li>2층 올반 11:00 - 21:00</li>";  
+    }
+
+    //171229 의정부점 추가
+    if(gStoreCd == "D13") {
+        storeTimeHtml += "<li>푸드홀 11:00 - 21:30(주문 마감시간 21:00)</li>";
+        storeTimeHtml += "<li>영풍문고 11:00 - 22:00</li>";  
+    }
+    
+    //180702 마산점 추가
+    if(gStoreCd == "D06") {
+        //storeTimeHtml += "<li>지하 1층 고메 스트리트 11:00 - 21:00(주문 마감시간 20:30)</li>";
+        storeTimeHtml += "<li>지하 1층 고메 스트리트 영업시간<br> 월-목 11:00 - 20:00 / 금-일 11:00 - 20:30<br>(주문 마감시간 월-목 19:30 / 금-일 20:00)</li>";
+    }
+    
+    
+  
+    var idx = 1;
+    var dataLenth = data.storeNextHoliday.length;
+    
+    $.each(data.storeNextHoliday, function(key, value){
+        
+        day += value.hdt + "(" + week[value.dtCode] + ")";
+        
+        if(idx != dataLenth){
+            day += ", ";
+        }
+        idx++;
+    });
+   storeTimeHtml += "<li>다음달 휴점일 " + day; + "</li>";
+    
+    /**
+    if(gStoreCd == "D01"){
+    	storeTimeHtml += "<li>다음달 휴점일 2.5(화), 2.6(수)</li>";
+    }else if(gStoreCd == "D18"){
+    	storeTimeHtml += "<li>다음달 휴점일 2.5(화)</li>";
+    }else{
+    	storeTimeHtml += "<li>다음달 휴점일 2.4(월), 2.5(화)</li>";
+    }
+    **/
+    
+
+    
+    $("#storeTime").html(storeTimeHtml);
+
+    //
+    var calenderHtml = "";
+    var todayDateOfMonth = data.todayDateOfMonth;
+    var lastDateOfMonth = data.lastDateOfMonth;
+    var calendarStartDate = data.calendarStartDate;
+    var calendarEndDate = data.calendarEndDate;
+    var nextDay = data.nextDay;
+    var preDay = data.preDay;
+
+    for(var i = 0, d = calendarStartDate; i < calendarEndDate; i += 1, d += 1) {
+        if(i % 7 == 0) {
+            calenderHtml += '<div class="row" data-index="0">';
+        }
+
+        if(d < 1) { //전달 처리
+            calenderHtml += '<div class="col last"><div class="date"><em>'+preDay+'</em></div></div>';
+            preDay++;
+        }
+
+        if(d >= 1 && d <= lastDateOfMonth) { //현재달 처리
+            calenderHtml += '<div id="day_'+d+'" class="col';
+            if(todayDateOfMonth == d) calenderHtml += ' today ';
+            calenderHtml += '">';
+            
+            if(gStoreCd == "D05" && d > 28) {
+                calenderHtml += '<div class="col next"><div class="date"><em>'+d+'</em></div></div>';
+	        }else{
+	            calenderHtml += '<div class="date"><em>'+d+'</em></div></div>';
+	        }
+            
+        }
+
+        if(d > lastDateOfMonth) { //다음달 처리
+            if(i % 7 == 0) break;
+            calenderHtml += '<div class="col next"><div class="date"><em>'+nextDay+'</em></div></div>';
+            nextDay++;
+        }
+
+        if(i % 7 == 6) {
+            calenderHtml += '</div>';
+        }
+    }
+
+    $("#divCalender").html(calenderHtml);
+
+    $.each(data.storeHolidayList, function(k, v){
+
+        var date = v.dt.substring(6, 8);
+        date = parseInt(date);
+        var kind = v.kind;
+        var mart = v.emart_kind;
+        var academy = v.academy_kind;//20151022 아카데미 추가
+
+        if(gStoreCd == "D05") {
+        
+        }else{
+            if(kind == "Y") $("#day_"+date).addClass("close1");//휴점
+        }
+       
+        if(kind == "T" || kind == "M") $("#day_"+date).addClass("exten");//연장연업
+        //if(mart == "Y") $("#day_"+date).addClass("close2");//E마트휴점
+        if(academy == "Y") $("#day_"+date).addClass("close2");//아카데미 휴점
+        
+    });
+}
+
+$(function() {
+    $('#bul_close2').hide();
+    var storeCd = getParameterByName("storeCd");
+    if(storeCd == null) storeCd = "[[--sd_store_code--]]";
+    gStoreCd = storeCd;
+
+    $.ajax({
+        url : "https://stg.deptmapp.shinsegae.com/function/jsonpStoreCalender.jsp",
+        //url : "/function/jsonpStoreCalender.jsp",
+        dataType : "jsonp",
+        async: false,
+        jsonp : "callback",
+        data : { storeCd : gStoreCd },
+        success : function(){
+            //alert(d);
+        },
+        error : function(request, status, error) {
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+
+});
+</script>
+
+<body>
+
+<div id="wrap" class="sti_sec4">
+    <!-- header -->
+    <div id="header">
+        <h1><span id="storeName"></span><br>영업시간</h1>
+        <p><strong id="storeState"></strong></p>
+        <ul id="storeTime"></ul>
+    </div>
+    <!-- //header -->
+    <!-- container -->
+    <div id="container">
+        <div class="cal_sec">
+            <!-- calendar_wrap 160602 추가 -->
+            <div class="calendar_wrap">
+                <div class="this_month m[[--Date,Pattern:M--]]">[[--Date,Pattern:M--]]</div>
+                <!-- APP 캘린더 -->
+                <div class="calendar">
+                    <div class="monthly_top">
+                        <span>SUN</span>
+                        <span>MON</span>
+                        <span>TUE</span>
+                        <span>WED</span>
+                        <span>THU</span>
+                        <span>FRI</span>
+                        <span>SAT</span>
+                    </div>
+                    <div class="monthly_cont">
+                        <div class="scrl" id="divCalender">
+                            <div class="row" data-index="0">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //APP 캘린더 -->
+                <div class="bul_sec">
+                    <span id="bul_close1" class="bul_close1">휴점</span>
+                    <span id="bul_close2" class="bul_close2">이마트휴점일</span>
+                    <span class="bul_exten">연장영업일</span>
+                    <span class="bul_today">오늘</span>
+                </div>
+            </div>
+            <!-- //calendar_wrap 160602 추가 -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

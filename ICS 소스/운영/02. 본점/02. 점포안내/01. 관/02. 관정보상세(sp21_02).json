@@ -1,0 +1,27 @@
+{
+    "buld":[[[--ActionStart,[%점코드cid%]21,row:*,sort:buld_cd=asc,index:desc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+     {
+     "stor_cd":"[[--IFStart,exist:stor_cd--]][[--ThenStart--]][[--ArtFieldValue,Field:stor_cd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "stor_nm":"[[--IFStart,exist:stor_nm--]][[--ThenStart--]][[--ArtFieldValue,Field:stor_nm--]][[--ThenEnd--]][[--IFEnd--]]",
+     "buld_cd":"[[--IFStart,exist:buld_cd--]][[--ThenStart--]][[--ArtFieldValue,Field:buld_cd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "buld_nm":"[[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,Field:buld_nm--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00002":"[[--IFStart,exist:ba00002--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00002--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00003":"[[--IFStart,exist:ba00003--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00003--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00018":"[[--IFStart,exist:ba00018--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00018--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00004":"[[--IFStart,exist:ba00004--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00004--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00005":"[[--IFStart,exist:ba00005--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00005--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00006":"[[--IFStart,exist:ba00006--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00006--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00007":"[[--IFStart,exist:ba00007--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00007--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00008":"[[--IFStart,exist:ba00008--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00008--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00009":"[[--IFStart,exist:ba00009--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00009--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00010":"[[--IFStart,exist:ba00010--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00010--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00011":"[[--IFStart,exist:ba00011--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00011--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00012":"[[--IFStart,exist:ba00012--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00012--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00013":"[[--IFStart,exist:ba00013--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00013--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00014":"[[--IFStart,exist:ba00014--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00014--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00015":"[[--IFStart,exist:ba00015--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00015--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00016":"[[--IFStart,exist:ba00016--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00016--]][[--ThenEnd--]][[--IFEnd--]]",
+     "ba00017":"[[--IFStart,exist:ba00017--]][[--ThenStart--]][[--ArtFieldValue,Field:ba00017--]][[--ThenEnd--]][[--IFEnd--]]"
+     }[[--IFStart,is:idx=1--]][[--ElseStart--]],[[--ElseEnd--]][[--IFEnd--]][[--ActionEnd--]]
+     ]
+}

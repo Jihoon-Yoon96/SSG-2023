@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>[[--RecordStart,flag--]]T[[--RecordEnd--]]
+<ssg_app_cms_view_code version="1">
+   <page>
+[[--ActionStart,[%점코드cid%]21,row:1,Sort:#DEFAULT#,index:asc--]]
+[[--IFStart,is:[%flag%]=T--]][[--ThenStart--]]
+      <mainCd>07</mainCd>[[--ThenEnd--]][[--IFEnd--]][[--RecordStart,flag--]]F[[--RecordEnd--]]
+	  <store>
+         <storeCd>[[--ArtFieldValue,stor_cd--]]</storeCd>[[--ActionStart,[%점코드cid%]21,Row:*,Sort:buld_cd=asc,index:asc--]]
+         <view>
+            <viewCd>[[--ArtFieldValue,buld_cd--]]</viewCd>
+            <viewNm>[[--IFStart,exist:buld_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,buld_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</viewNm>
+            <sortNo>[[--ArtIndex--]]</sortNo>
+         </view>[[--ActionEnd--]]
+      </store>[[--ActionEnd--]]
+   </page>
+</ssg_app_cms_view_code>

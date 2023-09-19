@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssg_app_cms_brnd version="1">
+[[--ActionStart,Row:*,Sort:stor_cd=asc,index:asc--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+   <page>
+      <id>[[--ArtId--]]</id>
+      <mainCd>05</mainCd>
+      <title1>[[--IFStart,exist:shop_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,shop_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</title1>
+      <title2>[[--IFStart,exist:sh00002--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00002--]]]]>[[--ThenEnd--]][[--IFEnd--]]</title2>
+      <content1>[[--IFStart,exist:content1--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,content1--]]]]>[[--ThenEnd--]][[--IFEnd--]]</content1>
+      <imgUrl1>[[--RecordStart,artcid--]][[--ReplaceStart,regex:_sho,to:_flo--]][[--ArtCatID--]][[--ReplaceEnd--]][[--RecordEnd--]][[--IFStart,exist:buld_cd--]][[--ThenStart--]][[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_cd--]][[--ThenStart--]][[--RecordStart,flo_cd--]][[--ArtFieldValue,flor_cd--]][[--RecordEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionStart,category:[%점코드cid%]22,row:1,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]--]][[--IFStart,Exist:fa00019--]][[--ThenStart--]]<![CDATA[[[--ReplaceStart,regex:\&,to:\&amp;--]][[--ArtFieldValue,fa00019--]][[--ReplaceEnd--]]]]>[[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]</imgUrl1>
+      <tel>[[--ArtFieldValue,sh00009--]]</tel>
+      <storeCd>[[--IFStart,exist:stor_cd--]][[--ThenStart--]][[--ArtFieldValue,stor_cd--]][[--ThenEnd--]][[--IFEnd--]]</storeCd>
+      <storeNm>[[--IFStart,exist:stor_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,stor_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</storeNm>
+      <viewCd>[[--IFStart,exist:buld_cd--]][[--ThenStart--]][[--ArtFieldValue,buld_cd--]][[--ThenEnd--]][[--IFEnd--]]</viewCd>
+      <viewNm>[[--IFStart,exist:buld_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,buld_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</viewNm>
+      <floorCd>[[--IFStart,exist:flor_cd--]][[--ThenStart--]][[--ArtFieldValue,flor_cd--]][[--ThenEnd--]][[--IFEnd--]]</floorCd>
+      <floorNm>[[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ReplaceStart,regex:지하,to:B--]][[--ReplaceStart,regex:층,to:F--]]<![CDATA[[[--ArtFieldValue,flor_nm--]]]]>[[--ReplaceEnd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]</floorNm>
+      <saleBrandNm>[[--IFStart,exist:sh00025--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00025--]]]]>[[--ThenEnd--]][[--IFEnd--]]</saleBrandNm>
+      <mdCd>[[--IFStart,exist:md_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,md_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</mdCd>
+      <mdNm>[[--IFStart,exist:md_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,md_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</mdNm>
+      <intgBranCd>[[--IFStart,exist:intg_bran_cd--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,intg_bran_cd--]]]]>[[--ThenEnd--]][[--IFEnd--]]</intgBranCd>
+      <intgBranNm>[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,intg_bran_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</intgBranNm>
+      <shop_id>[[--IFStart,exist:shop_id--]][[--ThenStart--]][[--ArtFieldValue,shop_id--]][[--ThenEnd--]][[--IFEnd--]]</shop_id>
+      <sh00029>[[--IFStart,exist:sh00029--]][[--ThenStart--]][[--ArtFieldValue,sh00029--]][[--ThenEnd--]][[--IFEnd--]]</sh00029>
+      <sh00030>[[--IFStart,exist:sh00030--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00030--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00030>
+      <sh00004>[[--IFStart,exist:sh00004--]][[--ThenStart--]][[--ArtFieldValue,sh00004--]][[--ThenEnd--]][[--IFEnd--]]</sh00004>
+      <sh00031>[[--IFStart,exist:sh00031--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00031--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00031>
+      <sh00020>[[--IFStart,exist:sh00020--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00020--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00020>
+      <sh00021>[[--IFStart,exist:sh00021--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00021--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00021>
+      <sh00022>[[--IFStart,exist:sh00022--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00022--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00022>
+      <sh00017>[[--IFStart,exist:sh00017--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00017--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00017>
+      <sh00018>[[--IFStart,exist:sh00018--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00018--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00018>
+      <sh00019>[[--IFStart,exist:sh00019--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00019--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00019>
+      <sh00025>[[--IFStart,exist:sh00025--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00025--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00025>
+      <sh00026>[[--IFStart,exist:sh00026--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00026--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00026>
+      <sh00005>[[--IFStart,exist:sh00005--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00005--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00005>
+      <sh00006>[[--IFStart,exist:sh00006--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,sh00006--]]]]>[[--ThenEnd--]][[--IFEnd--]]</sh00006>
+      <sortNo>[[--ArtIndex--]]</sortNo>
+   </page>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]
+</ssg_app_cms_brnd>

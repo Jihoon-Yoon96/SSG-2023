@@ -1,0 +1,85 @@
+[[--RecordStart,itmmapcd--]][[--IFStart,exist:itemmapcd--]][[--ThenStart--]][[--ArtFieldValue,itemmapcd--]][[--ThenEnd--]][[--ElseStart--]]false[[--ElseEnd--]][[--IFEnd--]][[--RecordEnd--]]
+[[--RecordStart,UpperDispYn--]]Y[[--RecordEnd--]]
+[[--RecordStart,GoosId--]][[--ArtId--]][[--RecordEnd--]]
+[[--MultiCatActionStart,row:*,CatIds:[%점코드cid%]111,Sort:#DEFAULT#--]]
+    [[--ForStart,cd_num,From:1,To:30--]]
+      [[--IFStart,Exist:itemmapcd[%cd_num%]--]][[--ThenStart--]]
+        [[--IFStart,is:itemmapcd[%cd_num%]=[%GoosId%]--]][[--ThenStart--]]
+          [[--IFStart,exist:disp_pric_yn--]][[--ThenStart--]]
+            [[--IFStart,is:disp_pric_yn=N--]][[--ThenStart--]]
+              [[--RecordStart,UpperDispYn--]]N[[--RecordEnd--]]
+          	[[--ThenEnd--]][[--IFEnd--]]
+          [[--ThenEnd--]][[--IFEnd--]]
+        [[--ThenEnd--]][[--IFEnd--]]
+      [[--ThenEnd--]][[--IFEnd--]]
+    [[--ForEnd--]]
+[[--MultiCatActionEnd--]] 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    [[--RecordStart,id--]][[--ReplaceStart, regex:snd, to:sp--]][[--CatId--]][[--ReplaceEnd--]][[--RecordEnd--]]
+	[[--RecordStart,dev_div--]][[--SubStringStart,2--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:5--]]" /> <!--style.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:4--]]" /> <!--storemain.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:6--]]" /> <!--styleguide.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:2--]]" /> <!--font.css-->
+	<script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+	<script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+	<script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
+
+	<script>
+		var width = window.screen.width;
+		var count = 0;
+		if (width == 320) {
+		 document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+		} else {
+		 document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+		}
+	</script>
+  </head>
+
+  <body class="body">[[--RecordStart,cid--]][[--SubStringStart,7--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+	<div class="container-center">
+		<div class="index screen">
+		<div class="top-visual">
+			[[--IFStart,exist:goos_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,goos_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,goos_nm--]] 대표이미지" class="top-visual-img">[[--ThenEnd--]][[--IFEnd--]]
+		</div>
+		<div class="detail-container">
+			<!-- 1. 상품명 + 판매기간 + 가격  -->
+			<div class="product-title-wrap">
+				<div class="product-tit">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</div>
+			</div>
+			<div class="period-text">
+				[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]] - [[--IfStart,Exist:enddt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtEndDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]]
+			</div>
+			
+			<div class="secondary-text">
+				[[--IFStart,is:[%UpperDispYn%]=Y--]][[--ThenStart--]]
+					[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]
+					[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원
+						[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]]
+					[[--ElseStart--]]
+						[[--IFStart,exist:goos_pric--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,goos_pric--]][[--ReplaceEnd--]]원
+							[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
+						[[--ThenEnd--]][[--IFEnd--]]
+					[[--ElseEnd--]][[--IFEnd--]]
+				[[--ThenEnd--]][[--IFEnd--]]
+			</div>
+
+			<!-- 2. 상품명만 -->
+			<!-- <div class="product-title-wrap">
+				<div class="product-tit">F&B</div>
+			</div> -->
+		</div>
+		<!-- <div class="content-area"> 
+				//content-area
+		</div>  -->
+		</div>
+	</div>
+  </body>
+</html>

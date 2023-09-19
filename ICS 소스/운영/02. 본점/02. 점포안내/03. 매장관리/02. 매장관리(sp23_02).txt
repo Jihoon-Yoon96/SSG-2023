@@ -1,0 +1,31 @@
+{
+"brand":[[[--ActionStart,[%점코드cid%]23,row:*,sort:#DEFAULT#,index:desc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+    [[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+    {
+    [[--12cont_set_json--]] [[---12cont_set 개인화 공통 컬럼 json데이터 ---]]
+     "fa00027":"[[--IFStart,exist:fa00027--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:fa00027--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00029":"[[--IFStart,exist:sh00029--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00029--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00030":"[[--IFStart,exist:sh00030--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00030--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00002":"[[--IFStart,Exist:sh00002--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00002--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "sh00003":"[[--IFStart,exist:sh00003--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00003--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00004":"[[--IFStart,exist:sh00004--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00004--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00031":"[[--IFStart,exist:sh00031--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00031--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00005":"[[--IFStart,exist:sh00005--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00005--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00006":"[[--IFStart,exist:sh00006--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00006--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00007":"[[--IFStart,exist:sh00007--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00007--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00008":"[[--IFStart,exist:sh00008--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00008--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00009":"[[--IFStart,Exist:sh00009--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00009--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "sh00017":"[[--IFStart,Exist:sh00017--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00017--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "sh00019":"[[--IFStart,exist:sh00019--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00019--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00025":"[[--IFStart,exist:sh00025--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00025--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00026":"[[--IFStart,exist:sh00026--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00026--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00028":"[[--IFStart,exist:sh00028--]][[--ThenStart--]][[--ReplaceStart,regex:",to:'--]][[--ArtFieldValue,Field:sh00028--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00020":"[[--IFStart,exist:sh00020--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00020--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00021":"[[--IFStart,exist:sh00021--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00021--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00022":"[[--IFStart,exist:sh00022--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00022--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00023":"[[--IFStart,exist:sh00023--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00023--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sh00024":"[[--IFStart,exist:sh00024--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sh00024--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "content1":"[[--IFStart,exist:content1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:content1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]"
+    }[[--IFStart,is:idx=1--]][[--ElseStart--]],[[--ElseEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]
+]
+}

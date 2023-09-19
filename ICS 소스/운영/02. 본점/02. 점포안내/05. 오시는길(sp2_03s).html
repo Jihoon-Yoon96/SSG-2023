@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>
+[[--PublishOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	$('#container').css('top', $(window).height() - 190);
+	$('#header').css('height', $(window).height() - 190);
+});
+</script>
+</head>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript">[[--jquery_min--]]</script>
+<style type="text/css">[[--style_css--]]</style>
+<style type="text/css">[[--style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	$('#container').css('top', $(window).height() - 190);
+	$('#header').css('height', $(window).height() - 190);
+});
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=41v2mxwlqHy4AmylS6D8"></script>
+<body>
+<div id="wrap" class="sti_sec5">
+	<!-- header -->
+	<div id="header">
+		<div class="si_nvmap" id="si_nvmap">
+		</div>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<div class="simptit">
+			<p>[[--sp_store_addr--]]</p>
+			<a href="">지도보기</a>
+		</div>
+		[[--IFStart,exist:road_img--]][[--ThenStart--]]<div class="simpcont"><img src="[[--ArtFieldValue,road_img--]]" width="100%" alt="[[--ArtFieldValue,stor_nm--]]오시는길"></div>[[--ThenEnd--]][[--IFEnd--]]
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+   var h = $('#header').height();
+		var mapOptions = {
+			center: new naver.maps.LatLng(37.560349, 126.980071),
+			zoom: 12
+		};
+
+		var map = new naver.maps.Map('mapContainer', mapOptions);
+			map.setZoom(map.getZoom() + 1);
+			map.setZoom(map.getZoom() - 1);
+			map.setOptions("minZoom", 5);
+			map.setOptions("maxZoom", 14);
+			
+		var cityHall = new naver.maps.LatLng(37.560349, 126.980071);
+		var markerOptions = {
+			position: cityHall,
+			icon: {
+				url: 'http://static.naver.net/maps/v3/pin_default.png',
+				size: new naver.maps.Size(22, 35),
+				anchor: new naver.maps.Point(11, 35)
+				}
+			};
+			var marker = new naver.maps.Marker(markerOptions);
+			marker.setMap(map); // 추가
+});
+</script>
+
+</body>
+</html>

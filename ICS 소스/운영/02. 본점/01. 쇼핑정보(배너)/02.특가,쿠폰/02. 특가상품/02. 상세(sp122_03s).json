@@ -1,0 +1,37 @@
+{
+    [[--12cont_set_json--]] [[---12cont_set 개인화 공통 컬럼 json데이터 ---]]
+     "maincontcd":"[[--IFStart,exist:maincontcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:maincontcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "mainordernum":"[[--IFStart,exist:mainordernum--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:mainordernum--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "contdtlcd":"[[--IFStart,exist:contdtlcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:contdtlcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "badge1":"특가",
+     "badge2":"[[--IFStart,exist:badge2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_sub_nm":"[[--IFStart,exist:evt_sub_nm--]][[--ThenStart--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_sub_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "content1":"[[--IFStart,exist:content1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:content1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_plac_2":"[[--IFStart,exist:evt_plac_2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_plac_2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "repr_img":"[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:repr_img--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:brndimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sub_img_1":"[[--IFStart,exist:sub_img_1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sub_img_1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sub_img_1_ex":"[[--IFStart,exist:sub_img_1_ex--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sub_img_1_ex--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sub_img_2":"[[--IFStart,exist:sub_img_1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sub_img_2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "sub_img_2_ex":"[[--IFStart,exist:sub_img_1_ex--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:sub_img_2_ex--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "caution":"[[--IFStart,exist:caution--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:caution--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "fullimg":"[[--IFStart,exist:fullimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:fullimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_tm_cd":"[[--IFStart,exist:evt_tm_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_tm_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_tm_nm":"[[--IFStart,exist:evt_tm_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_tm_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_cls":"[[--IFStart,exist:evt_cls--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_cls--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_cd":"[[--IFStart,exist:evt_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "md_dv_cd":"[[--IFStart,exist:md_dv_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:md_dv_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "md_dv_nm":"[[--IFStart,exist:md_dv_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:md_dv_nm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_plac_cd":"[[--IFStart,exist:evt_plac_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:evt_plac_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForStart,num,From:1,To:5--]]
+     "asst_id_0[[--Write,num--]]":"[[--IFStart,exist:asst_id_0[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:asst_id_0[%num%]--]][[--ThenEnd--]][[--IFEnd--]]",
+     "alin_ordr_0[[--Write,num--]]":"[[--IFStart,exist:asst_id_0[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:alin_ordr_0[%num%]--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForEnd--]]
+     "ev_pl_dr":"[[--IFStart,exist:ev_pl_dr--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:ev_pl_dr--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "normalprice":"[[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]]원[[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice1":"[[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice2":"[[--IFStart,exist:evtprice2--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice2--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "evtprice":"[[--IFStart,exist:evtprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "discnt":"[[--IFStart,exist:discnt--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,discnt--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]",
+     "saledispcd":"[[--IFStart,exist:saledispcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:saledispcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "limit_qty":"[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:limit_qty--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]"
+}

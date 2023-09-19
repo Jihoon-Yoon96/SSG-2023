@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-SemiBold.woff2") format("woff2"),
+    url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-Regular.woff2") format("woff2"),
+    url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
+  font-weight: 500;
+  src: url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-Medium.woff2") format("woff2"),
+    url("[[--ImgRootDir--]]/common/fonts/Pretendard/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  src: url("[[--ImgRootDir--]]/common/fonts/jost/Jost-Regular.woff2") format("woff2"),
+    url("[[--ImgRootDir--]]/common/fonts/jost/Jost-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  src: url("[[--ImgRootDir--]]/common/fonts/jost/Jost-Regular.woff2") format("woff2"),
+    url("[[--ImgRootDir--]]/common/fonts/jost/Jost-Regular.woff") format("woff");
+}

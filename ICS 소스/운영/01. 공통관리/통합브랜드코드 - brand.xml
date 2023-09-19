@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssg_app_cms_genre_code version="1">[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+   <page>[[--ActionStart,s[%dev_div%]0007,Row:*,Sort:#DEFAULT#,index:asc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+      <brand>
+         <brandCd>[[--IFStart,exist:ub00005--]][[--ThenStart--]][[--ArtFieldValue,ub00005--]][[--ThenEnd--]][[--IFEnd--]]</brandCd>
+         <brandNm>[[--IFStart,exist:ub00007--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,ub00007--]]]]>[[--ThenEnd--]][[--IFEnd--]]</brandNm>
+         <sortNo>[[--ArtIndex--]]</sortNo>
+      </brand>[[--ActionEnd--]]
+   </page>
+</ssg_app_cms_genre_code>

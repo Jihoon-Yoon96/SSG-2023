@@ -1,0 +1,28 @@
+[[--RecordStart,상품관리cid4--]][[--SubStringStart,-3~--]][[--CatId--]][[--SubStringEnd--]]1[[--RecordEnd--]]
+[[--RecordStart,코드값--]][[--SubStringStart,~-1--]][[--ForStart,num,From:1,To:30--]][[--ForStart,cd_num,From:1,To:30--]][[--IFStart,Exist:itmapcdnum[%cd_num%]--]][[--ThenStart--]][[--IFStart,is:itmapcdnum[%cd_num%]=[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:itemmapcd[%cd_num%]--]];[[--ThenEnd--]][[--IfEnd--]][[--ThenEnd--]][[--IfEnd--]][[--ForEnd--]][[--ForEnd--]][[--SubStringEnd--]][[--RecordEnd--]][[--Write,상품관리cid4--]]
+[[--ForStart,코드,in:[%코드값%]--]]
+							[[--PreviewOnlyStart--]]
+							[[--ActionStart,Row:*,[%점코드cid%][%상품관리cid4%],Search:id=[%코드%],Sort:#DEFAULT#--]]
+								<div class="prd_lst" id="[[--ArtId--]]">
+									[[--IFStart,exist:goos_img--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="img_bx" title="상품 상세 페이지로 이동"><div class="dim"></div><img src="[[--ArtFieldValue,goos_img--]]" alt="[[--ArtFieldValue,goos_nm--]] 이미지"></a>[[--ThenEnd--]][[--IFEnd--]]
+									<div class="prd_info">
+										[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<p class="prd_brand"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></p>[[--ThenEnd--]][[--IFEnd--]]
+										[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<p class="prd"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+										[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]<p class="price">[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원
+										[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+									</div>
+								</div>[[--ActionEnd--]]
+							[[--PreviewOnlyEnd--]]
+							[[--PublishOnlyStart--]]
+							[[--ActionStart,Row:*,[%점코드cid%][%상품관리cid4%],Search:id=[%코드%]&&sg_0001=Y,Sort:#DEFAULT#--]]
+								<div class="prd_lst" id="[[--ArtId--]]">
+									[[--IFStart,exist:goos_img--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="img_bx" title="상품 상세 페이지로 이동"><div class="dim"></div><img src="[[--ArtFieldValue,goos_img--]]" alt="[[--ArtFieldValue,goos_nm--]] 이미지"></a>[[--ThenEnd--]][[--IFEnd--]]
+									<div class="prd_info">
+										[[--IFStart,exist:intg_bran_nm--]][[--ThenStart--]]<p class="prd_brand"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,intg_bran_nm--]][[--ReplaceEnd--]]</a></p>[[--ThenEnd--]][[--IFEnd--]]
+										[[--IFStart,exist:goos_nm--]][[--ThenStart--]]<p class="prd"><a href="[[--ArtAddress--]]" title="상품 상세 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_nm--]][[--ReplaceEnd--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+										[[--IFStart,exist:gs_sale_pric--]][[--ThenStart--]]<p class="price">[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,gs_sale_pric--]][[--ReplaceEnd--]]원
+										[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]</p>[[--ThenEnd--]][[--IFEnd--]]
+									</div>
+								</div>[[--ActionEnd--]]
+							[[--PublishOnlyEnd--]]
+							[[--ForEnd--]]

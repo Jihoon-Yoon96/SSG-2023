@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  [[--RecordStart,id--]][[--ReplaceStart, regex:snd, to:sp--]][[--CatId--]][[--ReplaceEnd--]][[--RecordEnd--]]
+  <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:5--]]" /> <!--style.css-->
+  <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:4--]]" /> <!--storemain.css-->
+  <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:6--]]" /> <!--styleguide.css-->
+  <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:2--]]" /> <!--font.css-->
+  <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+  <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+  <script>
+	var width = window.screen.width;
+	if (width == 320) {
+	 document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+	} else {
+	 document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+	}
+	</script>
+</head>
+
+<script>
+	$(function() {
+		let tabList = []
+	[[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--RecordStart,flo_cd--]][[--ArtFieldValue,flor_cd--]][[--RecordEnd--]]
+    [[--RecordStart,field_tmp--]]null[[--RecordEnd--]]
+	[[--RecordStart,ub6--]][[--SubStringStart,~-1--]][[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%],Row:*,Sort:ub00006=asc--]][[--RecordStart,ub_06--]][[--ArtFieldValue,Field:ub00006--]][[--RecordEnd--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]][[--IFStart,is:[%ub_06%]=[%field_tmp%]--]][[--ElseStart--]][[--ArtFieldValue,Field:ub00006--]];[[--RecordStart,field_tmp--]][[--ArtFieldValue,Field:ub00006--]][[--RecordEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]][[--SubStringEnd--]][[--RecordEnd--]]
+	[[--ForStart,var,in:[%ub6%]--]]
+	[[--ActionStart,[%점코드cid%]23,search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&ub00006=[%var%],Row:1,Sort:#DEFAULT#--]]
+	[[--RecordStart,ub_08--]][[--ArtFieldValue,ub00008--]][[--RecordEnd--]]
+	[[--RecordStart,dev_div--]][[--SubStringStart,2--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+	[[--RecordStart,taid--]][[--ArtIndex--]][[--RecordEnd--]]
+	tabList.push([[--ActionStart,s[%dev_div%]0006,Row:1,Search:ub00006=[%var%]--]]'[[--ArtFieldValue,Field:ub00008--]]'[[--ActionEnd--]])
+	[[--ActionEnd--]][[--ForEnd--]]
+
+	console.log(tabList)
+
+	for(let i = 0; i < tabList.length; i++){
+		let txt = '';
+		txt += '<div class="go-tab' 
+		if(i === 0) txt += ' active'
+		
+		txt += `" onclick="goTabContent(${i})">${tabList[i]}</div>`
+
+		document.getElementsByClassName('go-tab-container')[0].innerHTML += txt
+	}
+	})
+</script>
+
+<body class="body">
+  <div class="container-center">
+    <div class="index screen">
+      <div class="floor-info">
+        <div class="floor-info-header">
+            <div class="floor-info-num-row">
+                <div class="floor-info-num" onclick="alert('층선택 bottom sheet UI 스크립트 필요!!');">[[--ArtFieldValue,fa00027--]]</div>
+                <img class="btn-floor-map" src="[[--ImgRootDir--]]/common/img/icons/icMap.svg" onclick="location.href='[[--ArtAddress,form:5--]]'">
+            </div>
+			<div class="floor-info-subTit">[[--ArtFieldValue,fa00004--]]</div>
+			
+            <div class="go-tab-container"></div>
+        </div>
+		
+        <div class="floor-info-container">
+			
+			[[--ForStart,var,in:[%ub6%]--]]
+			[[--ActionStart,[%점코드cid%]23,search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&ub00006=[%var%],Row:1,Sort:#DEFAULT#--]]
+			[[--RecordStart,ub_08--]][[--ArtFieldValue,ub00008--]][[--RecordEnd--]]
+			[[--RecordStart,dev_div--]][[--SubStringStart,2--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+			<div class="go-tab-content">
+				<div class="store-list common">
+					<div class="store-list-category-title">[[--ActionStart,s[%dev_div%]0006,Row:1,Search:ub00006=[%var%]--]][[--ArtFieldValue,Field:ub00008--]][[--ActionEnd--]]</div>
+					[[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&ub00006=[%var%],Row:*,Sort:shop_nm=asc--]]
+						[[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]]
+						[[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+					<div class="store-item">
+						<div class="left-container">
+							<div class="store-name">[[--ArtFieldValue,shop_nm--]]</div>
+						</div>
+						<div class="store-btn">
+							[[--IFStart,exist:sh00009--]][[--ThenStart--]]
+							<a class="floor-map-icon" href="tel:[[--ArtFieldValue,sh00009--]]">
+								<img src="[[--ImgRootDir--]]/common/img/icons/icPhoneB.svg" />
+							</a>
+							[[--ThenEnd--]][[--IFEnd--]]
+							<img class="floor-map-icon" src="[[--ImgRootDir--]]/common/img/icons/icMap.svg" onclick="alert('길찾기 API 필요!!');" />
+							<img class="arrow-right-icon" src="[[--ImgRootDir--]]/common/img/icons/icArrowRight.svg" onclick="alert('브랜드 계정 link 필요!!');" />
+						</div>
+						
+					</div>
+					[[--ThenEnd--]][[--IFEnd--]]
+						[[--ThenEnd--]][[--IFEnd--]]
+						[[--ActionEnd--]]
+				</div>
+			</div>
+			[[--ActionEnd--]][[--ForEnd--]]
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

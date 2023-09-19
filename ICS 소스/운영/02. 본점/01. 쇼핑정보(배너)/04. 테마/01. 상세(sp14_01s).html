@@ -1,0 +1,208 @@
+[[--RecordStart,sbmapcd--]][[--IFStart,exist:submapcd1--]][[--ThenStart--]][[--ArtFieldValue,submapcd1--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd2--]][[--ThenStart--]][[--ArtFieldValue,submapcd2--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd3--]][[--ThenStart--]][[--ArtFieldValue,submapcd3--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd4--]][[--ThenStart--]][[--ArtFieldValue,submapcd4--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd5--]][[--ThenStart--]][[--ArtFieldValue,submapcd5--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd6--]][[--ThenStart--]][[--ArtFieldValue,submapcd6--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd7--]][[--ThenStart--]][[--ArtFieldValue,submapcd7--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd8--]][[--ThenStart--]][[--ArtFieldValue,submapcd8--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd9--]][[--ThenStart--]][[--ArtFieldValue,submapcd9--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd10--]][[--ThenStart--]][[--ArtFieldValue,submapcd10--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd11--]][[--ThenStart--]][[--ArtFieldValue,submapcd11--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd12--]][[--ThenStart--]][[--ArtFieldValue,submapcd12--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd13--]][[--ThenStart--]][[--ArtFieldValue,submapcd13--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd14--]][[--ThenStart--]][[--ArtFieldValue,submapcd14--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd15--]][[--ThenStart--]][[--ArtFieldValue,submapcd15--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd16--]][[--ThenStart--]][[--ArtFieldValue,submapcd16--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd17--]][[--ThenStart--]][[--ArtFieldValue,submapcd17--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd18--]][[--ThenStart--]][[--ArtFieldValue,submapcd18--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd19--]][[--ThenStart--]][[--ArtFieldValue,submapcd19--]];[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:submapcd20--]][[--ThenStart--]][[--ArtFieldValue,submapcd20--]];[[--ThenEnd--]][[--IFEnd--]][[--RecordEnd--]]
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+[[--PublishOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+var count = 0;  
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+	
+	//2019.06.28 화면 집입시 공유하기 표시여부
+	setDefultShare();
+});
+/*** 2019.02.28 추가 시작***/
+// 화면 진입시 찜하기 여부에 따라 이미지 표현
+function setDefultHeart(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		$this.animate(000, function() {
+			$this.toggleClass("like");
+			$this.find(".span1").animate({opacity:1}, 000, function() {
+				$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+					$this.find(".span3").animate({opacity:1}, 000);
+				});
+			});
+		})
+		count =1;
+	}
+}
+// 찜하기 버튼 클릭에 따른 효과
+function setMessage(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		if(count === 0){
+			$this.animate(300,function() {
+				$this.toggleClass("like");
+				$this.find(".span1").animate({opacity:1}, 300, function() {
+					$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+						$this.find(".span3").animate({opacity:1}, 300);
+					});
+				});
+			})
+			count =1;
+		} else {
+			$this.animate(300,function() {
+				$this.find(".span3").animate({opacity:0}, 300, function() {
+					$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+						$this.find(".span1").animate({opacity:0}, 300,function() {
+							$this.toggleClass("like");
+						});
+					});
+				});
+			})
+			count =0;
+		}
+	}
+}
+/*** 2019.02.28 추가 끝 ***/
+
+function sendMessage(msg){
+	window.android.setMessage(msg);
+}
+
+//2019.06.28 화면 집입시 공유하기 표시여부
+function setDefultShare() {
+        $("#open_share").show();
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//찜하기
+	$(".heart").click(function(){
+		$(this).toggleClass("like");
+	});
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+});
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+[[--RecordStart,cid--]][[--CatId--]][[--RecordEnd--]]
+<body>
+<div id="wrap" class="catalogue">
+	<!-- header -->
+	<div id="header">
+		<h1 class="blind">모바일 카탈로그 상세페이지</h1>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<!-- top_bx -->
+		<div class="top_bx">
+			<div class="dim"></div>
+			<img src="[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ArtFieldValue,repr_img--]][[--ThenEnd--]][[--IFEnd--]]" alt="모바일 카탈로그 대표이미지">
+		</div>
+		<!-- //top_bx -->
+		<!-- contents -->
+		<div class="contents">
+			<!-- info -->
+			<div class="info">
+				<a href="open_dibs:">
+                <!-- 2019.02.28 수정 시작-->
+				<!--<div class="heart">Heart</div>-->
+				<div class="heart">Heart
+				    <button type="button" class="heart_btn">
+					    <span class="span1"></span>
+					    <span class="span2"></span>
+					    <span class="span3"></span>
+				    </button>
+				</div>
+				<!-- 2019.02.28 수정 끝-->
+                </a>
+				<!-- 2019.06.17 추가 -->
+				<a href="new_open_cms_share:" id="open_share" style="display:none;">
+				<div class="share typeSsg">
+					<button type="button" class="btn_share">
+						<img src="/cms12/common/img/img_share.png" alt="공유하기">
+					</button>
+				</div>
+				</a>
+				<!-- 2019.06.17 추가 끝 -->
+				<div class="info_bx">
+					<p class="tag"><span>[[--ArtFieldValue,badge1--]]</span><span class="sub">[[--ArtFieldValue,badge2--]]</span></p>
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<h2 class="ttl">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]</h2>[[--ThenEnd--]][[--IFEnd--]]
+					<p class="desc">[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]] - [[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy-MM-dd (E)--]] - [[--ArtEndDate,pattern:yyyy-MM-dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]] <span class="ico_section1">|</span><br>[[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_nm--]][[--ThenStart--]] [[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]]</p>
+				</div>
+			</div>
+			<!-- //info -->
+			<!-- detail -->
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+[[--IfStart,Exist:fullimg--]][[--ThenStart--]]
+				<!-- 통 이미지 -->
+					<div class="imgfull">
+						<img src="[[--ArtFieldValue,Field:fullimg--]]" alt="">
+					</div>
+				<!-- //통 이미지 -->
+[[--ThenEnd--]][[--ElseStart--]]
+				[[--IFStart,exist:btmmaintit--]][[--ThenStart--]]
+					<!-- 단순 텍스트 -->
+					<div class="textarea">
+						<p>[[--ArtFieldValue,btmmaintit--]]</p>
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:sbmapcd--]][[--ThenStart--]]
+					<!-- 서브 테마 -->
+					<div class="sub_theme">
+						<ul>[[--ForStart,sub_loof,in:[%sbmapcd%]--]][[--ActionStart,Row:*,[%점코드cid%]141,Search:submapcd=[%sub_loof%],Sort:#DEFAULT#--]]
+							<li>
+								[[--IFStart,exist:brndimg--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="img_bx" title="서브 테마 페이지로 이동"><div class="dim"></div><img src="[[--ArtFieldValue,brndimg--]]" alt="이미지"></a>[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="sub_link" title="서브 테마 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]<span class="btn_arrow">&gt;</span></a>[[--ThenEnd--]][[--IFEnd--]]
+							</li>[[--ActionEnd--]][[--ForEnd--]]
+						</ul>
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+[[--ElseEnd--]][[--IfEnd--]]
+				</div>
+				<!-- //editor 영역 -->
+			</div>
+			<!-- //detail -->
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+</div>
+</body>
+</html>

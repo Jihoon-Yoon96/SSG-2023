@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    [[--RecordStart,id--]][[--CatId--]][[--RecordEnd--]]
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:5--]]" /> <!--style.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:1--]]" /> <!--calendar.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:6--]]" /> <!--styleguide.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:2--]]" /> <!--font.css-->
+    <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+    <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+
+    <script>
+      var width = window.screen.width;
+      if (width == 320) {
+          document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+      } else {
+          document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+      }
+    </script>
+  </head>
+
+  
+
+  <script>
+    var gStoreCd = "[[--sp_store_code--]]";
+      
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1
+    var day = date.getDate();
+    if(month < 10){
+        month = "0"+month;
+    }
+    if(day < 10){
+        day = "0"+day;
+    }
+
+    var today = year+"-"+month+"-"+day
+
+    // 서버TIME
+    let serverTime = today;
+    let timeArr = serverTime.split("-");
+    let moveCnt = 0;
+
+    let calYear = parseInt(timeArr[0]);
+    let calMonth = parseInt(timeArr[1]);
+    let calDate = parseInt(timeArr[2]);
+    /* 190624 추가 */
+    let serverTimeObj = new Date((calYear + '-' + calMonth + '-01' ).replace(/-/g, "/"));
+    serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+    let calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+    /* 190624 추가[e] */
+
+    // 영업일 DATA
+    let salesDate = [];
+
+    function createTime(curTime,y,m){
+      curTime.now = new Date();
+      curTime.curMonth= m-1;
+      curTime.curYear = y;
+      
+      return curTime;
+    }
+
+    /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
+    function callbackDate(data){
+      serverTime = data.today;
+      timeArr = serverTime.split("-");
+      calYear = parseInt(timeArr[0]);
+      calMonth = parseInt(timeArr[1]);
+      calDate = parseInt(timeArr[2]);
+      /* 190624 수정 및 추가 */
+      serverTimeObj = new Date((calYear + '-' + calMonth + '-01').replace(/-/g, "/") );
+      serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+      calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+      /* 190624 수정 및 추가[e] */
+
+      [[---2023.08.23---]]
+      document.getElementsByClassName('year-month')[0].innerHTML = `${calYear}년 ${calMonth}월`
+    };
+
+    /* 190624 함수 추가 : 날짜포맷 */
+    function formatDate(date) {
+      var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      
+      return [year, month, day].join('-');
+    }
+
+    /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
+    $(function() {
+      //영업일 JSON 호출
+      $.ajax({
+        url : "[[--CatAddress,[%id%]4--]]",
+        //url : "/function/jsonpStoreCalender.jsp",
+        dataType : "json",
+        success : function(result){
+          console.log('영업일 success');
+          salesDate = result.date
+          [[---2023.08.23---]]
+          calendar(calYear,calMonth);
+        },
+        error : function(request, status, error) {
+          //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+      });
+    });
+
+
+    $(document).ready( function() {
+      // 서버 시간 가져오기
+      $.ajax({
+        url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+        dataType : "jsonp",
+        // jsonp : "callback",
+        success: function(result){
+          console.log('서버 success', result);
+        }
+      });
+    });
+
+    function calendar(year,month) {
+      let curTime = { now:null, curYear:0, curMonth:0, curDate:0};
+      curTime = createTime(curTime,year,month);
+
+      let myText;
+      let firstDayInstance = new Date(curTime.curYear, curTime.curMonth, 1);
+
+      let dayOfTheWeekOfFirstDay = firstDayInstance.getDay(curTime);
+
+      firstDayInstance = null;
+
+      let lastDayOfMonth = getLastDayOfMonth(curTime);
+
+      myText = drawCal(dayOfTheWeekOfFirstDay, lastDayOfMonth, curTime);
+
+      document.getElementsByClassName("calendar-week-content")[0].innerHTML = myText;
+      dateCheck(curTime)
+  }
+
+  // 요일 체크 (정상영업/휴점/연장영업/아카데미휴점)
+  function dateCheck(curTime) {
+    let dtCd = getSalesDate(curTime)
+    console.log("dtCd",dtCd)
+    let cnt = 0
+
+    for(let k in dtCd) {
+      if(k !== "sale_ym0") {
+        cnt++
+        if (dtCd.hasOwnProperty(k)) {
+          var i = dtCd[k].split("")
+          var storeCd = i[0];
+          var academyCd = i[1];
+          /**
+           * * 점포
+           * * storeCd === 1 : 정상영업
+           * * storeCd === 2 : 휴점
+           * * storeCd === 3 : 연장영업
+           * * */ 
+          if (storeCd == 1) {}
+          else if (storeCd == 2) {$("#day_"+(cnt)).addClass("closed-day"); $("#day_"+(cnt)).addClass("inactive");}
+          else if (storeCd == 3)  $("#day_"+(cnt)).addClass("extended-business-day");
+          /**
+           * * 아카데미
+           * * academyCd === 0, 1 : 정상영업
+           * * academyCd === 2 : 휴점
+           * * */ 
+          if (academyCd == 0){}
+          else if (academyCd == 1){}
+          else if (academyCd == 2) $("#day_"+(cnt)).addClass("academy-closed-day");
+        }
+      }
+    }
+  }
+
+  // 선택한 달력에 해당하는 SalesDate Get
+  function getSalesDate(curTime) {
+    let year = curTime.curYear
+    let month = (curTime.curMonth+1)+""
+
+    if(curTime.curMonth < 9) {
+      month = "0"+(curTime.curMonth+1);
+    }
+    let calendarDate = year+month
+    console.log("calendarDate",calendarDate)
+    for(let i = 0 ; i < salesDate.length ;i ++) {
+      if(salesDate[i]["sale_ym0"] === calendarDate) {
+        return salesDate[i]
+      }
+    }
+  }
+
+  function drawCal(dayOfTheWeekOfFirstDay, lastDayOfMonth, curTime) {
+    let text = "";
+    // let monthElement = $("#this_month")
+    // let classList = monthElement.attr("class").split(/\s+/)
+    // for(let i = 0 ; i < classList.length ; i++) {
+    //   let className = classList[i]
+    //   if(/^m/.exec(className)){
+    //     monthElement.removeClass(className)
+    //     break;
+    //   }
+    // }
+    // monthElement.addClass("m"+(curTime.curMonth+1))
+
+    let digit = 1;
+    let curCell = 0;
+    let nextDigit = 1;
+    let prevMonth = curTime.curMonth == 0 ? 11 : curTime.curMonth-1
+    let prevYear = prevMonth == 11 ? curTime.curYear-1 : curTime.curYear
+    let prevLastDay = getLastDayOfMonth({curYear:prevYear,curMonth:prevMonth})
+
+    for (let row = 0; row < Math.ceil((lastDayOfMonth + dayOfTheWeekOfFirstDay) / 7); row++) {
+      // text += '<div class="row" data-index="0">';
+      for (let col = 0; col < 7; col++) {
+        // 지난 달 or 다음 달 날짜
+        // 오늘 날짜의 월 첫 날이 일요일이 아니거나, 해당 달의 마지막 날이 digit보다 작은 경우
+        if (curCell < dayOfTheWeekOfFirstDay || digit > lastDayOfMonth) {
+          // 지난 달 날짜(오늘 날짜의 월 기준)
+          if(row === 0) {
+            // text += '<div class="col last"><div class="date"><em>'+(prevLastDay - (dayOfTheWeekOfFirstDay-(col+1)))+'</em></div></div>'
+            text += `<div class="calendar-day inactive">
+                <div class="calendar-num">${(prevLastDay - (dayOfTheWeekOfFirstDay-(col+1)))}</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>`
+          } 
+          // // 다음 달 날짜(오늘 날짜의 월 기준)
+          else {
+            // text += '<div class="col next"><div class="date"><em>'+nextDigit+'</em></div></div>';
+            text += `<div class="calendar-day inactive">
+                <div class="calendar-num">${nextDigit}</div>
+                <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+              </div>`
+            nextDigit++;
+          }
+
+          curCell++;
+        }
+        // 이번 달 날짜
+        else {
+          // text += '<div id="day_'+digit+'" class="col';
+          // if(curTime.curYear == timeArr[0] && curTime.curMonth == (parseInt(timeArr[1])-1) && digit == calDate) {
+          //   text += ' today'
+          // }
+          // text += '">'
+          // text += '<div class="date"><em>'+digit+'</em></div></div>'
+          // digit++;
+          text += '<div id="day_'+digit+'" class="calendar-day';
+          if(curTime.curYear == timeArr[0] && curTime.curMonth == (parseInt(timeArr[1])-1) && digit == calDate) {
+            text += ' current-day'
+          }
+          text += '">'
+          text += `<div class="calendar-num">${digit}</div>`
+          text += '<div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>'
+          text += '</div>'
+          digit++;
+          
+          
+          // <div class="calendar-day extended-business-day">
+          //       <div class="calendar-num">1</div>
+          //       <div class="noted"><span class="ico-dot"></span><span class="ico-dot"></span><span class="ico-dot"></span></div>
+          //     </div>
+        }
+      }
+      // text += '</div>';
+    }
+      
+    return text;
+  }
+
+
+  function getLastDayOfMonth(curTime) {
+    let lastDayOfMon = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let mon2;
+
+    if ( (curTime.curYear % 4 == 0) && (curTime.curYear % 100 != 0) ) mon2 = true;
+    else if(curTime.curYear % 400 == 0) mon2 = true;
+    else mon2 = false;
+
+    lastDayOfMon[1] = (mon2) ? 29 : 28;
+    
+    return lastDayOfMon[curTime.curMonth];
+  }
+
+
+  // 다음 달 클릭
+  function next() {
+    if (calMonth + 1 === 13) {
+      calMonth = 0
+      calYear++
+    }
+    // moveCnt++
+    calendar(calYear,++calMonth);
+    // $("#closeStr").html("");
+  }
+
+  // 이전 달 클릭
+  function prev() {
+    if(calMonth-1 === 0) {
+      calMonth = 13
+      calYear--
+    }
+    // moveCnt--
+    calendar(calYear,--calMonth);
+    // getNextCloseDay();
+  }
+  </script>
+
+  <body class="body">
+    <div class="container-center">
+      <div class="bottomsheet screen">
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <div class="btn-month prev" onclick="validationBtnMonth(this);">이전달</div>
+            <div class="year-month">2023년 4월</div>
+            <div class="btn-month next active" onclick="validationBtnMonth(this);">다음달</div>
+          </div>
+          <div class="calendar-body">
+            <div class="calendar-week-name">
+              <div class="calendar-day"><div class="calendar-num">일</div></div>
+              <div class="calendar-day"><div class="calendar-num">월</div></div>
+              <div class="calendar-day"><div class="calendar-num">화</div></div>
+              <div class="calendar-day"><div class="calendar-num">수</div></div>
+              <div class="calendar-day"><div class="calendar-num">목</div></div>
+              <div class="calendar-day"><div class="calendar-num">금</div></div>
+              <div class="calendar-day"><div class="calendar-num">토</div></div>
+            </div>
+            <div class="calendar-week-content">
+              
+            </div>
+          </div>
+          <div class="calendar-footer">
+            <div class="note-item closed-day">휴점일</div>
+            <div class="note-item academy-closed-day">아카데미휴점일</div>
+            <div class="note-item extended-business-day">연장영업일</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

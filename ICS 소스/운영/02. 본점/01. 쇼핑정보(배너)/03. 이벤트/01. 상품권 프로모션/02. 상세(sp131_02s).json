@@ -1,0 +1,32 @@
+{
+    [[--cont_set_json--]] [[---12cont_set 개인화 공통 컬럼 json데이터 ---]]
+     "maincontcd":"[[--IFStart,exist:maincontcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:maincontcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "mainordernum":"[[--IFStart,exist:mainordernum--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:mainordernum--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "contdtlcd":"[[--IFStart,exist:contdtlcd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:contdtlcd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "repr_img":"[[--IFStart,exist:repr_img--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:repr_img--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "brndimg":"[[--IFStart,exist:brndimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:brndimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge1":"[[--IFStart,exist:badge1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "badge2":"[[--IFStart,exist:badge2--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:badge2--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "evt_nm":"[[--IFStart,exist:evt_nm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ReplaceStart,regex:\r\n,to:\\n--]][[--ArtFieldValue,Field:evt_nm--]][[--ReplaceEnd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "fullimg":"[[--IFStart,exist:fullimg--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:fullimg--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "btmmaintit":"[[--IFStart,exist:btmmaintit--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:btmmaintit--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "btmsubtit":"[[--IFStart,exist:btmsubtit--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:btmsubtit--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "cprn_comp_cd":"[[--IFStart,exist:cprn_comp_cd--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:cprn_comp_cd--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "prstobject":"[[--IFStart,exist:prstobject--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:prstobject--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "prstperiod":"[[--IFStart,exist:prstperiod--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:prstperiod--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "prstcriterio":"[[--IFStart,exist:prstcriterio--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:prstcriterio--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "period":"[[--IFStart,exist:period--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:period--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "store":"[[--IFStart,exist:store--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:store--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "brndnm":"[[--IFStart,exist:brndnm--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:brndnm--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "except":"[[--IFStart,exist:except--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:except--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "50approval":"[[--IFStart,exist:50approval--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:50approval--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "composition":"[[--IFStart,exist:composition--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:composition--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "standard":"[[--IFStart,exist:standard--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:standard--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "attention":"[[--IFStart,exist:attention--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:attention--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "btmsubtext":"[[--IFStart,exist:btmsubtext--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:btmsubtext--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",
+     "content1":"[[--IFStart,exist:content1--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:content1--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IFEnd--]]",[[--ForStart,num,From:1,To:4--]]
+     "pymnt_mthd[[--write,num--]]":"[[--IFStart,Exist:pymnt_mthd[%num%]--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:pymnt_mthd[%num%]--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "fnncl_phrs[[--write,num--]]":"[[--IFStart,Exist:fnncl_phrs[%num%]--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:fnncl_phrs[%num%]--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",[[--ForEnd--]]
+     "pymnt_mthd5":"[[--IFStart,Exist:pymnt_mthd5--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:pymnt_mthd5--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]",
+     "fnncl_phrs5":"[[--IFStart,Exist:fnncl_phrs5--]][[--ThenStart--]][[--ReplaceStart,regex:",to:\\"--]][[--ArtFieldValue,Field:fnncl_phrs5--]][[--ReplaceEnd--]][[--ThenEnd--]][[--IfEnd--]]"
+}

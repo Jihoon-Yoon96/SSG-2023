@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>신세계백화점</title>
+[[--PublishOnlyStart--]][[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript">[[--jquery_min--]]</script>
+<style type="text/css">[[--style_css--]]</style>
+<style type="text/css">[[--style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+</script>
+[[--PreviewOnlyEnd--]]
+</head>
+<body>
+<div id="wrap" class="sti_sec2">
+	<!-- header -->
+	<div id="header">
+		<h1><img src="[[--ImgRootDir--]]common/img/common/b_[[--ArtFieldValue,flor_cd--]].png" width="78" height="45" alt="[[--ArtFieldValue,flor_nm--]]"></h1>
+		<p>[[--ArtFieldValue,fa00004--]]</p>
+		[[--IFStart,exist:fa00019--]][[--ThenStart--]]<a href="[[--ArtAddress,form:2--]]"><em class="blind">지도</em></a>[[--ThenEnd--]][[--IFEnd--]]
+	</div>[[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--RecordStart,flo_cd--]][[--ArtFieldValue,flor_cd--]][[--RecordEnd--]]
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">[[--RecordStart,field_tmp--]]null[[--RecordEnd--]]
+		<div class="floor_list">
+[[--RecordStart,ub6--]][[--SubStringStart,~-1--]][[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%],Row:*,Sort:ub00006=asc--]][[--RecordStart,ub_06--]][[--ArtFieldValue,Field:ub00006--]][[--RecordEnd--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]][[--IFStart,is:[%ub_06%]=[%field_tmp%]--]][[--ElseStart--]][[--ArtFieldValue,Field:ub00006--]];[[--RecordStart,field_tmp--]][[--ArtFieldValue,Field:ub00006--]][[--RecordEnd--]][[--ElseEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]][[--SubStringEnd--]][[--RecordEnd--]]
+
+[[--ForStart,var,in:[%ub6%]--]]
+		[[--ActionStart,[%점코드cid%]23,search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&ub00006=[%var%],Row:1,Sort:#DEFAULT#--]][[--RecordStart,ub_08--]][[--ArtFieldValue,ub00008--]][[--RecordEnd--]]
+			<!-- 카테고리별 그룹 -->
+			<div class="sti_sinfo_lst2">[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+				<strong>[[--ActionStart,s[%dev_div%]0006,Row:1,Search:ub00006=[%var%]--]][[--ArtFieldValue,Field:ub00008--]][[--ActionEnd--]]</strong>
+				<ul>[[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&ub00006=[%var%],Row:*,Sort:shop_nm=asc--]][[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]][[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+					<li>
+						<p>[[--ArtFieldValue,shop_nm--]]</p>
+						[[--IFStart,exist:sh00009--]][[--ThenStart--]]<a href="tel:[[--ArtFieldValue,sh00009--]]"><em class="blind">전화하기</em></a>[[--ThenEnd--]][[--IFEnd--]]
+					</li>[[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]][[--ActionEnd--]]
+				</ul>
+			</div>
+			<!-- //카테고리별 그룹 -->[[--ActionEnd--]][[--ForEnd--]]
+		</div>
+	</div>
+		
+	[[--IFStart,is:stor_cd=SC00002--]]
+	  [[--IFStart,is:buld_cd=BC00018--]]
+	    [[--IFStart,exist:fa00019--]]
+      	  [[--ThenStart--]]
+      	  	<div class='img_box'>
+          		<img src ="/cms12/common/img/b1_20190919210815_1.jpg" style="max-width:100%"/>
+          	</div>
+      	  [[--ThenEnd--]]
+  	  [[--IFEnd--]]
+	  [[--IFEnd--]]
+	[[--IFEnd--]]
+</div>
+</body>
+</html>

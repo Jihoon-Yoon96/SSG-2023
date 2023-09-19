@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
+<title>신세계백화점</title>[[--RecordStart,dev_div--]][[--SubStringStart,1--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+[[--PublishOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:2--]]">[[---../common/css/style.css---]]
+<link rel="stylesheet" type="text/css" href="[[--CatAddress,s[%dev_div%]zzz_css,form:3--]]"><!-- 운영 CSS -->[[---../common/css/style_op.css---]]
+<script>
+var width = window.screen.width;
+var count = 0;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+	
+	//2019.06.26 화면 집입시 공유하기 표시여부
+	setDefultShare();
+});
+/*** 2019.02.28 추가 시작***/
+// 화면 진입시 찜하기 여부에 따라 이미지 표현
+function setDefultHeart(arg) {
+	var $this = $(".heart");
+
+	if(arg == "heart" ){
+		$this.animate(000, function() {
+			$this.toggleClass("like");
+			$this.find(".span1").animate({opacity:1}, 000, function() {
+				$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+					$this.find(".span3").animate({opacity:1}, 000);
+				});
+			});
+		})
+		count =1;
+	}
+}
+// 찜하기 버튼 클릭에 따른 효과
+function setMessage(arg) {
+	var $this = $(".heart");
+	
+	if(arg == "heart" ){
+				if(count === 0){
+			$this.animate(300,function() {
+				$this.toggleClass("like");
+				$this.find(".span1").animate({opacity:1}, 300, function() {
+					$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+						$this.find(".span3").animate({opacity:1}, 300);
+					});
+				});
+			})
+			count =1;
+		} else {
+			$this.animate(300,function() {
+				$this.find(".span3").animate({opacity:0}, 300, function() {
+					$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+						$this.find(".span1").animate({opacity:0}, 300,function() {
+							$this.toggleClass("like");
+						});
+					});
+				});
+			})
+			count =0;
+		}
+	}
+}
+/*** 2019.02.28 추가 끝 ***/
+
+function sendMessage(msg){
+	window.android.setMessage(msg);
+}
+
+//2019.06.26 화면 집입시 공유하기 표시여부
+function setDefultShare() {
+  $("#open_share").show();
+}
+</script>
+</head>
+[[--PublishOnlyEnd--]]
+[[--PreviewOnlyStart--]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:3--]]"></script>[[---../common/js/jquery-1.11.1.min.js---]]
+<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:1--]]"></script>[[---../common/js/jquery.bpopup.min.js---]]
+<style type="text/css">[[--12style_css--]]</style>
+<style type="text/css">[[--12style_op_css--]]</style>
+<script>
+var width = window.screen.width;
+if (width == 320) {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+} else {
+ document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+}
+$(function() {
+	//찜하기
+	$(".heart").click(function(){
+		$(this).toggleClass("like");
+	});
+	//버튼 press 처리 160608 추가
+	$("button, .btn_lst_more").bind("touchstart",function(event){
+		$(this).addClass("active");
+	});
+	$("button, .btn_lst_more").bind("touchend",function(event){
+		$(this).removeClass("active");
+	});
+});
+</script>
+</head>
+<p>리스트이미지(720*360)</p>
+<img src="[[--ArtFieldValue,brndimg--]]" alt="[[--ArtFieldValue,evt_nm--]]리스트이미" style="
+    width: 100%;
+    max-width: 100%;지
+    height: auto;
+    padding-bottom: 10px;
+">
+<p>대표이미지(720*720)</p>
+[[--PreviewOnlyEnd--]]
+<body>
+<div id="wrap" class="catalogue">
+	<!-- header -->
+	<div id="header">
+		<h1 class="blind">모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 상세페이지</h1>
+	</div>
+	<!-- //header -->
+	<!-- container -->
+	<div id="container">
+		<!-- top_bx -->
+		<div class="top_bx">
+			<div class="dim"></div>
+			[[--IFStart,exist:repr_img--]][[--ThenStart--]]<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지">[[--ThenEnd--]][[--IFEnd--]]
+		</div>
+		<!-- //top_bx -->
+		<!-- contents -->
+		<div class="contents">
+			<!-- info -->
+			<div class="info">
+				<a href="open_dibs:">
+				<!-- 2019.02.28 송시인 수정 시작-->
+				<!--<div class="heart">Heart</div>-->
+				<div class="heart">Heart
+				    <button type="button" class="heart_btn">
+					    <span class="span1"></span>
+					    <span class="span2"></span>
+					    <span class="span3"></span>
+				    </button>
+				</div>
+				<!-- 2019.02.28 송시인 수정 끝-->
+				</a>
+				<!-- 2019.06.17 추가 -->
+				<a href="new_open_cms_share:" id="open_share" style="display:none;">
+				<div class="share typeSsg">
+					<button type="button" class="btn_share">
+						<img src="/cms12/common/img/img_share.png" alt="공유하기">
+					</button>
+				</div>
+				</a>
+				<!-- 2019.06.17 추가 끝 -->
+		    <div class="info_bx">
+          <p class="tag">[[--IFStart,exist:badge1--]][[--ThenStart--]]<span>[[--ArtFieldValue,badge1--]]</span>[[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:badge2--]][[--ThenStart--]]<span class="sub">[[--ArtFieldValue,badge2--]]</span>[[--ThenEnd--]][[--IFEnd--]]</p>
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<h2 class="ttl">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]</h2>[[--ThenEnd--]][[--IFEnd--]]
+					<p class="desc">[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt&&enddt--]][[--ThenStart--]][[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]] - [[--DateFormatStart,From:yyyyMMdd-hhmmss,To:yyyy-MM-dd (E)--]][[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy-MM-dd (E)--]] - [[--ArtEndDate,pattern:yyyy-MM-dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]] 
+					<p class="desc">[[--IFStart,exist:prstplace--]][[--ThenStart--]][[--ArtFieldValue,Field:prstplace--]][[--ThenEnd--]][[--IFEnd--]]</p>
+					<!-- <p class="desc">2016.2.1 - 상품 소진시까지<span class="ico_section1">|</span>본관 1F</p> --><!-- 160629 추가 -->
+				</div>
+              [[--IFStart,exist:evt_content--]][[--ThenStart--]]
+					<!-- 단순 텍스트 -->
+					<div class="textarea">
+						<p class="desc">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_content--]][[--ReplaceEnd--]]</p>
+					</div>
+				[[--ThenEnd--]][[--IFEnd--]]
+			</div>
+			<div class="detail news">
+				<!-- editor 영역 -->
+				<div class="editor">
+				[[--IFStart,exist:detail_img1--]][[--ThenStart--]]
+					<!-- 통 이미지 -->
+					<div class="imgfull">
+						<img src="[[--ArtFieldValue,detail_img1--]]" alt="이미지">
+					</div>
+                  [[--ThenEnd--]][[--IFEnd--]]
+                  [[--IFStart,exist:det_img1_ex--]][[--ThenStart--]]
+                  <p class="desc">[[--ArtFieldValue,field:det_img1_ex--]]</p>
+                  [[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:detail_img2--]][[--ThenStart--]]
+					<div class="imgfull">
+						<img src="[[--ArtFieldValue,detail_img2--]]" alt="이미지">
+					</div>
+                  [[--ThenEnd--]][[--IFEnd--]]
+                  [[--IFStart,exist:det_img2_ex--]][[--ThenStart--]]
+                  <p class="desc">[[--ArtFieldValue,field:det_img2_ex--]]</p>
+                  [[--ThenEnd--]][[--IFEnd--]]
+				[[--IFStart,exist:attention--]][[--ThenStart--]]
+                  <div class="bul_lst typeCaution">
+						<ul>
+							<li>[[--ReplaceStart,regex:\r,to:</li><li>--]][[--ArtFieldValue,attention--]][[--ReplaceEnd--]]</li>
+						</ul>
+					</div>
+                  [[--ThenEnd--]][[--IFEnd--]]
+				</div>
+				<!-- //editor 영역 -->
+			</div>
+			<!-- //detail -->
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+</div>
+</body>
+</html>

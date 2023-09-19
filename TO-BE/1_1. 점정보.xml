@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ssg_app_cms_store_code version="1">
+   <page>[[--ActionStart,Row:*,Sort:stor_cd=asc,index:asc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+      <mainCd>06</mainCd>
+      <store>
+         <storeCd>[[--ArtFieldValue,stor_cd--]]</storeCd>
+         <storeNm>[[--IFStart,exist:stor_nm--]][[--ThenStart--]]<![CDATA[[[--ArtFieldValue,stor_nm--]]]]>[[--ThenEnd--]][[--IFEnd--]]</storeNm>
+         <link><![CDATA[[[--ReplaceStart,regex:&,to:&amp;--]][[--ArtAddress,form:1--]][[--ReplaceEnd--]]]]></link>
+         <time_link><![CDATA[[[--ReplaceStart,regex:&,to:&amp;--]][[--ArtAddress,form:2--]][[--ReplaceEnd--]]]]></time_link>
+         <sortNo>[[--SubStringStart,2~--]][[--ArtFieldValue,stor_cd--]][[--SubStringEnd--]]</sortNo>
+      </store>[[--ActionEnd--]]
+   </page>
+</ssg_app_cms_store_code>
