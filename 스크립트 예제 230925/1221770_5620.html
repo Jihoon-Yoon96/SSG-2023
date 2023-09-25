@@ -1,0 +1,9708 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/style.css" /> <!--style.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/storemain.css" /> <!--storemain.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/styleguide.css" /> <!--styleguide.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/font.css" /> <!--font.css-->
+  <script src="/cms12/common/js/pj229803i_5296.js"></script> <!--pj229803i_5296.js-->
+  <script type="text/javascript" src="/cms12/common/js/jquery-1.11.1.min.js"></script> <!--jquery-1.11.1.min.js-->
+  <script src="/cms12/ssgdHandler.js"></script> <!-- ssgd guide -->
+
+  <script>
+    var width = window.screen.width;
+    if (width == 320) {
+      document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+    } else {
+      document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+    }
+  </script>
+</head>
+<script>
+  // 클라이언트 TIME 초기화
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1
+  var day = date.getDate();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  var today = year + "-" + month + "-" + day
+
+  // 서버TIME
+  let serverTime = today;
+  let timeArr = serverTime.split("-");
+  let moveCnt = 0;
+
+  let calYear = parseInt(timeArr[0]);
+  let calMonth = parseInt(timeArr[1]);
+  let calDate = parseInt(timeArr[2]);
+
+  let stateCodeArr = [];
+  let cmsCurM;
+  /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
+  function callbackDate(data) {
+    //alert(JSON.stringify(data));
+    //alert(data.resultMsg);
+    //alert(data.today);
+    serverTime = data.today;
+    timeArr = serverTime.split("-");
+    calYear = parseInt(timeArr[0]);
+    calMonth = parseInt(timeArr[1]);
+    calDate = parseInt(timeArr[2]);
+    // alert("serverTime : " + serverTime);
+  };
+
+  // ssgd guide
+  // icon string 값에 따라 어떤 날씨 아이콘을 보여줄 지 판단해야 한다.
+  // temperature number값을 온도 span에 삽입
+  function callbackStoreWeather(data) {
+    let icon = data.icon;
+    let temperature = data.temperature;
+
+    console.log('icon', icon);
+    console.log('temperature', temperature);
+  }
+
+  //ALERT();
+  /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
+  $(document).ready(function () {
+    if ('SC00001' == 'SC00013') {
+      $("#id_tab99").show();
+    } else {
+      //$("#trafficInfo").hide();
+      $("#id_tab99").hide();
+    }
+
+
+    //   var trafficInfoInnerDiv ="";
+    //   trafficInfoInnerDiv += "<div class='link' onclick='location.href=";
+    //   trafficInfoInnerDiv += '"https://deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=';
+    //   //                trafficInfoInnerDiv += 'SC00001"';
+    //   trafficInfoInnerDiv += 'SC00001"';
+    //   //                trafficInfoInnerDiv += '&pType=app"';
+    //   trafficInfoInnerDiv += "'>";
+    //   trafficInfoInnerDiv += "본점";
+    //   trafficInfoInnerDiv += " 오시는길</div>";
+
+    //   $("#trafficInfo").html(trafficInfoInnerDiv);
+
+    // ssgd guide
+    getServerDate(callbackDate);
+    getStoreWeather('SC00001', callbackStoreWeather);
+    onloadStoreInformationPage();
+
+    // $.ajax({
+    //   url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+    //   dataType : "jsonp",
+    //   jsonp : "callback",
+    //   success: callbackDate
+    // });
+
+
+    console.log('test', 'sp00124')
+
+    cmsCurM = "202410";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202410", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "21", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11"];
+    }
+
+    cmsCurM = "202309";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202309", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "12", "22", "22", ""];
+    }
+
+    cmsCurM = "202308";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202308", "11", "11", "11", "31", "31", "31", "22", "11", "11", "11", "31", "31", "31", "11", "32", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11"];
+    }
+
+    cmsCurM = "202307";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202307", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "22", "11", "11", "11", "31", "31", "31", "11"];
+    }
+
+    cmsCurM = "202306";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202306", "11", "31", "31", "31", "11", "32", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "22", "11", "11", "11", "31", ""];
+    }
+
+    cmsCurM = "202305";
+    console.log(timeArr[0] + timeArr[1], cmsCurM);
+    if (timeArr[0] + timeArr[1] == cmsCurM) {
+      stateCodeArr = ["202305", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "11", "11", "11", "11", "31", "31", "31", "22", "11", "11", "11", "31", "32", "31", "32", "11", "11"];
+    }
+
+    console.log("sp00124");
+    console.log(stateCodeArr);
+
+    let checkItem = stateCodeArr[calDate].split("");
+    if (checkItem[0] == 2) { //휴점일
+      $("#rest").show();
+    } else if (checkItem[0] == 3) { //연장영업
+      // $("#storeState").html("오늘은 연장영업 합니다.");
+
+      // $("#sa00024_2").append("연장영업&nbsp;&nbsp;10:30~20:30");
+
+      // $(".open-more").css("display","block");
+      document.getElementsByClassName('open-more')[0].style.display = 'block';
+      document.getElementsByClassName('open-more')[1].style.display = 'block';
+      $("#diner").show();
+    } else { //정상영업
+      // $("#storeState").html("오늘은 정상 영업일 입니다.");
+
+
+      // $(".open-normal").css("display","block");
+      document.getElementsByClassName('open-normal')[0].style.display = 'block';
+      document.getElementsByClassName('open-normal')[1].style.display = 'block';
+      $("#diner").show();
+    }
+
+
+    let time = new Date().getHours();
+    if (time >= 6 && time < 18) {
+      $('#header').css('background', 'url(/cms12/SC00001/guide/__icsFiles/afieldfile/2016/06/08/img_storeinfo_mainstore_day.jpg), center no-repeat');
+      $('#header').css('background-size', '100% 100%');
+    }
+    else {
+      $('#header').css('background', 'url(/cms12/SC00001/guide/__icsFiles/afieldfile/2016/06/08/img_storeinfo_mainstore_day.jpg), center no-repeat');
+      $('#header').css('background-size', '100% 100%');
+    }
+  });
+</script>
+
+
+<body class="body">
+  <div class="container-center">
+    <div class="index screen">
+      <div class="banner">
+        <div class="imgContainer img-banner-1" id="header">
+          <div class="weatherWrapper">
+            <div class="weather">
+              <img src="/cms12//common/img/weather.svg" />
+            </div>
+            <span class="weatherDegree jost-normal-log-cabin-12px">API X</span>
+          </div>
+        </div>
+      </div>
+      <!-- ssgd guide -->
+      <div class="branchSelector" onclick="openStoreInfo()">
+        <span class="branchName pretendard-medium-log-cabin-20px">본점</span>
+        <div class="branchArrowIconContainer">
+          <img class="branchArrowIcon" src="/cms12//common/img/icons/icArrowSolidDown.svg" />
+        </div>
+      </div>
+      <div class="functionWrapper">
+
+
+
+        <div class="functionBtn" onClick="location.href='tel:023101234'">
+          <img class="functionIcon" src="/cms12//common/img/icons/icPhone.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">전화 연결</span>
+
+
+        </div>
+        <div class="verticalDivider"></div>
+        <div class="functionBtn" onclick="alert('bottom sheet UI 스크립트 필요!!');">
+          <img class="functionIcon" src="/cms12//common/img/icons/icCalendar.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">영업 일정</span>
+        </div>
+        <div class="verticalDivider"></div>
+
+        <!-- ssgd guide -->
+        <!-- 오시는 길 접근 시 onloadMapPage()를 호출해야 함. -->
+        <div class="functionBtn" onclick="onloadMapPage();alert('오시는길 link 필요!!');">
+          <img class="functionIcon" src="/cms12//common/img/icons/icWayFinding.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">오시는 길</span>
+        </div>
+        <div class="verticalDivider"></div>
+        <!-- ssgd guide -->
+        <div class="functionBtn" onclick="openSearch()">
+          <img class="functionIcon" src="/cms12//common/img/icons/icSearchB.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">매장 검색</span>
+        </div>
+      </div>
+      <div class="businessInfo" onclick="alert('bottom sheet UI 스크립트 필요!!');">
+        <span class="titleLarge pretendard-medium-log-cabin-18px">영업시간 안내</span>
+        <img class="arrowRightIcon" src="/cms12//common/img/icons/icArrowRight.svg" />
+      </div>
+      <div class="businessInfoContent">
+        <div class="content">
+          <!-- 휴점 -->
+          <div class="pretendard-regular-normal-granite-gray-14px" id="rest" style="display: none;">
+            오늘은 <br />휴점일/아카데미휴점일 입니다.
+          </div>
+          <!-- 정상 영업 -->
+          <div class="row open-normal" style="display: none;">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              정상 영업
+            </div>
+            <div class="value pretendard-regular-normal-log-cabin-14px">
+              10:30~20:00
+            </div>
+          </div>
+          <div class="row open-normal" style="display: none;">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              식당가
+            </div>
+            <div class="value pretendard-regular-normal-log-cabin-14px">
+              11:00~21:30
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- 연장 영업 -->
+          <div class="row open-more" style="display: none;">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              연장 영업
+            </div>
+            <div class="value pretendard-regular-normal-log-cabin-14px">
+              10:30~20:30
+            </div>
+          </div>
+          <div class="row open-more" style="display: none;">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              식당가
+            </div>
+            <div class="value pretendard-regular-normal-log-cabin-14px">
+              11:00~21:30
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- 식당가 주문마감 -->
+          <div class="notedText pretendard-regular-normal-suva-gray-12px" style="display: none;" id="diner">
+            식당가 주문 마감 폐점30분전<!-- *주문마감 폐점 30분 전 -->
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-container">
+        <div class="tab active" onclick="showTabContent(1)">본관</div>
+        <div class="tab" onclick="showTabContent(2)">신관 </div>
+        <!-- <div class="tab" onclick="showTabContent(1)">파미에스트리트</div>
+        <div class="tab" onclick="showTabContent(2)">팩토리스토어</div> -->
+        <div class="tab" id="service-tab" onclick="showTabContent('service-tab')">서비스 시설</div>
+
+
+
+
+
+
+
+      </div>
+
+      <!-- 층별안내 리스트 [S]-->
+
+      <div class="tab-content">
+        <div class="floor-list">
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207454_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              6F.
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              까사빠보ㅣ트리니티 가든
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207454_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207455_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              5F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              전문식당가
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207455_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207456_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              4F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              컨템포러리
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207456_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207457_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              3F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              디자이너 컬렉션
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207457_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207458_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              2F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              디자이너 컬렉션
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207458_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207459_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              1F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              럭셔리 부티크
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207459_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207453_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              B1F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              럭셔리 워치
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207453_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-content" style="display: none">
+        <div class="floor-list">
+
+          <!-- ssgd guide -->
+          <!-- 모든 floor 관련 html 페이지 load 시 onloadFloorPage()를 호출해야 함. -->
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207461_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              14F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              신세계아카데미
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207461_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207462_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              13F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              상품권샵·신세계 카드·포인트 센터
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207462_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207463_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              12F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              면세점(캐릭터/전자/식품/패션/주류&담배/고객센터)
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207463_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207464_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              11F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              면세점(패션잡화/화장품&향수)
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207464_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207465_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              10F.
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              면세점(화장품&향수/안내데스크)
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207465_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207466_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              9F.
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              면세점(시계&주얼리/럭셔리패션/잡화/선글라스)
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207466_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207467_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              8F.
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              면세점(럭셔리 부티크)
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207467_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207468_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              7F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              생활ㅣ아동
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207468_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207469_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              6F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              럭셔리 남성ㅣ남성슈즈 전문관
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207469_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207470_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              5F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              남성ㅣ아웃도어ㅣ골프
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207470_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207471_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              4F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              영패션ㅣ스포츠ㅣ시코르
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207471_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207472_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              3F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              컨템포러리ㅣ슈즈
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207472_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207473_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              2F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              여성클래식ㅣ핸드백
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207473_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207474_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              1F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              화장품ㅣ패션잡화ㅣ해외유명브랜드
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207474_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+
+          <div class="floor" onClick="location.href='/cms12/SC00001/guide/floor/1207460_5769.html'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              B1F
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              푸드마켓
+            </div>
+
+            <a class="floor-map-icon" href='/cms12/SC00001/guide/floor/1207460_5771.html'>
+              <img src="/cms12//common/img/icons/icMap.svg" />
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 층별안내 리스트 [E]-->
+
+      <!-- 서비스시설 리스트 [S]-->
+      <!-- tab-cont Start -->
+      <div class="tab-content" style="display: none" id="service-tab-contents">
+        <!-- floor-list Start -->
+        <div class="floor-list">
+
+
+
+
+
+          <!-- floor-category Start -->
+          <div class="floor-category">
+
+
+
+
+
+
+
+
+
+            <div class="floor-category-title">신관 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">14층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207461_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101183">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">신세계아카데미</div>
+
+                  <a class="floor-map-icon" href="tel:023101500">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 장애인 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">13층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207462_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">PSR/컨시어지데스크</div>
+
+                  <a class="floor-map-icon" href="tel:023101600">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">김경희한마음의원</div>
+
+                  <a class="floor-map-icon" href="tel:023105388">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">상품권샵</div>
+
+                  <a class="floor-map-icon" href="tel:023101010">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">신세계카드센터(BC 바로)</div>
+
+                  <a class="floor-map-icon" href="tel:15330642">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">신세계카드센터(삼성)</div>
+
+                  <a class="floor-map-icon" href="tel:16661870">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">신세계카드센터(신한)</div>
+
+                  <a class="floor-map-icon" href="tel:0269228010">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">신세계 신한카드 고객센터</div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">퍼스트라운지</div>
+
+                  <a class="floor-map-icon" href="tel:023101020">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">포인트카드센터</div>
+
+                  <a class="floor-map-icon" href="tel:023105218">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">프로맘킨더</div>
+
+                  <a class="floor-map-icon" href="tel:023101847">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">프리미엄 잉글리쉬 멤버쉽클럽 </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">12층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207463_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">면세점</div>
+
+                  <a class="floor-map-icon" href="tel:16618778">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">11층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207464_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">스카이파크</div>
+
+                  <a class="floor-map-icon" href="tel:15881234">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">8층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207467_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">신세계 면세점</div>
+
+                  <a class="floor-map-icon" href="tel:16618778">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">7층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207468_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">리틀라운지(유아휴게실/유모차서비스)</div>
+
+                  <a class="floor-map-icon" href="tel:023101522">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">멤버스라운지</div>
+
+                  <a class="floor-map-icon" href="tel:023101021">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">사은행사장</div>
+
+                  <a class="floor-map-icon" href="tel:023101828">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 장애인 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">6층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207469_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">의류수선실(남성)</div>
+
+                  <a class="floor-map-icon" href="tel:023101516">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">5층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207470_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">4층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207471_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">고객상담실</div>
+
+                  <a class="floor-map-icon" href="tel:023101616">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">멤버스바</div>
+
+                  <a class="floor-map-icon" href="tel:023101594">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">수선상담센터</div>
+
+                  <a class="floor-map-icon" href="tel:023101863">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">백화점에서 구매한 상품에 한해 수선 가능하며 상품에 따라 별도 비용
+                  발생 가능성 있음.</div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">3층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207472_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">멤버스바</div>
+
+                  <a class="floor-map-icon" href="tel:023101022">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">알라딘(피혁 수선실)</div>
+
+                  <a class="floor-map-icon" href="tel:023105187">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 장애인 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">의류수선실(여성)</div>
+
+                  <a class="floor-map-icon" href="tel:023105188">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">2층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207473_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">외국인고객 서비스센터</div>
+
+                  <a class="floor-map-icon" href="tel:023101047">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">택스리펀드 02-3210-1049</div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">택스리펀드</div>
+
+                  <a class="floor-map-icon" href="tel:023101049">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">1층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207474_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">발렛라운지</div>
+
+                  <a class="floor-map-icon" href="tel:023101770">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">안내데스크</div>
+
+                  <a class="floor-map-icon" href="tel:023101234">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">지하1층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207460_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">근거리배송서비스</div>
+
+                  <a class="floor-map-icon" href="tel:023101940">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">무인 물품보관소</div>
+
+                  <a class="floor-map-icon" href="tel:023101615">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">포장코너</div>
+
+                  <a class="floor-map-icon" href="tel:023101247">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">포터 서비스</div>
+
+                  <a class="floor-map-icon" href="tel:023101616">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+          </div> <!-- floor-category End -->
+
+
+
+
+
+          <!-- floor-category Start -->
+          <div class="floor-category">
+
+
+
+
+
+
+
+
+
+            <div class="floor-category-title">본관</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">6층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207454_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">트리니티가든</div>
+
+                  <a class="floor-map-icon" href="tel:15881234">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">5층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207455_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">4층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207456_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">트리니티라운지</div>
+
+                  <a class="floor-map-icon" href="tel:023101750">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">3층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207457_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">2층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207458_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 장애인 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">여자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b">
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">지하1층</div>
+                  <img class="floor-map-icon" src="/cms12//common/img/icons/icMap.svg"
+                    onclick="location.href='/cms12/SC00001/guide/floor/1207453_5771.html'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">ATM/현금인출기-신한은행</div>
+
+                  <a class="floor-map-icon" href="tel:0211112222">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 장애인 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">남자 화장실</div>
+
+                  <a class="floor-map-icon" href="tel:023101138">
+                    <img src="/cms12//common/img/icons/icPhoneB.svg" />
+                  </a>
+
+                </div>
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">.</div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+
+
+
+
+          </div> <!-- floor-category End -->
+
+
+        </div> <!-- floor-list End -->
+      </div> <!-- tab-cont End -->
+      <!-- 서비스시설 리스트 [E]-->
+
+
+
+
+    </div>
+  </div>
+</body>
+
+</html>

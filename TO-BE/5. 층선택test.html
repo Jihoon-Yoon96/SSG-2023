@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:2--]]" /> <!--font.css-->
   <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+  <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---층 상세 진입 시 호출 함수 추가 230925---]]
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
 </head>
@@ -30,7 +31,7 @@
                     [[--RecordStart,aidx--]][[--ArtIndex--]][[--RecordEnd--]]
                     [[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]]
                     [[--RecordStart, tab_aid--]][[--ArtID--]][[--RecordEnd--]]
-					<div class="floor[[--IfStart, is:flor_nm=[%flr_nm%]--]][[--ThenStart--]] active[[--ThenEnd--]][[--IfEnd--]]" onclick="floorSelect(this); location.href='[[--ArtAddress, [%new_cid%]22,id:[%tab_aid%], form:1--]]'">
+					<div class="floor[[--IfStart, is:flor_nm=[%flr_nm%]--]][[--ThenStart--]] active[[--ThenEnd--]][[--IfEnd--]]" onclick="onloadFloorPage(); floorSelect(this); location.href='[[--ArtAddress, [%new_cid%]22,id:[%tab_aid%], form:1--]]'">
 						<div class="floor-number">[[--ArtFieldValue,fa00027--]]</div>
 						<div class="floor-name">[[--ArtFieldValue,fa00004--]]</div>
 					</div>

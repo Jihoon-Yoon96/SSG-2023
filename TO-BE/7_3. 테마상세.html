@@ -13,6 +13,7 @@
   <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
+  <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---쇼핑상세 API 추가 230925---]]
 
   <script>
     var width = window.screen.width;
@@ -22,74 +23,81 @@
     } else {
      document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
     }
-    $(function() {
-        //버튼 press 처리 160608 추가
-        $("button, .btn_lst_more").bind("touchstart",function(event){
-            $(this).addClass("active");
-        });
-        $("button, .btn_lst_more").bind("touchend",function(event){
-            $(this).removeClass("active");
-        });
+    
+    // $(function() {
+    //     //버튼 press 처리 160608 추가
+    //     $("button, .btn_lst_more").bind("touchstart",function(event){
+    //         $(this).addClass("active");
+    //     });
+    //     $("button, .btn_lst_more").bind("touchend",function(event){
+    //         $(this).removeClass("active");
+    //     });
         
-        //2019.06.28 화면 집입시 공유하기 표시여부
-        setDefultShare();
+    //     //2019.06.28 화면 집입시 공유하기 표시여부
+    //     setDefultShare();
+    // });
+    // /*** 2019.02.28 추가 시작***/
+    // // 화면 진입시 찜하기 여부에 따라 이미지 표현
+    // function setDefultHeart(arg) {
+    //     var $this = $(".heart");
+    
+    //     if(arg == "heart" ){
+    //         $this.animate(000, function() {
+    //             $this.toggleClass("like");
+    //             $this.find(".span1").animate({opacity:1}, 000, function() {
+    //                 $this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+    //                     $this.find(".span3").animate({opacity:1}, 000);
+    //                 });
+    //             });
+    //         })
+    //         count =1;
+    //     }
+    // }
+    // // 찜하기 버튼 클릭에 따른 효과
+    // function setMessage(arg) {
+    //     var $this = $(".heart");
+    
+    //     if(arg == "heart" ){
+    //         if(count === 0){
+    //             $this.animate(300,function() {
+    //                 $this.toggleClass("like");
+    //                 $this.find(".span1").animate({opacity:1}, 300, function() {
+    //                     $this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+    //                         $this.find(".span3").animate({opacity:1}, 300);
+    //                     });
+    //                 });
+    //             })
+    //             count =1;
+    //         } else {
+    //             $this.animate(300,function() {
+    //                 $this.find(".span3").animate({opacity:0}, 300, function() {
+    //                     $this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+    //                         $this.find(".span1").animate({opacity:0}, 300,function() {
+    //                             $this.toggleClass("like");
+    //                         });
+    //                     });
+    //                 });
+    //             })
+    //             count =0;
+    //         }
+    //     }
+    // }
+    // /*** 2019.02.28 추가 끝 ***/
+    
+    // function sendMessage(msg){
+    //     window.android.setMessage(msg);
+    // }
+    
+    // //2019.06.28 화면 집입시 공유하기 표시여부
+    // function setDefultShare() {
+    //         $("#open_share").show();
+    // }
+
+    [[---230925---]]
+	$(document).ready(function() {
+	    onloadShoppingDetailPage();
     });
-    /*** 2019.02.28 추가 시작***/
-    // 화면 진입시 찜하기 여부에 따라 이미지 표현
-    function setDefultHeart(arg) {
-        var $this = $(".heart");
-    
-        if(arg == "heart" ){
-            $this.animate(000, function() {
-                $this.toggleClass("like");
-                $this.find(".span1").animate({opacity:1}, 000, function() {
-                    $this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
-                        $this.find(".span3").animate({opacity:1}, 000);
-                    });
-                });
-            })
-            count =1;
-        }
-    }
-    // 찜하기 버튼 클릭에 따른 효과
-    function setMessage(arg) {
-        var $this = $(".heart");
-    
-        if(arg == "heart" ){
-            if(count === 0){
-                $this.animate(300,function() {
-                    $this.toggleClass("like");
-                    $this.find(".span1").animate({opacity:1}, 300, function() {
-                        $this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
-                            $this.find(".span3").animate({opacity:1}, 300);
-                        });
-                    });
-                })
-                count =1;
-            } else {
-                $this.animate(300,function() {
-                    $this.find(".span3").animate({opacity:0}, 300, function() {
-                        $this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
-                            $this.find(".span1").animate({opacity:0}, 300,function() {
-                                $this.toggleClass("like");
-                            });
-                        });
-                    });
-                })
-                count =0;
-            }
-        }
-    }
-    /*** 2019.02.28 추가 끝 ***/
-    
-    function sendMessage(msg){
-        window.android.setMessage(msg);
-    }
-    
-    //2019.06.28 화면 집입시 공유하기 표시여부
-    function setDefultShare() {
-            $("#open_share").show();
-    }
+	[[---230925---]]
     </script>
   </head>
 
@@ -121,12 +129,12 @@
 				</div>
 				[[--ThenEnd--]][[--IFEnd--]]
 				<div class="btn-box">
-					<div class="btn-product export" onclick="alert('내보내기 API 필요!!')">
-						<a href="new_open_cms_share:" id="open_share" style="display:none;"></a>
-						내보내기
-					</div>
-					<div class="btn-product save" onclick="alert('저장하기 API 필요!!')">저장하기</div> <!-- 클래스 on 추가/삭제-->
-				</div>
+                    <div class="btn-product export" onclick="openShare()">
+                        <a id="open_share" style="display:none;"></a>
+                        내보내기
+                    </div>
+                    <div id="clip" class="btn-product save">저장하기</div> <!-- 클래스 on 추가/삭제-->
+                </div>
 			</div>
 			<!-- <span class="ico_section1">|</span><br> -->
 			

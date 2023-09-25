@@ -29,6 +29,7 @@
 	<script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
 	<script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
 	<script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
+	<script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---쇼핑상세 API 추가 230925---]]
 
 	<script>
 		var width = window.screen.width;
@@ -40,6 +41,12 @@
         }
         var url = window.location.href;
         var shop_url = url.substr(url.lastIndexOf('/') + 1);
+
+		[[---230925---]]
+		$(document).ready(function() {
+			onloadShoppingDetailPage();
+		});
+		[[---230925---]]
 	</script>
   </head>
 
@@ -69,11 +76,11 @@
 					</div>
 					[[--ThenEnd--]][[--IFEnd--]]
 					<div class="btn-box">
-						<div class="btn-product export" onclick="alert('내보내기 API 필요!!')">
-							<a href="new_open_cms_share:" id="open_share" style="display:none;"></a>
+						<div class="btn-product export" onclick="openShare()">
+							<a id="open_share" style="display:none;"></a>
 							내보내기
 						</div>
-						<div class="btn-product save" onclick="alert('저장하기 API 필요!!')">저장하기</div> <!-- 클래스 on 추가/삭제-->
+						<div id="clip" class="btn-product save">저장하기</div> <!-- 클래스 on 추가/삭제-->
 					</div>
 				</div>
 				<!-- <span class="ico_section1">|</span><br> -->

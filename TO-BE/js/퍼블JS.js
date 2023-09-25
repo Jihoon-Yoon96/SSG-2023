@@ -113,3 +113,20 @@ function floorSelect(elm) {
   elm.classList.add('active');
 
 }
+
+// bottom sheet
+function funcOpenBottomsheet(targetId){
+  const openTarget = document.getElementById(targetId);
+  const dimWrap = document.querySelector('.dim-wrap');
+  openTarget.classList.add('active');
+  dimWrap.classList.add('active');
+}
+
+function funcCloseBottomsheet(targetId){
+  const CloseTarget = document.getElementById(targetId);
+  const dimWrap = document.querySelector('.dim-wrap');
+  CloseTarget.classList.remove('active');
+  setTimeout(function() {
+    dimWrap.classList.remove('active');
+  },200);
+}

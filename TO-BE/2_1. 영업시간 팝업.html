@@ -1,0 +1,413 @@
+<script>
+    var gStoreCd = "[[--sp_store_code--]]";
+      
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1
+    var day = date.getDate();
+    if(month < 10){
+        month = "0"+month;
+    }
+    if(day < 10){
+        day = "0"+day;
+    }
+
+    var today = year+"-"+month+"-"+day
+
+    // 서버TIME
+    let serverTime = today;
+    let timeArr = serverTime.split("-");
+    let moveCnt = 0;
+
+    let calYear = parseInt(timeArr[0]);
+    let calMonth = parseInt(timeArr[1]);
+    let calDate = parseInt(timeArr[2]);
+    /* 190624 추가 */
+    let serverTimeObj = new Date((calYear + '-' + calMonth + '-01' ).replace(/-/g, "/"));
+    serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+    let calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+    /* 190624 추가[e] */
+
+    // 영업일 DATA
+    let salesDate = [];
+
+    function createTime(curTime,y,m){
+      curTime.now = new Date();
+      curTime.curMonth= m-1;
+      curTime.curYear = y;
+      
+      return curTime;
+    }
+
+    /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
+    function callbackDate(data){
+      console.log('callbackDate')
+      serverTime = data.today;
+      timeArr = serverTime.split("-");
+      calYear = parseInt(timeArr[0]);
+      calMonth = parseInt(timeArr[1]);
+      calDate = parseInt(timeArr[2]);
+      /* 190624 수정 및 추가 */
+      serverTimeObj = new Date((calYear + '-' + calMonth + '-01').replace(/-/g, "/") );
+      serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+      calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+      /* 190624 수정 및 추가[e] */
+    };
+
+    /* 190624 함수 추가 : 날짜포맷 */
+    function formatDate(date) {
+      var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      
+      return [year, month, day].join('-');
+    }
+
+    /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
+    $(function() {
+      // $('#bul_close2').hide();
+
+      // var storeCd = getParameterByName("storeCd");
+      // if(storeCd == null) storeCd = "[[--sp_store_code--]]";
+      // gStoreCd = storeCd;
+
+
+      //영업일 JSON 호출
+      console.log('영업일 before')
+      $.ajax({
+        url : "[[--CatAddress,[%id%]4--]]",
+        //url : "/function/jsonpStoreCalender.jsp",
+        dataType : "json",
+        success : function(result){
+          console.log(result)
+          salesDate = result.date
+          callback()
+        },
+        error : function(request, status, error) {
+          //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+      });
+      console.log('영업일 after')
+    });
+
+
+    $(document).ready( function() {
+      // 서버 시간 가져오기
+      $.ajax({
+        url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+        dataType : "jsonp",
+        jsonp : "callback",
+        success: callbackDate
+      });
+      
+      // var href = window.location.href;
+
+      // if(href.indexOf("/SC00060/") > -1) {
+      //   $("#header h1").attr("style","width:200px;"); [[---2023.08.22---]]
+      // }
+
+      // 오늘 날짜 표기
+      let tDay = new Date(serverTime).getDay();
+      [tYear, tMonth, tDate] = serverTime.split('-');
+      let htmlTxt = `${tMonth}월 ${tDate}일`;
+      switch(tDay){
+        case 0:
+          $('#tDay').html(htmlTxt +' (일)');
+          break;
+        case 1:
+          $('#tDay').html(htmlTxt +' (월)');
+          break;
+        case 2:
+          $('#tDay').html(htmlTxt +' (화)');
+          break;
+        case 3:
+          $('#tDay').html(htmlTxt +' (수)');
+          break;
+        case 4:
+          $('#tDay').html(htmlTxt +' (목)');
+          break;
+        case 5:
+          $('#tDay').html(htmlTxt +' (금)');
+          break;
+        case 6:
+          $('#tDay').html(htmlTxt +' (토)');
+          break;
+      }
+    });
+
+    
+
+
+    [[---2023.08.22---]]
+    // 상단 점포 영업 상태 정보 표기
+    function dateCheck(curTime) {
+      let dtCd = getSalesDate(curTime)
+      console.log("dtCd",dtCd)
+      // let cnt = 0
+      // for(let k in dtCd) {
+      //     if(k !== "sale_ym0") {
+      //         cnt++
+      //         if (dtCd.hasOwnProperty(k)) {
+      //             var i = dtCd[k].split("")
+      //             var storeCd = i[0];
+      //             var academyCd = i[1];
+      //             /**
+      //               * 점포
+      //               * storeCd === 1 : 정상영업
+      //               * storeCd === 2 : 휴점
+      //               * storeCd === 3 : 연장영업
+      //               * */ 
+      //             if (storeCd == 1) {}
+      //             else if (storeCd == 2) $("#day_"+(cnt)).addClass("close1");
+      //             else if (storeCd == 3)  $("#day_"+(cnt)).addClass("exten");
+      //             /**
+      //               * 아카데미
+      //               * academyCd === 0, 1 : 정상영업
+      //               * academyCd === 2 : 휴점
+      //               * */ 
+      //             if (academyCd == 0){}
+      //             else if (academyCd == 1){}
+      //             else if (academyCd == 2) $("#day_"+(cnt)).addClass("close2");
+      //         }
+      //     }
+      // }
+
+      if(curTime.curYear == timeArr[0] && curTime.curMonth == (parseInt(timeArr[1])-1)) {
+          let checkItem = dtCd["sale_ym"+calDate].split("")
+          
+          //휴점일
+          if(checkItem[0]== 2) { 
+              $("#store-today").addClass("pretendard-semi-bold-maximum-red-14px");
+              $("#storeTime").hide();
+              // 아카데미 휴점일
+              if(checkItem[1] === 2) {
+                $("#store-today").html("휴점일/아카데미휴점일");
+              }
+              else{
+                $("#store-today").html("휴점일");
+              }
+          } 
+          //연장영업
+          else if(checkItem[0]== 3) { 
+              $("#store-today").html("연장 영업일");
+              $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
+              $("#openTime").html("[[--ifStart,Exist:sa00024--]][[--ThenStart--]][[--ArtFieldValue, sa00024--]][[--ThenEnd--]][[--IfEnd--]]")
+              // 아카데미 휴점일
+              if(checkItem[1] === 2) {
+                $("#academy-rest").show();
+              }
+          } 
+          //정상영업
+          else { 
+              $("#store-today").html("정상 영업일");
+              $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
+              $("#openTime").html("[[--ifStart,Exist:sa00023--]][[--ThenStart--]][[--ArtFieldValue, sa00023--]][[--ThenEnd--]][[--IfEnd--]]")
+              // 아카데미 휴점일
+              if(checkItem[1] === 2) {
+                $("#academy-rest").show();
+              }
+          }
+      }
+  }
+
+  // 선택한 달력에 해당하는 SalesDate Get
+  function getSalesDate(curTime) {
+    let year = curTime.curYear
+    let month = (curTime.curMonth+1)+""
+
+    if(curTime.curMonth < 9) {
+        month = "0"+(curTime.curMonth+1);
+      }
+      let calendarDate = year+month
+      console.log("calendarDate",calendarDate)
+      for(let i = 0 ; i < salesDate.length ;i ++) {
+        if(salesDate[i]["sale_ym0"] === calendarDate) {
+          return salesDate[i]
+        }
+      }
+    }
+
+  // 중간 매장 영업시간 상태 표기
+  function callback(){
+      /*점포명*/
+      console.log('callback')
+      $("#storeName").html("[[--IFStart,exist:stor_nm--]][[--ThenStart--]][[--ArtFieldValue,Field:stor_nm--]][[--ThenEnd--]][[--IFEnd--]]")
+            
+      /*영업시간*/
+      let storeTimeHtml = "";
+      //백화점
+      [[--IFStart,exist:buldtitle2--]][[--ThenStart--]]storeTimeHtml += "<ul style='overflow:hidden;margin-bottom:5px;padding:2px 0 0 2px;font-size:1.0em;color:#1a1a1a;font-weight:bold'>[[--ArtFieldValue,buldtitle1--]]</ul>"[[--ThenEnd--]][[--IFEnd--]]
+      //정상 영업시간
+      [[--ifStart,Exist:sa00023--]][[--ThenStart--]]storeTimeHtml += "<li>정상영업&nbsp;&nbsp;[[--ArtFieldValue,sa00023--]] [[--ifStart,Exist:sa00023t--]][[--ThenStart--]][[--ArtFieldValue,sa00023t--]][[--ThenEnd--]][[--ifEnd--]]</li>";[[--ThenEnd--]][[--ifEnd--]]
+      // 연장 영업시간
+      [[--ifStart,Exist:sa00024--]][[--ThenStart--]]storeTimeHtml += "<li>연장영업&nbsp;&nbsp;[[--ArtFieldValue,sa00024--]] [[--ifStart,Exist:sa00024t--]][[--ThenStart--]][[--ArtFieldValue,sa00024t--]][[--ThenEnd--]][[--ifEnd--]]</li>";[[--ThenEnd--]][[--ifEnd--]]
+      // 식당가 영업시간
+      [[--ifStart,Exist:sa00025--]][[--ThenStart--]]storeTimeHtml += "<li>식당가영업&nbsp;&nbsp;[[--ArtFieldValue,sa00025--]] [[--ifStart,Exist:sa00025t--]][[--ThenStart--]][[--ArtFieldValue,sa00025t--]][[--ThenEnd--]][[--ifEnd--]]</li>";[[--ThenEnd--]][[--ifEnd--]]
+      // 기타 영업문구
+      [[--ForStart,name:saidx,from:1,to:7--]][[--IFStart,Exist:salestxt[%saidx%]--]][[--ThenStart--]]
+      storeTimeHtml += "<li>[[--ReplaceStart,Regex:\r|\n,to:<br>--]][[--ArtFieldValue,salestxt[%saidx%]--]][[--ReplaceEnd--]]</li>";[[--ThenEnd--]][[--ifEnd--]][[--ForEnd--]]
+      //몰
+      //기타 영업문구
+      [[--IFStart,exist:buldtitle2--]][[--ThenStart--]]storeTimeHtml += "<ul style='overflow:hidden;margin-bottom:5px;padding:2px 0 0 2px;font-size:1.0em;color:#1a1a1a;font-weight:bold'>[[--ArtFieldValue,buldtitle2--]]</ul>"[[--ThenEnd--]][[--IFEnd--]]
+      [[--ForStart,name:saidx1,from:8,to:14--]][[--IFStart,Exist:salestxt[%saidx1%]--]][[--ThenStart--]]
+      storeTimeHtml += "<li>[[--ReplaceStart,Regex:\r|\n,to:<br>--]][[--ArtFieldValue,salestxt[%saidx1%]--]][[--ReplaceEnd--]]</li>";[[--ThenEnd--]][[--ifEnd--]][[--ForEnd--]]
+
+      //센터시티 휴무 아래 나오는 문구('단, 센텀시티 몰 ~~')
+      // $('#bul_close1').html('[[--IFStart,exist:액션필드 아이디--]][[--ThenStart--]][[--ArtFieldValue,액션필드 아이디--]][[--ThenEnd--]][[--IFEnd--]]');      
+
+      // 아카데미 운영여부
+      [[--ifStart,is:sa00043=Y--]][[--ThenStart--]]
+      // $('#bul_close2').html("아카데미휴점일");
+      // $('#bul_close2').show();
+      [[--ThenEnd--]][[--ifEnd--]]
+
+      // $("#storeTime").html(storeTimeHtml);
+      // getNextCloseDay();
+			
+      // let nextCalMonth = calMonth +  1 > 12 ? (calMonth + 1) % 12 : (calMonth + 1)
+      // $("#prevMonth").addClass("m"+(calMonth))
+      // $("#nextMonth").addClass("m"+(nextCalMonth))
+
+      // calendar(calYear,calMonth);
+
+      [[---2023.08.22---]]
+      let curTime = { now:null, curYear:0, curMonth:0, curDate:0};
+      curTime = createTime(curTime,year,month);
+      dateCheck(curTime)
+    }
+  </script>
+
+<div class="bottomsheet screen" id="bottomsheet-salesda">
+    <!-- 상단 [S]-->
+    <div class="branch-info">
+      <div class="branch-content">
+        <div class="branch-name pretendard-semi-bold-log-cabin-20px" id="storeName">[[--ArtFieldValue, stor_nm--]]</div>
+        <div class="row">
+          <!-- 오늘 날짜 -->
+          <div class="label pretendard-regular-normal-granite-gray-14px" id="tDay"></div>
+          <!-- 영업일 정보 -->
+          <div class="content" id="store-today"></div>
+        </div>
+        <div class="row" id="storeTime">
+          <div class="label pretendard-regular-normal-granite-gray-14px">영업시간</div>
+          <div class="content pretendard-regular-normal-log-cabin-14px" id="openTime"></div>
+        </div>
+        <!-- 아카데미 휴점일 -->
+        <div class="row" id="academy-rest" style="display: none;">
+          <div class="pretendard-semi-bold-log-cabin-12px">※ 휴점정보 : 아카데미휴점일</div>
+        </div>
+      </div>
+    </div>
+    <!-- 상단 [E] -->
+
+    <!-- 중간1 [S] -->
+    <div class="branch-detail">
+      <div class="large-title pretendard-semi-bold-log-cabin-14px">
+        [[--IfStart, is:stor_cd=SC00008--]][[--ThenStart--]]백화점 [[--ThenEnd--]][[--IfEnd--]]영업시간 안내
+      </div>
+
+      <div class="branch-detail-content">
+        <!-- 정상 영업 -->
+        <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              정상 영업
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              [[--ArtFieldValue, sa00023--]][[--ifStart,Exist:sa00023t--]][[--ThenStart--]] [[--ArtFieldValue,sa00023t--]][[--ThenEnd--]][[--ifEnd--]]
+            </div>
+          </div>
+        </div>
+
+        <!-- 연장 영업 -->
+        <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              연장 영업
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              [[--ArtFieldValue, sa00024--]][[--ifStart,Exist:sa00024t--]][[--ThenStart--]] [[--ArtFieldValue,sa00024t--]][[--ThenEnd--]][[--ifEnd--]]
+            </div>
+          </div>
+        </div>
+
+        <!-- 식당가 영업 -->
+        <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              식당가 영업
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              [[--ArtFieldValue, sa00025--]]
+            </div>
+          </div>
+          <div class="note-text pretendard-regular-normal-suva-gray-12px">
+            *** 식당가 영업 시간 데이터 없는 지점 많음 (본점, 대구, 대전 외에 없음) ***
+          </div>
+          <!-- <div class="note-text pretendard-regular-normal-suva-gray-12px">
+            * 주문마감 폐점 30분 전<br/>
+            * 백화점 9F/몰 3F 피에프창/몰 4F 파미에스테이션<br/>
+            * 브랜드별 주문 마감시간 상이
+          </div> -->
+        </div>
+
+        [[--ForStart,name:saidx,from:1,to:7--]][[--IFStart,Exist:salestxt[%saidx%]--]][[--ThenStart--]]
+        <!-- 기타 시설 -->
+        <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              [[--ReplaceStart,Regex:\r|\n,to:<br>--]][[--ArtFieldValue,salestxt[%saidx%]--]][[--ReplaceEnd--]]
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              ***영업시간 영역***
+            </div>
+          </div>
+          <div class="note-text pretendard-regular-normal-suva-gray-12px">
+            ***추가 정보 문구 영역***
+          </div>
+        </div>
+        [[--ThenEnd--]][[--ifEnd--]][[--ForEnd--]]
+        <!-- <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              팩토리 스토어
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              10:30 - 20:00
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+    <!-- 중간1 [E] -->
+
+    [[--IfStart, Exist:buldtitle2--]][[--ThenStart--]]
+    <!-- 중간2(센텀시티 몰 영업시간) [S] -->
+    <div class="branch-detail">
+      <!-- 몰 영업시간 -->
+      <div class="large-title pretendard-semi-bold-log-cabin-14px">몰 영업시간 안내</div>
+      <div class="branch-detail-content">
+        [[--ForStart,name:saidx1,from:8,to:14--]][[--IFStart,Exist:salestxt[%saidx1%]--]][[--ThenStart--]]
+        <div class="row">
+          <div class="main-content">
+            <div class="label pretendard-regular-normal-granite-gray-14px">
+              [[--ReplaceStart,Regex:\r|\n,to:<br>--]][[--ArtFieldValue,salestxt[%saidx1%]--]][[--ReplaceEnd--]]
+            </div>
+            <div class="content pretendard-regular-normal-log-cabin-14px">
+              ***영업시간 영역***
+            </div>
+          </div>
+          <div class="note-text pretendard-regular-normal-suva-gray-12px">
+            ***추가 정보 문구 영역***
+          </div>
+        </div>
+        [[--ThenEnd--]][[--ifEnd--]][[--ForEnd--]]
+      </div>              
+    </div>
+    <!-- 중간2(센텀시티 몰 영업시간) [E] -->
+    [[--ThenEnd--]][[--IfEnd--]]
+  </div>

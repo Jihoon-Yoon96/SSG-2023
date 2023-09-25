@@ -1,0 +1,19 @@
+.body {
+  position: relative;
+  background: white;
+  margin: 0px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.container-center {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  width: 100%;
+}
+
+.container-center>* {
+  flex-shrink: 0;
+}
+

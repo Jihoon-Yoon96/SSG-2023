@@ -17,6 +17,7 @@
   <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
+  <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---쇼핑상세 API 추가 230925---]]
 
   <script>
 	var count = 0;
@@ -39,127 +40,134 @@
 	}
 	
 	var url = window.location.href;
-	var shop_url = url.substr(url.lastIndexOf('/') + 1);
+	// var shop_url = url.substr(url.lastIndexOf('/') + 1);
 	
-	$(function() {
-		//버튼 press 처리 160608 추가
-		$("button, .btn_lst_more").bind("touchstart",function(event){
-			$(this).addClass("active");
-		});
-		$("button, .btn_lst_more").bind("touchend",function(event){
-			$(this).removeClass("active");
-		});
-			//2019.06.25 샤벳 스키마 변경
-		$("#shop_link").children("a").attr("href",shop_url+"/open_shop:");
+	// $(function() {
+	// 	//버튼 press 처리 160608 추가
+	// 	$("button, .btn_lst_more").bind("touchstart",function(event){
+	// 		$(this).addClass("active");
+	// 	});
+	// 	$("button, .btn_lst_more").bind("touchend",function(event){
+	// 		$(this).removeClass("active");
+	// 	});
+	// 		//2019.06.25 샤벳 스키마 변경
+	// 	$("#shop_link").children("a").attr("href",shop_url+"/open_shop:");
 		
-		//2019.06.26 화면 집입시 공유하기 표시여부
-		setDefultShare();
-	});
-	/*** 2019.02.28 추가 시작***/
-	// 화면 진입시 찜하기 여부에 따라 이미지 표현
-	function setDefultHeart(arg,arg2) {
-		var $this = $(".heart");
+	// 	//2019.06.26 화면 집입시 공유하기 표시여부
+	// 	setDefultShare();
+	// });
+	// /*** 2019.02.28 추가 시작***/
+	// // 화면 진입시 찜하기 여부에 따라 이미지 표현
+	// function setDefultHeart(arg,arg2) {
+	// 	var $this = $(".heart");
 
-		if(arg == "heart" ){
-			$this.animate(000, function() {
-				$this.toggleClass("like");
-				$this.find(".span1").animate({opacity:1}, 000, function() {
-					$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
-						$this.find(".span3").animate({opacity:1}, 000);
-					});
-				});
-			})
-			count =1;
-		}
+	// 	if(arg == "heart" ){
+	// 		$this.animate(000, function() {
+	// 			$this.toggleClass("like");
+	// 			$this.find(".span1").animate({opacity:1}, 000, function() {
+	// 				$this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+	// 					$this.find(".span3").animate({opacity:1}, 000);
+	// 				});
+	// 			});
+	// 		})
+	// 		count =1;
+	// 	}
 			
-		if(arg2 == "Y"){
-			$("#shop_link").show();
-		}else{
-			$("#shop_link").hide();
-		}
-	}
+	// 	if(arg2 == "Y"){
+	// 		$("#shop_link").show();
+	// 	}else{
+	// 		$("#shop_link").hide();
+	// 	}
+	// }
 
-	//화면 집입시 샤벳링크 표시여부
-	function setDefultShop(arg) {
-		if(arg == 'Y'){
-			$("#shop_link").show();
-		}else{
-			$("#shop_link").hide();
-		}
-	}
+	// //화면 집입시 샤벳링크 표시여부
+	// function setDefultShop(arg) {
+	// 	if(arg == 'Y'){
+	// 		$("#shop_link").show();
+	// 	}else{
+	// 		$("#shop_link").hide();
+	// 	}
+	// }
 
-	//2019.06.26 화면 집입시 공유하기 표시여부
-	function setDefultShare() {
-			$("#open_share").show();
-	}
+	// //2019.06.26 화면 집입시 공유하기 표시여부
+	// function setDefultShare() {
+	// 		$("#open_share").show();
+	// }
 
-	// 찜하기 버튼 클릭에 따른 효과
-	function setMessage(arg) {
-		var $this = $(".heart");
+	// // 찜하기 버튼 클릭에 따른 효과
+	// function setMessage(arg) {
+	// 	var $this = $(".heart");
 
-		if(arg == "heart" ){
-			if(count === 0){
-				$this.animate(300,function() {
-					$this.toggleClass("like");
-					$this.find(".span1").animate({opacity:1}, 300, function() {
-						$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
-							$this.find(".span3").animate({opacity:1}, 300);
-						});
-					});
-				})
-				count =1;
-			} else {
-				$this.animate(300,function() {
-					$this.find(".span3").animate({opacity:0}, 300, function() {
-						$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
-							$this.find(".span1").animate({opacity:0}, 300,function() {
-								$this.toggleClass("like");
-							});
-						});
-					});
-				})
-				count =0;
-			}
-		}
-	}
-	/*** 2019.02.28 추가 끝 ***/
+	// 	if(arg == "heart" ){
+	// 		if(count === 0){
+	// 			$this.animate(300,function() {
+	// 				$this.toggleClass("like");
+	// 				$this.find(".span1").animate({opacity:1}, 300, function() {
+	// 					$this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+	// 						$this.find(".span3").animate({opacity:1}, 300);
+	// 					});
+	// 				});
+	// 			})
+	// 			count =1;
+	// 		} else {
+	// 			$this.animate(300,function() {
+	// 				$this.find(".span3").animate({opacity:0}, 300, function() {
+	// 					$this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+	// 						$this.find(".span1").animate({opacity:0}, 300,function() {
+	// 							$this.toggleClass("like");
+	// 						});
+	// 					});
+	// 				});
+	// 			})
+	// 			count =0;
+	// 		}
+	// 	}
+	// }
+	// /*** 2019.02.28 추가 끝 ***/
 
-	function sendMessage(msg){
-		window.android.setMessage(msg);
-	}
+	// function sendMessage(msg){
+	// 	window.android.setMessage(msg);
+	// }
 	
-	/*** 20.12.03 FIT 팔로우 ***/
-	function setFitFollow(arg){
-	if(arg == "Y"){
-		$("#fit_follow_y").show();
-		$("#fit_follow_n").hide();
-	}else{
-		$("#fit_follow_y").hide();
-		$("#fit_follow_n").show();
-	}
-	}
-	/*** //FIT 팔로우 ***/  
+	// /*** 20.12.03 FIT 팔로우 ***/
+	// function setFitFollow(arg){
+	// if(arg == "Y"){
+	// 	$("#fit_follow_y").show();
+	// 	$("#fit_follow_n").hide();
+	// }else{
+	// 	$("#fit_follow_y").hide();
+	// 	$("#fit_follow_n").show();
+	// }
+	// }
+	// /*** //FIT 팔로우 ***/  
 
 	[[--PreviewOnlyStart--]]
-	if (width == 320) {
-	document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
-	} else {
-	document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
-	}
-	$(function() {
-		//찜하기
-		$(".heart").click(function(){
-			$(this).toggleClass("like");
-		});
-		//버튼 press 처리 160608 추가
-		$("button, .btn_lst_more").bind("touchstart",function(event){
-			$(this).addClass("active");
-		});
-		$("button, .btn_lst_more").bind("touchend",function(event){
-			$(this).removeClass("active");
-		});
-	});
+	// if (width == 320) {
+	// document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+	// } else {
+	// document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+	// }
+	// $(function() {
+	// 	//찜하기
+	// 	$(".heart").click(function(){
+	// 		$(this).toggleClass("like");
+	// 	});
+	// 	//버튼 press 처리 160608 추가
+	// 	$("button, .btn_lst_more").bind("touchstart",function(event){
+	// 		$(this).addClass("active");
+	// 	});
+	// 	$("button, .btn_lst_more").bind("touchend",function(event){
+	// 		$(this).removeClass("active");
+	// 	});
+	// });
 	[[--PreviewOnlyEnd--]]
+
+
+	[[---230925---]]
+	$(document).ready(function() {
+	    onloadShoppingDetailPage();
+    });
+	[[---230925---]]
 
   </script>
   </head>
@@ -173,11 +181,11 @@
 			[[--IFStart,exist:repr_img--]][[--ThenStart--]]
 			<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지" class="top-visual-img">
 			[[--ThenEnd--]][[--IFEnd--]]
-			<div class="btn-brand-follow" id="fit_follow_y" onclick="alert('브랜드 팔로우 API 필요!!')">
-				<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로우</a>
+			<div class="btn-brand-follow" id="fit_follow_n">
+				<a style="text-decoration: none; color: white;">브랜드 팔로우</a>
 			</div>
-			<div class="btn-brand-follow" id="fit_follow_n" onclick="alert('브랜드 팔로우 API 필요!!')" style="display:none;">
-				<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로잉</a>
+			<div class="btn-brand-follow" id="fit_follow_y" style="display:none;">
+				<a style="text-decoration: none; color: white;">브랜드 팔로잉</a>
 			</div>
 		</div>
 		<div class="detail-container">
@@ -192,12 +200,12 @@
 				</div>
 				[[--ThenEnd--]][[--IFEnd--]]
 				<div class="btn-box">
-					<div class="btn-product export" onclick="alert('내보내기 API 필요!!')">
-						<a href="new_open_cms_share:" id="open_share" style="display:none;"></a>
-						내보내기
-					</div>
-					<div class="btn-product save" onclick="alert('저장하기 API 필요!!')">저장하기</div> <!-- 클래스 on 추가/삭제-->
-				</div>
+                    <div class="btn-product export" onclick="openShare()">
+                        <a id="open_share" style="display:none;"></a>
+                        내보내기
+                    </div>
+                    <div id="clip" class="btn-product save">저장하기</div> <!-- 클래스 on 추가/삭제-->
+                </div>
 			</div>
 			<!-- <span class="ico_section1">|</span><br> -->
 			

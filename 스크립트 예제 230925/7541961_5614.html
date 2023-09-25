@@ -1,0 +1,172 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/style.css" /> <!--style.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/storemain.css" /> <!--storemain.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/styleguide.css" /> <!--styleguide.css-->
+  <link rel="stylesheet" type="text/css" href="/cms12/common/css/font.css" /> <!--font.css-->
+  <script src="/cms12/common/js/pj229803i_5296.js"></script> <!--pj229803i_5296.js-->
+  <script type="text/javascript" src="/cms12/common/js/jquery-1.11.1.min.js"></script> <!--jquery-1.11.1.min.js-->
+  <script type="text/javascript" src="/cms12/common/js/jquery.bpopup.min.js"></script> <!--jquery.bpopup.min.js-->
+  <script src="/cms12/ssgdHandler.js"></script> <!-- ssgd guide -->
+
+  <script>
+    var width = window.screen.width;
+    var count = 0;
+    if (width == 320) {
+     document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+    } else {
+     document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+    }
+    $(function() {
+        //버튼 press 처리 160608 추가
+        $("button, .btn_lst_more").bind("touchstart",function(event){
+            $(this).addClass("active");
+        });
+        $("button, .btn_lst_more").bind("touchend",function(event){
+            $(this).removeClass("active");
+        });
+
+        //2019.06.28 화면 집입시 공유하기 표시여부
+        setDefultShare();
+    });
+    /*** 2019.02.28 추가 시작***/
+    // 화면 진입시 찜하기 여부에 따라 이미지 표현
+    function setDefultHeart(arg) {
+        var $this = $(".heart");
+
+        if(arg == "heart" ){
+            $this.animate(000, function() {
+                $this.toggleClass("like");
+                $this.find(".span1").animate({opacity:1}, 000, function() {
+                    $this.find(".span2").animate({opacity:1, right:0, top:0}, 000, function() {
+                        $this.find(".span3").animate({opacity:1}, 000);
+                    });
+                });
+            })
+            count =1;
+        }
+    }
+    // 찜하기 버튼 클릭에 따른 효과
+    function setMessage(arg) {
+        var $this = $(".heart");
+
+        if(arg == "heart" ){
+            if(count === 0){
+                $this.animate(300,function() {
+                    $this.toggleClass("like");
+                    $this.find(".span1").animate({opacity:1}, 300, function() {
+                        $this.find(".span2").animate({opacity:1, right:0, top:0}, 300, function() {
+                            $this.find(".span3").animate({opacity:1}, 300);
+                        });
+                    });
+                })
+                count =1;
+            } else {
+                $this.animate(300,function() {
+                    $this.find(".span3").animate({opacity:0}, 300, function() {
+                        $this.find(".span2").animate({opacity:0, right:"-5px", top:"-5px"}, 300, function() {
+                            $this.find(".span1").animate({opacity:0}, 300,function() {
+                                $this.toggleClass("like");
+                            });
+                        });
+                    });
+                })
+                count =0;
+            }
+        }
+    }
+    /*** 2019.02.28 추가 끝 ***/
+
+    function sendMessage(msg){
+        window.android.setMessage(msg);
+    }
+
+    //2019.06.28 화면 집입시 공유하기 표시여부
+    function setDefultShare() {
+            $("#open_share").show();
+    }
+
+	// ssgd guide
+	$(document).ready(function() {
+	    onloadShoppingDetailPage();
+    });
+    </script>
+  </head>
+
+
+
+  <body class="body">
+	<div class="container-center">
+		<div class="index screen">
+		<div class="top-visual">
+
+			<img src="/cms12/SC00001/info/theme/__icsFiles/afieldfile/2023/08/31/0901_bt__1.jpg" alt="모바일 카탈로그  Street Food 대표이미지" class="top-visual-img">
+
+			<!-- ssgd guide start -->
+			<div class="btn-brand-follow" id="fit_follow_n">
+				<a style="text-decoration: none; color: white;">브랜드 팔로우</a>
+			</div>
+			<div class="btn-brand-follow" id="fit_follow_y" style="display:none;">
+				<a style="text-decoration: none; color: white;">브랜드 팔로잉</a>
+			</div>
+			<!-- ssgd guide end -->
+		</div>
+		<div class="detail-container">
+			<div class="product-tag-wrap">
+				<div class="custom-chip on">팝업</div>
+				<div class="custom-chip">본점</div>
+			</div>
+			<div class="product-title-wrap">
+
+				<div class="product-tit">
+					 Street Food
+				</div>
+			  <!-- ssgd guide start -->
+                <div class="btn-box">
+                    <div class="btn-product export" onclick="openShare()">
+                        <a id="open_share" style="display:none;"></a>
+                        내보내기
+                    </div>
+                    <div id="clip" class="btn-product save">저장하기</div> <!-- 클래스 on 추가/삭제-->
+                </div>
+          <!-- ssgd guide end -->
+			</div>
+			<!-- <span class="ico_section1">|</span><br> -->
+
+			<!-- 행사 기간 -->
+			<div class="period-text">
+				2023.09.01(금) - 2023.09.7(목)
+			</div>
+			<!-- 행사 위치 -->
+			<div class="secondary-text">
+				신관 지하1층 중앙행사장
+			</div>
+		</div>
+
+		<div class="content-area">
+            <!-- detail -->
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+
+				<!-- 통 이미지 -->
+					<div class="imgfull">
+						<img src="/cms12/SC00001/info/theme/__icsFiles/afieldfile/2023/09/04/0901_bt_s.jpg" alt="">
+					</div>
+				<!-- //통 이미지 -->
+
+				</div>
+				<!-- //editor 영역 -->
+			</div>
+			<!-- //detail -->
+        </div>
+	</div>
+  </body>
+</html>

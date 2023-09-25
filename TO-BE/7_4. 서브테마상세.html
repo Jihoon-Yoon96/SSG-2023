@@ -46,6 +46,7 @@
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
   <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
 
+
   <script>
     var width = window.screen.width;
     if (width == 320) {
@@ -53,19 +54,25 @@
     } else {
      document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
     }
-    $(function() {
-        //찜하기
-        $(".heart").click(function(){
-            $(this).toggleClass("like");
-        });
-        //버튼 press 처리 160608 추가
-        $("button, .btn_lst_more").bind("touchstart",function(event){
-            $(this).addClass("active");
-        });
-        $("button, .btn_lst_more").bind("touchend",function(event){
-            $(this).removeClass("active");
-        });
+    // $(function() {
+    //     //찜하기
+    //     $(".heart").click(function(){
+    //         $(this).toggleClass("like");
+    //     });
+    //     //버튼 press 처리 160608 추가
+    //     $("button, .btn_lst_more").bind("touchstart",function(event){
+    //         $(this).addClass("active");
+    //     });
+    //     $("button, .btn_lst_more").bind("touchend",function(event){
+    //         $(this).removeClass("active");
+    //     });
+    // });
+
+	[[---230925---]]
+	$(document).ready(function() {
+	    onloadShoppingDetailPage();
     });
+	[[---230925---]]
     </script>
   </head>
 
@@ -96,13 +103,13 @@
 					[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]
 				</div>
 				[[--ThenEnd--]][[--IFEnd--]]
-				<div class="btn-box">
-					<div class="btn-product export" onclick="alert('내보내기 API 필요!!')">
-						<a href="new_open_cms_share:" id="open_share" style="display:none;"></a>
-						내보내기
-					</div>
-					<div class="btn-product save" onclick="alert('저장하기 API 필요!!')">저장하기</div> <!-- 클래스 on 추가/삭제-->
-				</div>
+				<!-- <div class="btn-box">
+                    <div class="btn-product export" onclick="openShare()">
+                        <a id="open_share" style="display:none;"></a>
+                        내보내기
+                    </div>
+                    <div id="clip" class="btn-product save">저장하기</div> 
+                </div> -->
 			</div>
 			<!-- <span class="ico_section1">|</span><br> -->
 			
