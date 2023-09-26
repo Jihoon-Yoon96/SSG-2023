@@ -43,7 +43,7 @@
       font-size: 0;
       width: 32px;
       height: 32px;
-      background: url(../img/icons/icClose_b.png) center center /cover no-repeat;
+      background: url([[--ImgRootDir--]]common/img/icons/icClose_b.png) center center /cover no-repeat;
     }
   }
   .bottomsheet-select-footer {

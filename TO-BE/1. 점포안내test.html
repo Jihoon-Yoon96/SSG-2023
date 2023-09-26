@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:4--]]" /> <!--storemain.css-->
     <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:3--]]" /> <!--storemain_bottomsheet.css-->
     <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:6--]]" /> <!--styleguide.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:1--]]" /> <!--calendar.css-->
     <link rel="stylesheet" type="text/css" href="[[--CatAddress, sndzzz_css, form:2--]]" /> <!--font.css-->
     <script src="[[--CatAddress, sndzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
     <script type="text/javascript" src="[[--CatAddress,sndzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
@@ -24,6 +25,17 @@
     </script>
 </head>
 <script>
+    function formatDate3(date) {
+        var d = new Date(date),
+        month3 = '' + (d.getMonth() + 1),
+        day3 = '' + d.getDate(),
+        year3 = d.getFullYear();
+        if (month3.length < 2) month3 = '0' + month3;
+        if (day3.length < 2) day3 = '0' + day3;
+        
+        return [year3, month3, day3].join('-');
+      }
+
     // 클라이언트 TIME 초기화
     var date = new Date();
     var year = date.getFullYear();
@@ -49,17 +61,25 @@
 
     let stateCodeArr = [];
     let cmsCurM;
+
+    let serverTimeObj = new Date((calYear + '-' + calMonth + '-01' ).replace(/-/g, "/"));
+    serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+    let calNextMonth3 = formatDate3(serverTimeObj).replace(/\-/g,'').substr(0,6);
+
     /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
     function callbackDate(data){
-      //alert(JSON.stringify(data));
-      //alert(data.resultMsg);
-      //alert(data.today);
       serverTime = data.today;
       timeArr = serverTime.split("-");
       calYear = parseInt(timeArr[0]);
       calMonth = parseInt(timeArr[1]);
       calDate = parseInt(timeArr[2]);
-      // alert("serverTime : " + serverTime);
+
+      // 달력팝업
+      serverTimeObj = new Date((calYear + '-' + calMonth + '-01').replace(/-/g, "/") );
+      serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+      calNextMonth3 = formatDate3(serverTimeObj).replace(/\-/g,'').substr(0,6);
+
+      document.getElementsByClassName('year-month')[0].innerHTML = `${calYear3}년 ${calMonth3}월`
     };
     //ALERT([[--sp_store_code--]]);
     /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
@@ -79,21 +99,23 @@
     }
 
     $(document).ready(function() {
-      
-      // $.ajax({
-      //   url : "https://app.ds.shinsegae.com/wallet/getServerDate",
-      //   dataType : "jsonp",
-      //   jsonp : "callback",
-      //   success: callbackDate
-      // });
+
+      onloadStoreInformationPage(); // 점포안내 진입시 호출
 
       [[---서버시간 + 날씨 API 230925---]]
-      getServerDate(callbackDate); // 서버 시간
-      onloadStoreInformationPage(); // 점포안내 진입시 호출
       [[--PublishOnlyStart--]]
+      getServerDate(callbackDate); // 서버 시간
       getStoreWeather('SC00001', callbackStoreWeather); // 날씨 API
       [[--PublishOnlyEnd--]]
+
       [[--PreviewOnlyStart--]]
+      $.ajax({
+        url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+        dataType : "jsonp",
+        jsonp : "callback",
+        success: callbackDate
+      });
+
       // 날씨 API (230921)
       const weatherStore = '[[--ArtFieldValue, stor_cd--]]'
       const weatherUrl = "[[--CatAddress, sndzzz_json, form:1--]]";
@@ -121,7 +143,7 @@
       [[--PreviewOnlyEnd--]]
       [[---서버시간 + 날씨 API 230925---]]
 
-      [[--RecordStart,cDateId--]][[--ReplaceStart, regex:snd, to:sp--]][[--CatId--]][[--ReplaceEnd--]]4[[--RecordEnd--]]
+      [[--RecordStart,cDateId--]][[--CatId--]]4[[--RecordEnd--]]
       [[--RecordStart,preId--]]sale_ym[[--RecordEnd--]]
       console.log('test', '[[--Write, cDateId--]]')
       [[--ActionStart,[%cDateId%],row:6--]]
@@ -212,7 +234,7 @@
           [[--ThenEnd--]][[--IFEnd--]]
         </div>    
         <div class="verticalDivider"></div>
-        <div class="functionBtn" onclick="location.href='[[--ArtAddress, form:3--]]'">
+        <div class="functionBtn" onclick="funcOpenBottomsheet('bottomsheet-calendar')">
           <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icCalendar.svg" />
           <span class="label pretendard-medium-granite-gray-12px">영업 일정</span>
         </div>
@@ -227,8 +249,7 @@
           <span class="label pretendard-medium-granite-gray-12px">매장 검색</span>
         </div>
       </div>
-      <!-- <div class="businessInfo" onclick="location.href='[[--ArtAddress, form:2--]]'" > -->
-      <div class="businessInfo" onclick="funcOpenBottomsheet('bottomsheet')" >
+      <div class="businessInfo" onclick="funcOpenBottomsheet('bottomsheet-salestime')" >
         <span class="titleLarge pretendard-medium-log-cabin-18px">영업시간 안내</span>
         <img class="arrowRightIcon" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"/>
       </div>
@@ -499,9 +520,11 @@
       [[--ThenEnd--]][[--IfEnd--]]
 
 
-      <!-- bottom sheet test -->
-      [[--snd2_02s--]]
-      <!-- bottom sheet test -->
+      <!-- bottom sheet -->
+      [[--bt_saletime--]]
+
+      [[--bt_calendar--]]
+      <!-- bottom sheet -->
     </div>
   </div>
 </body>

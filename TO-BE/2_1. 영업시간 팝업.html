@@ -1,5 +1,6 @@
+[[--RecordStart,id--]][[--CatId--]][[--RecordEnd--]]
 <script>
-    var gStoreCd = "[[--sp_store_code--]]";
+    var gStoreCd = "[[--snd_store_code--]]";
       
     var date = new Date();
     var year = date.getFullYear();
@@ -15,17 +16,17 @@
     var today = year+"-"+month+"-"+day
 
     // 서버TIME
-    let serverTime = today;
-    let timeArr = serverTime.split("-");
-    let moveCnt = 0;
+    let serverTime2 = today;
+    let timeArr2 = serverTime2.split("-");
+    // let moveCnt = 0;
 
-    let calYear = parseInt(timeArr[0]);
-    let calMonth = parseInt(timeArr[1]);
-    let calDate = parseInt(timeArr[2]);
+    let calYear2 = parseInt(timeArr2[0]);
+    let calMonth2 = parseInt(timeArr2[1]);
+    let calDate2 = parseInt(timeArr2[2]);
     /* 190624 추가 */
-    let serverTimeObj = new Date((calYear + '-' + calMonth + '-01' ).replace(/-/g, "/"));
-    serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
-    let calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+    let serverTime2Obj = new Date((calYear2 + '-' + calMonth2 + '-01' ).replace(/-/g, "/"));
+    serverTime2Obj = new Date(serverTime2Obj.setMonth(serverTime2Obj.getMonth()+1));
+    let calNextMonth = formatDate(serverTime2Obj).replace(/\-/g,'').substr(0,6);
     /* 190624 추가[e] */
 
     // 영업일 DATA
@@ -40,17 +41,17 @@
     }
 
     /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
-    function callbackDate(data){
-      console.log('callbackDate')
-      serverTime = data.today;
-      timeArr = serverTime.split("-");
-      calYear = parseInt(timeArr[0]);
-      calMonth = parseInt(timeArr[1]);
-      calDate = parseInt(timeArr[2]);
+    function callbackDate2(data){
+      console.log('callbackDate2')
+      serverTime2 = data.today;
+      timeArr2 = serverTime2.split("-");
+      calYear2 = parseInt(timeArr2[0]);
+      calMonth2 = parseInt(timeArr2[1]);
+      calDate2 = parseInt(timeArr2[2]);
       /* 190624 수정 및 추가 */
-      serverTimeObj = new Date((calYear + '-' + calMonth + '-01').replace(/-/g, "/") );
-      serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
-      calNextMonth = formatDate(serverTimeObj).replace(/\-/g,'').substr(0,6);
+      serverTime2Obj = new Date((calYear2 + '-' + calMonth2 + '-01').replace(/-/g, "/") );
+      serverTime2Obj = new Date(serverTime2Obj.setMonth(serverTime2Obj.getMonth()+1));
+      calNextMonth = formatDate(serverTime2Obj).replace(/\-/g,'').substr(0,6);
       /* 190624 수정 및 추가[e] */
     };
 
@@ -100,7 +101,7 @@
         url : "https://app.ds.shinsegae.com/wallet/getServerDate",
         dataType : "jsonp",
         jsonp : "callback",
-        success: callbackDate
+        success: callbackDate2
       });
       
       // var href = window.location.href;
@@ -110,8 +111,8 @@
       // }
 
       // 오늘 날짜 표기
-      let tDay = new Date(serverTime).getDay();
-      [tYear, tMonth, tDate] = serverTime.split('-');
+      let tDay = new Date(serverTime2).getDay();
+      [tYear, tMonth, tDate] = serverTime2.split('-');
       let htmlTxt = `${tMonth}월 ${tDate}일`;
       switch(tDay){
         case 0:
@@ -175,8 +176,8 @@
       //     }
       // }
 
-      if(curTime.curYear == timeArr[0] && curTime.curMonth == (parseInt(timeArr[1])-1)) {
-          let checkItem = dtCd["sale_ym"+calDate].split("")
+      if(curTime.curYear == timeArr2[0] && curTime.curMonth == (parseInt(timeArr2[1])-1)) {
+          let checkItem = dtCd["sale_ym"+calDate2].split("")
           
           //휴점일
           if(checkItem[0]== 2) { 
@@ -267,11 +268,11 @@
       // $("#storeTime").html(storeTimeHtml);
       // getNextCloseDay();
 			
-      // let nextCalMonth = calMonth +  1 > 12 ? (calMonth + 1) % 12 : (calMonth + 1)
-      // $("#prevMonth").addClass("m"+(calMonth))
-      // $("#nextMonth").addClass("m"+(nextCalMonth))
+      // let nextcalMonth2 = calMonth2 +  1 > 12 ? (calMonth2 + 1) % 12 : (calMonth2 + 1)
+      // $("#prevMonth").addClass("m"+(calMonth2))
+      // $("#nextMonth").addClass("m"+(nextcalMonth2))
 
-      // calendar(calYear,calMonth);
+      // calendar(calYear2,calMonth2);
 
       [[---2023.08.22---]]
       let curTime = { now:null, curYear:0, curMonth:0, curDate:0};
@@ -280,7 +281,12 @@
     }
   </script>
 
-<div class="bottomsheet screen" id="bottomsheet-salesda">
+<div class="dim-wrap"></div>
+<div class="bottomsheet screen" id="bottomsheet-salestime">
+  <div class="bottomsheet-header">
+    <div class="title">영업시간</div>
+    <div class="btn-close" onclick="funcCloseBottomsheet('bottomsheet-salestime')">닫기버튼</div>
+  </div>
     <!-- 상단 [S]-->
     <div class="branch-info">
       <div class="branch-content">
