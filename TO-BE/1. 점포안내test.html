@@ -105,7 +105,7 @@
       [[---서버시간 + 날씨 API 230925---]]
       [[--PublishOnlyStart--]]
       getServerDate(callbackDate); // 서버 시간
-      getStoreWeather('SC00001', callbackStoreWeather); // 날씨 API
+      getStoreWeather('[[--ArtFieldValue, stor_cd--]]', callbackStoreWeather); // 날씨 API
       [[--PublishOnlyEnd--]]
 
       [[--PreviewOnlyStart--]]
@@ -239,7 +239,9 @@
           <span class="label pretendard-medium-granite-gray-12px">영업 일정</span>
         </div>
         <div class="verticalDivider"></div>
-        <div class="functionBtn" onclick="onloadMapPage();">
+        <!-- <div class="functionBtn" onclick="onloadMapPage();"> -->[[---TOBE 231005---]]
+        <!-- <div class="functionBtn" onclick="location.href='onloadMapPage(); deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'"> -->[[---ASIS 운영 231005---]]
+        <div class="functionBtn" onclick="location.href='onloadMapPage(); devdeptm.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'">[[---ASIS 개발 231005---]]
           <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icWayFinding.svg" />
           <span class="label pretendard-medium-granite-gray-12px">오시는 길</span>
         </div>
@@ -511,7 +513,7 @@
             </div>
             <div class="store-btn">
               <!-- <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg"  /> -->
-              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg" onclick="alert('대전 스마일 마켓 link 필요!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg" onclick="location.href='https://deptmapp.shinsegae.com/styleMarket/app/main.do?cust_id=C78753926&cust_nm=aTNCOUlTOEZLMkQzaGdDSDFJVy9wQT09&user_id=Q2ZIYk1vTDJZOVlTcW1HYjhqU0ZZUT09&member_no=L2pvQ0c3OTNqdldFWWVtTzZhZnFZNGFrL2wxVGlkTVlvUTZuSlVsWUpyST0=&api_key=adeedeb6-4612-487e-b921-43243b2ed02f&phone_num=RDdFNE41cytlYWcwNkViNGdWM0gvZz09&storeCd=MC00001&store_cd=SC00007&appVersion=999'" />
             </div>
           </div>
         </div>
