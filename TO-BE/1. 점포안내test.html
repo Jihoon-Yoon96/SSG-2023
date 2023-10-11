@@ -99,6 +99,9 @@
     }
 
     $(document).ready(function() {
+      // 점포 이미지 삽입 (TO-BE 이미지로 수정 필요 230925)
+      $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
+      $('#header').css('background-size','100% 100%');
 
       onloadStoreInformationPage(); // 점포안내 진입시 호출
 
@@ -184,11 +187,6 @@
         [[--ifStart,Exist:sa00025t--]][[--ThenStart--]]$("#diner").show();[[--ThenEnd--]][[--ifEnd--]]
       }
 
-      // 점포 이미지 삽입 (TO-BE 이미지로 수정 필요 230925)
-      $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
-      $('#header').css('background-size','100% 100%');
-
-
       // let time = new Date().getHours();
       // if (time >= 6 && time < 18) {
       //     $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
@@ -240,8 +238,8 @@
         </div>
         <div class="verticalDivider"></div>
         <!-- <div class="functionBtn" onclick="onloadMapPage();"> -->[[---TOBE 231005---]]
-        <!-- <div class="functionBtn" onclick="location.href='onloadMapPage(); deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'"> -->[[---ASIS 운영 231005---]]
-        <div class="functionBtn" onclick="location.href='onloadMapPage(); devdeptm.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'">[[---ASIS 개발 231005---]]
+        <!-- <div class="functionBtn" onclick="onloadMapPage(); location.href='https://deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'"> -->[[---ASIS 운영 231005---]]
+        <div class="functionBtn" onclick="onloadMapPage(); location.href='https://devdeptm.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'">[[---ASIS 개발 231005---]]
           <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icWayFinding.svg" />
           <span class="label pretendard-medium-granite-gray-12px">오시는 길</span>
         </div>
