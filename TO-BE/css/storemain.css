@@ -820,22 +820,214 @@
     margin-top: 14px;
   }
 }
+/* [S] 상품상세 템플릿 */
 .content-area {
-  /* padding: 0 18px; */
-  font-family: var(--font-family-pretendard-regular);
-  font-size: var(--font-size-l2);
-  box-sizing: border-box;
-  line-height: 1.25;
-  & img {
-    vertical-align: middle;
-    max-width: 100%;
+
+  .detail.theme {
+    padding: 0 20px;
+    & * {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    & p{
+        margin: 0;
+      }
+    & ul {
+        margin: 0;
+        padding: 0;
+    & li {
+        list-style: none;
+      }
+    }
+    & h3 {
+      margin-top: 17px;
+      font-size: 1.500em;
+      color: #1a1a1a;
+      line-height: 113%;
+    }
+
+    /* [서브테마 case] */
+    .sub_theme {
+      overflow: hidden;
+      margin: 0 -20px 0 0;
+      & ul {
+          margin: 0;
+          padding: 0;
+      }
+      & li {
+        list-style: none;
+        padding-bottom: 50px;
+      }
+      & .img_bx {
+        display: block;
+        position: relative;
+        margin-bottom: 20px;
+        & img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+      }
+      & .dim {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.03;
+      }
+      & .sub_link {
+        font-size: 1.063em;
+        color: #1a1a1a;
+        line-height: 25px;
+        text-decoration: none;
+      }
+      & .btn_arrow {
+        display: block;
+        float: right;
+        width: 25px;
+        height: 25px;
+        margin-right: 20px;
+        background: url[[--ImgRootDir--]]/common/img/icons/sp_btn.png) no-repeat -84px 0;
+        background-size: 250px 250px;
+      }
+    }
+
+    /* [증정안내] case */
+    .giftCard.typeMobile {
+      .payWrap {
+        margin-bottom: 30px;
+      }
+      .payment {
+        margin-top: 30px;
+        &:first-child {
+          margin-top: 0;
+        }
+        .title {
+          font-size: 1.15em;
+          color: #3e3c3c;
+          line-height: 120%;
+        }
+        .genreDesc1 {
+          margin-top: 10px;
+          font-size: 1em;
+          font-weight: bold;
+          color: #3e3c3c;
+          line-height: 130%;
+          word-break: break-all;
+        }
+        .genreDesc2 {
+          margin-top: 5px;
+          font-size: 1em;
+          font-weight: bold;
+          color: #3e3c3c;
+          line-height: 130%;
+          word-break: break-all;
+        }
+
+        .gridListWrap {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          .gridList{
+            & li {
+              margin-top: 5px;
+              &:after {
+               content: "";
+               display: block;
+               clear: both;
+              }
+              &:first-child {
+                margin-top: 0;
+              }
+              & strong {
+                float: left;
+                font-weight: 400;
+                width: 30%;
+                font-size: 0.9em;
+                line-height: 22px;
+              }
+              & p {
+                float: left;
+                width: 70%;
+                font-size: 0.9em;
+                color: #3e3c3c;
+                line-height: 22px;
+                word-break: break-all;
+              }
+            }
+          }
+        }
+        .except {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          &:after {
+            content: "";
+            display: block;
+            clear: both;
+          }
+          .kinds {
+            float: left;
+            width: 30%;
+            font-size: 0.9em;
+            color: #3e3c3c;
+            line-height: 120%;
+          }
+          .kindsList {
+            float: left;
+            width: 70%;
+            font-size: 0.9em;
+            color: #3e3c3c;
+            line-height: 120%;
+            word-break: break-all;
+          }
+        }
+      }
+    }
+
+
+
+    /* [통이미지] case*/
+    & .imgfull {
+      overflow: hidden;
+      margin: 0 -20px 0 -20px;
+      & img {
+        width: 100%;
+        max-width: 100%;
+        height: auto
+      }
+    }
+
+    /* [텍스트] case*/
+    .theme_product {
+      .sub_txt {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #3e3c3c;
+      }
+    }
+    .textarea {
+      overflow: hidden;
+      margin: 46px 0;
+      & h3 {
+        margin-bottom: 10px;
+        font-size: 1.063em;
+        color: #1a1a1a;
+        line-height: 124%
+      }
+      & p {
+        font-size: 0.875em;
+        color: #1a1a1a;
+        line-height: 150%
+      }
+    }
   }
-  & ul, li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+
 }
+/* [E] 상품상세 템플릿*/
 .product-list {
   display: flex;
   flex-wrap: wrap;

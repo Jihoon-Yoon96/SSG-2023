@@ -222,20 +222,35 @@
 		<!-- TO-BE 퍼블 미수급으로 인해 AS-IS 퍼블 임시 사용 230905 [S] -->
 		[[--IfStart,Exist:fullimg--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<div class="imgfull">
+			<!-- <div class="imgfull">
 				<img src="[[--ArtFieldValue,Field:fullimg--]]" alt="이미지">
+			</div> -->
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+
+					<div class="imgfull">
+						<img src="[[--ArtFieldValue,Field:fullimg--]]" alt="이미지">
+					</div>
+
+				</div>
+				<!-- //editor 영역 -->
 			</div>
 		</div> 
 		[[--ThenEnd--]][[--ElseStart--]]
 
 		[[--IFStart,exist:evt_sub_nm--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<div class="theme_product"><!-- 160711 클래스명 수정 -->
-				<ul>
-					<li>
-						<p class="sub_txt">[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,evt_sub_nm--]][[--ReplaceEnd--]]</p>
-					</li>
-				</ul>
+			<div class="detail theme">
+				<div class="editor">
+					<div class="theme_product"><!-- 160711 클래스명 수정 -->
+						<ul>
+							<li>
+								<p class="sub_txt">[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,evt_sub_nm--]][[--ReplaceEnd--]]</p>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]				
