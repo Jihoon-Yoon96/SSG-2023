@@ -219,7 +219,6 @@
 			</div>
 		</div>
 
-		<!-- TO-BE 퍼블 미수급으로 인해 AS-IS 퍼블 임시 사용 230905 [S] -->
 		[[--IfStart,Exist:fullimg--]][[--ThenStart--]]
 		<div class="content-area"> 
 			<!-- <div class="imgfull">
@@ -257,49 +256,70 @@
 		
 		[[--IFStart,exist:sub_img_1--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<!-- 이미지 -->
-			<div class="imgarea">
-				<div class="dim"></div><!-- 160623추가 -->
-				<img src="[[--ArtFieldValue,sub_img_1--]]" alt="이미지">
+			<div class="detail theme">
+				<!-- 이미지 -->
+				<div class="editor">
+					<div class="imgfull">
+					<img src="[[--ArtFieldValue,sub_img_1--]]" alt="이미지">
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]
 				
 		[[--IFStart,exist:sub_img_1_ex--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<!-- 단순 텍스트 -->
-			<div class="textarea">
-				<p>[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,sub_img_1_ex--]][[--ReplaceEnd--]]</p>
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+				<!-- 단순 텍스트 -->
+					<div class="textarea">
+						<p>[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,sub_img_1_ex--]][[--ReplaceEnd--]]</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]
 		
 		[[--IFStart,exist:sub_img_2--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<!-- 이미지 -->
-			<div class="imgarea">
-				<div class="dim"></div><!-- 160623추가 -->
-				<img src="[[--ArtFieldValue,sub_img_2--]]" alt="이미지">
+			<div class="detail theme">
+				<!-- 이미지 -->
+				<div class="editor">
+					<div class="imgfull">
+					<img src="[[--ArtFieldValue,sub_img_2--]]" alt="이미지">
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]
 			
 		[[--IFStart,exist:sub_img_2_ex--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<!-- 단순 텍스트 -->
-			<div class="textarea">
-				<p>[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,sub_img_2_ex--]][[--ReplaceEnd--]]</p>
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+				<!-- 단순 텍스트 -->
+					<div class="textarea">
+						<p>[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,sub_img_2_ex--]][[--ReplaceEnd--]]</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]
 			
 		[[--IFStart,exist:caution--]][[--ThenStart--]]
 		<div class="content-area"> 
-			<!-- 블릿 리스트 -->
-			<div class="bul_lst">
-				<ul>
-					<li>[[--ReplaceStart,regex:\r,to:</li><li>--]][[--ArtFieldValue,caution--]][[--ReplaceEnd--]]</li>
-				</ul>
+			<div class="detail theme">
+				<!-- editor 영역 -->
+				<div class="editor">
+				<!-- 블릿 리스트 -->
+					<div class="bul_lst">
+						<ul>
+							<li>[[--ReplaceStart,regex:\r,to:</li><li>--]][[--ArtFieldValue,caution--]][[--ReplaceEnd--]]</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		[[--ThenEnd--]][[--IFEnd--]]
@@ -328,7 +348,6 @@
 			</div>
 		</div>
 		[[--ElseEnd--]][[--IfEnd--]]
-		<!-- TO-BE 퍼블 미수급으로 인해 AS-IS 퍼블 임시 사용 230905 [E] -->
 
 		[[--RecordStart,코드값_chk--]][[--SubStringStart,~-1--]][[--ForStart,num,From:1,To:30--]][[--ForStart,cd_num,From:1,To:30--]][[--IFStart,Exist:itmapcdnum[%cd_num%]--]][[--ThenStart--]][[--IFStart,is:itmapcdnum[%cd_num%]=[%num%]--]][[--ThenStart--]][[--ArtFieldValue,Field:itemmapcd[%cd_num%]--]];[[--ThenEnd--]][[--IfEnd--]][[--ThenEnd--]][[--IfEnd--]][[--ForEnd--]][[--ForEnd--]][[--SubStringEnd--]]nodata[[--RecordEnd--]]
 		[[--IfStart,is:[%코드값_chk%]=nodata--]][[--ElseStart--]]

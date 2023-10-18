@@ -750,7 +750,7 @@
       content: '';
     }
     &.active::after {
-      background: url[[--ImgRootDir--]]common/img/icons/check_circle_g.png) center center /cover no-repeat;
+      background: url([[--ImgRootDir--]]common/img/icons/check_circle_g.png) center center /cover no-repeat;
     }
   }
 }
@@ -891,7 +891,7 @@
         width: 25px;
         height: 25px;
         margin-right: 20px;
-        background: url[[--ImgRootDir--]]/common/img/icons/sp_btn.png) no-repeat -84px 0;
+        background: url([[--ImgRootDir--]]/common/img/icons/sp_btn.png) no-repeat -84px 0;
         background-size: 250px 250px;
       }
     }

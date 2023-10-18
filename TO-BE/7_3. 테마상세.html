@@ -171,7 +171,12 @@
 					<div class="sub_theme">
 						<ul>[[--ForStart,sub_loof,in:[%sbmapcd%]--]][[--ActionStart,Row:*,[%점코드cid%]141,Search:submapcd=[%sub_loof%],Sort:#DEFAULT#--]]
 							<li>
-								[[--IFStart,exist:brndimg--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="img_bx" title="서브 테마 페이지로 이동"><div class="dim"></div><img src="[[--ArtFieldValue,brndimg--]]" alt="이미지"></a>[[--ThenEnd--]][[--IFEnd--]]
+								[[--IFStart,exist:brndimg--]][[--ThenStart--]]
+                <a href="[[--ArtAddress--]]" class="img_bx" title="서브 테마 페이지로 이동">
+                  <div class="dim"></div>
+                  <img src="[[--ArtFieldValue,brndimg--]]" alt="이미지">
+                </a>
+                [[--ThenEnd--]][[--IFEnd--]]
 								[[--IFStart,exist:evt_nm--]][[--ThenStart--]]<a href="[[--ArtAddress--]]" class="sub_link" title="서브 테마 페이지로 이동">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]<span class="btn_arrow">&gt;</span></a>[[--ThenEnd--]][[--IFEnd--]]
 							</li>[[--ActionEnd--]][[--ForEnd--]]
 						</ul>
