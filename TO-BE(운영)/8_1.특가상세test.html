@@ -1,0 +1,159 @@
+[[--RecordStart,itmmapcd--]][[--IFStart,exist:itemmapcd--]][[--ThenStart--]][[--ArtFieldValue,itemmapcd--]][[--ThenEnd--]][[--ElseStart--]]false[[--ElseEnd--]][[--IFEnd--]][[--RecordEnd--]]
+[[--RecordStart,UpperDispYn--]]Y[[--RecordEnd--]]
+[[--RecordStart,GoosId--]][[--ArtId--]][[--RecordEnd--]]
+[[--MultiCatActionStart,row:*,CatIds:[%점코드cid%]111,Sort:#DEFAULT#--]]
+    [[--ForStart,cd_num,From:1,To:30--]]
+      [[--IFStart,Exist:itemmapcd[%cd_num%]--]][[--ThenStart--]]
+        [[--IFStart,is:itemmapcd[%cd_num%]=[%GoosId%]--]][[--ThenStart--]]
+          [[--IFStart,exist:disp_pric_yn--]][[--ThenStart--]]
+            [[--IFStart,is:disp_pric_yn=N--]][[--ThenStart--]]
+              [[--RecordStart,UpperDispYn--]]N[[--RecordEnd--]]
+          	[[--ThenEnd--]][[--IFEnd--]]
+          [[--ThenEnd--]][[--IFEnd--]]
+        [[--ThenEnd--]][[--IFEnd--]]
+      [[--ThenEnd--]][[--IFEnd--]]
+    [[--ForEnd--]]
+[[--MultiCatActionEnd--]] 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    [[--RecordStart,id--]][[--CatId--]][[--RecordEnd--]]
+	[[--RecordStart,dev_div--]][[--SubStringStart,2--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:5--]]" /> <!--style.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:4--]]" /> <!--storemain.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:6--]]" /> <!--styleguide.css-->
+	<link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:2--]]" /> <!--font.css-->
+	<script src="[[--CatAddress, snpzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+	<script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+	<script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:6--]]"></script> <!--jquery.bpopup.min.js-->
+	<script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---쇼핑상세 API 추가 230925---]]
+
+	<script>
+		var width = window.screen.width;
+		var count = 0;
+		if (width == 320) {
+            document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+        } else {
+            document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+        }
+        var url = window.location.href;
+        var shop_url = url.substr(url.lastIndexOf('/') + 1);
+
+		[[---230925---]]
+		$(document).ready(function() {
+			onloadShoppingDetailPage();
+		});
+		[[---230925---]]
+	</script>
+  </head>
+
+  <body class="body">[[--RecordStart,cid--]][[--SubStringStart,7--]][[--CatId--]][[--SubStringEnd--]][[--RecordEnd--]]
+	<div class="container-center">
+		<div class="index screen">
+			<div class="top-visual">
+				[[--IFStart,exist:repr_img--]][[--ThenStart--]]
+				<img src="[[--ArtFieldValue,repr_img--]]" alt="모바일 카탈로그 [[--ArtFieldValue,evt_nm--]] 대표이미지" class="top-visual-img">
+				[[--ThenEnd--]][[--IFEnd--]]
+				<!-- <div class="btn-brand-follow" id="fit_follow_y" onclick="alert('브랜드 팔로우 API 필요!!')">
+					<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로우</a>
+				</div>
+				<div class="btn-brand-follow" id="fit_follow_n" onclick="alert('브랜드 팔로우 API 필요!!')" style="display:none;">
+					<a href="fit_brand_follow:" style="text-decoration: none; color: white;">브랜드 팔로잉</a>
+				</div> -->
+			</div>
+			<div class="detail-container">
+				<div class="product-tag-wrap">
+					[[--IFStart,exist:badge1--]][[--ThenStart--]]<div class="custom-chip on">[[--ArtFieldValue,badge1--]]</div>[[--ThenEnd--]][[--IFEnd--]]
+					[[--IFStart,exist:badge2--]][[--ThenStart--]]<div class="custom-chip">[[--ArtFieldValue,badge2--]]</div>[[--ThenEnd--]][[--IFEnd--]]
+				</div>
+				<div class="product-title-wrap">
+					[[--IFStart,exist:evt_nm--]][[--ThenStart--]]
+					<div class="product-tit">
+						[[--ReplaceStart,regex:\n,to:<br/>--]][[--ArtFieldValue,evt_nm--]][[--ReplaceEnd--]]
+					</div>
+					[[--ThenEnd--]][[--IFEnd--]]
+					<div class="btn-box">
+						<div class="btn-product export" onclick="openShare()">
+							<a id="open_share" style="display:none;"></a>
+							내보내기
+						</div>
+						<div id="clip" class="btn-product save">저장하기</div> <!-- 클래스 on 추가/삭제-->
+					</div>
+				</div>
+				<!-- <span class="ico_section1">|</span><br> -->
+				
+				<!-- 행사 기간 & 위치 -->
+				<div class="period-text">
+					[[--IFStart,exist:expdt--]][[--ThenStart--]][[--ArtFieldValue,expdt--]][[--ThenEnd--]][[--ElseStart--]][[--IfStart,Exist:startdt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:startdt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtStartDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]] - [[--IfStart,Exist:enddt--]][[--ThenStart--]][[--DateFormatStart,from:yyyyMMdd-HHmmss,to:yyyy.MM.dd (E)--]] [[--ArtFieldValue,Field:enddt--]][[--DateFormatEnd--]][[--ThenEnd--]][[--ElseStart--]][[--ArtEndDate,pattern:yyyy.MM.dd (E)--]][[--ElseEnd--]][[--IfEnd--]][[--ElseEnd--]][[--IFEnd--]]
+					<br>
+					[[--IFStart,exist:evt_plac_2--]][[--ThenStart--]][[--ArtFieldValue,evt_plac_2--]][[--ThenEnd--]][[--ElseStart--]][[--IFStart,exist:buld_nm--]][[--ThenStart--]][[--ArtFieldValue,buld_nm--]][[--ThenEnd--]][[--IFEnd--]][[--IFStart,exist:flor_nm--]][[--ThenStart--]][[--ArtFieldValue,flor_nm--]][[--ThenEnd--]][[--IFEnd--]][[--ElseEnd--]][[--IFEnd--]]
+				</div>
+				<!-- 가격 -->
+				<div class="secondary-text">
+					[[--IFStart,is:saledispcd=정상가격||saledispcd=일반가||saledispcd=행사가격--]][[--ThenStart--]]
+						[[--IFStart,exist:evtprice1--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원 
+							[[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]]
+						[[--ThenEnd--]]
+						[[--ElseStart--]]
+					    	[[--IFStart,exist:normalprice--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원 [[--IFStart,exist:limit_qty--]][[--ThenStart--]][[--ArtFieldValue,limit_qty--]][[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+					    [[--ElseEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=정상가-행사가 비교--]][[--ThenStart--]]
+					<span class="sale">
+					    [[--IFStart,exist:normalprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]]
+                    	[[--ElseStart--]]
+                      		[[--IFStart,exist:evtprice1--]][[--ThenStart--]][[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원[[--ThenEnd--]][[--IFEnd--]]
+                    	[[--ElseEnd--]][[--IFEnd--]]
+                    </span>
+					<p class="price">
+						[[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					</p>
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=특가격--]][[--ThenStart--]]
+						[[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					
+					[[--IFStart,is:saledispcd=할인율 or 할인액--]][[--ThenStart--]]
+					    [[--IFStart,exist:evtprice--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice--]][[--ReplaceEnd--]]원 할인
+						[[--ThenEnd--]]
+						[[--ElseStart--]]
+					    	[[--IFStart,exist:discnt--]][[--ThenStart--]]
+							[[--ArtFieldValue,discnt--]]% 할인
+							[[--ThenEnd--]][[--IFEnd--]]
+						[[--ElseEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					  
+					[[--IFStart,is:saledispcd=행사가격\(각1\) 행사가격\(각2\)--]][[--ThenStart--]]
+					각  [[--IFStart,exist:evtprice1--]][[--ThenStart--]]
+						[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice1--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]]
+                    	[[--ElseStart--]]
+							[[--IFStart,exist:normalprice--]][[--ThenStart--]]
+							[[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,normalprice--]][[--ReplaceEnd--]]원
+							[[--ThenEnd--]][[--IFEnd--]]
+                    	[[--ElseEnd--]][[--IFEnd--]]
+					    
+						[[--IFStart,exist:evtprice2--]][[--ThenStart--]]
+						 / [[--ReplaceStart,regex:\B(?=(\d{3})+(?!\d)),to:\,--]][[--ArtFieldValue,evtprice2--]][[--ReplaceEnd--]]원
+						[[--ThenEnd--]][[--IFEnd--]]
+					[[--ThenEnd--]][[--IFEnd--]]
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

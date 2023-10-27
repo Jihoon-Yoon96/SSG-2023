@@ -1,0 +1,119 @@
+.dim-wrap {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+  &.active {
+    display: block;
+  }
+}
+.bottomsheet {
+  scroll-behavior: smooth;
+  width: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  max-height: 100%;
+  overflow: auto;
+  background-color: #fff;
+  transition: bottom 200ms ease-out;
+  &.active {
+    bottom: 0;
+  }
+  .bottomsheet-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 18px 16px;
+    box-sizing: border-box;
+    .title {
+      color: var(--log-cabin);
+      font-family: var(--font-family-pretendard-regular);
+      font-size: var(--font-size-xl2);
+      font-weight: 600;
+    }
+    .btn-close {
+      font-size: 0;
+      width: 32px;
+      height: 32px;
+      background: url([[--ImgRootDir--]]common/img/icons/icClose_b.png) center center /cover no-repeat;
+    }
+  }
+  .bottomsheet-select-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--log-cabin);
+    color: var(--white-color);
+    text-align: center;
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    box-sizing: border-box;
+  }
+}
+
+.branch-info {
+  margin: 0 18px 0;
+  padding: 24px 0;
+  background: var(--black-haze);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.branch-info .branch-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.branch-info .branch-content .branch-name {
+  margin-bottom: 16px;
+}
+
+.branch-info .branch-content .label {
+  margin-right: 8px;
+}
+
+.branch-info .branch-content .row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.branch-info .branch-content .row:last-of-type {
+  margin-bottom: 0px;
+}
+
+.branch-detail {
+  margin: 24px 18px 40px;
+}
+
+.branch-detail .large-title {
+  margin-bottom: 16px;
+}
+
+.branch-detail-content .row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.branch-detail-content .row:last-of-type {
+  margin-bottom: 0;
+}
+
+.branch-detail-content .row .main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

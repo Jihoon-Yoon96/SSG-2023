@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    [[--RecordStart,new_cid--]]sn[[--SubstringStart,2~6--]][[--CatID--]][[--SubstringEnd--]][[--RecordEnd--]]
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:5--]]" /> <!--style.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:4--]]" /> <!--storemain.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:3--]]" /> <!--storemain_bottomsheet.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:6--]]" /> <!--styleguide.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:1--]]" /> <!--calendar.css-->
+    <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:2--]]" /> <!--font.css-->
+    <script src="[[--CatAddress, snpzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+    <script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
+    <script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:7--]]"></script> <!--ssgHandler.js--> [[---서버시간 + 날씨 API 230925---]]
+
+    <script>
+      var width = window.screen.width;
+      if (width == 320) {
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=0.88, minimum-scale=0.88, maximum-scale=0.88, user-scalable=no">');
+      } else {
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
+      }
+    </script>
+</head>
+<script>
+    function formatDate3(date) {
+        var d = new Date(date),
+        month3 = '' + (d.getMonth() + 1),
+        day3 = '' + d.getDate(),
+        year3 = d.getFullYear();
+        if (month3.length < 2) month3 = '0' + month3;
+        if (day3.length < 2) day3 = '0' + day3;
+        
+        return [year3, month3, day3].join('-');
+      }
+
+    // 클라이언트 TIME 초기화
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1
+    var day = date.getDate();
+    if(month < 10){
+        month = "0"+month;
+    }
+    if(day < 10){
+        day = "0"+day;
+    }
+
+    var today = year+"-"+month+"-"+day
+
+    // 서버TIME
+    let serverTime = today;
+    let timeArr = serverTime.split("-");
+    let moveCnt = 0;
+
+    let calYear = parseInt(timeArr[0]);
+    let calMonth = parseInt(timeArr[1]);
+    let calDate = parseInt(timeArr[2]);
+
+    let stateCodeArr = [];
+    let cmsCurM;
+
+    let serverTimeObj = new Date((calYear + '-' + calMonth + '-01' ).replace(/-/g, "/"));
+    serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+    let calNextMonth3 = formatDate3(serverTimeObj).replace(/\-/g,'').substr(0,6);
+
+    /*jsonp 콜백함수 선언 및 변수 셋팅 부분 */
+    function callbackDate(data){
+      serverTime = data.today;
+      timeArr = serverTime.split("-");
+      calYear = parseInt(timeArr[0]);
+      calMonth = parseInt(timeArr[1]);
+      calDate = parseInt(timeArr[2]);
+
+      // 달력팝업
+      serverTimeObj = new Date((calYear + '-' + calMonth + '-01').replace(/-/g, "/") );
+      serverTimeObj = new Date(serverTimeObj.setMonth(serverTimeObj.getMonth()+1));
+      calNextMonth3 = formatDate3(serverTimeObj).replace(/\-/g,'').substr(0,6);
+
+      document.getElementsByClassName('year-month')[0].innerHTML = `${calYear3}년 ${calMonth3}월`
+    };
+    //ALERT([[--sp_store_code--]]);
+    /* 화면 최초 로딩 시에 호출되는 함수(jsonp호출 후, 위에 콜백함수로 호출하도록 명시) */
+
+    // 날씨 API 콜백함수
+    function callbackStoreWeather(data) {
+      let icon = data.icon;
+      let temperature = data.temperature;
+
+      console.log('icon', icon);
+      console.log('temperature', temperature);
+
+      const imgTarget = document.querySelector('.weather img');
+      const tempTaret = document.querySelector('.weatherDegree');
+      imgTarget.setAttribute('src', '[[--ImgRootDir--]]common/img/icons/weather_'+icon+'.gif');
+      tempTaret.innerHTML=temperature+'°';
+    }
+
+    $(document).ready(function() {
+      // 점포 이미지 삽입 (TO-BE 이미지로 수정 필요 230925)
+      $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
+      $('#header').css('background-size','100% 100%');
+
+      onloadStoreInformationPage(); // 점포안내 진입시 호출
+
+      [[---서버시간 + 날씨 API 230925---]]
+      [[--PublishOnlyStart--]]
+      getServerDate(callbackDate); // 서버 시간
+      getStoreWeather('[[--ArtFieldValue, stor_cd--]]', callbackStoreWeather); // 날씨 API
+      [[--PublishOnlyEnd--]]
+
+      [[--PreviewOnlyStart--]]
+      $.ajax({
+        url : "https://app.ds.shinsegae.com/wallet/getServerDate",
+        dataType : "jsonp",
+        jsonp : "callback",
+        success: callbackDate
+      });
+
+      // 날씨 API (230921)
+      const weatherStore = '[[--ArtFieldValue, stor_cd--]]'
+      const weatherUrl = "[[--CatAddress, snpzzz_json, form:1--]]";
+      window.onload = function() {
+        fetch(weatherUrl)
+          .then(res => res.json())
+          .then((data) => {
+            for(key in data){
+              if(data[key].area == weatherStore){
+                funcWeather(data[key].icon12, data[key].temp);
+              }
+            }
+          })
+      }
+
+      function funcWeather(icon, temp){
+        console.log('icon', icon);
+        console.log('temperature', temp);
+
+        const imgTarget = document.querySelector('.weather img');
+        const tempTaret = document.querySelector('.weatherDegree');
+        imgTarget.setAttribute('src', '[[--ImgRootDir--]]common/img/icons/weather_'+icon+'.gif');
+        tempTaret.innerHTML=temp+'°';
+      }
+      [[--PreviewOnlyEnd--]]
+      [[---서버시간 + 날씨 API 230925---]]
+
+      [[--RecordStart,cDateId--]][[--CatId--]]4[[--RecordEnd--]]
+      [[--RecordStart,preId--]]sale_ym[[--RecordEnd--]]
+      console.log('test', '[[--Write, cDateId--]]')
+      [[--ActionStart,[%cDateId%],row:6--]]
+      cmsCurM = "[[--ArtFieldValue,[%preId%]0--]]";
+      console.log(timeArr[0]+timeArr[1], cmsCurM);
+      if (timeArr[0]+timeArr[1] == cmsCurM) {
+        stateCodeArr = [[[--forStart,name:idx,from:0,to:31--]][[--ifStart,is:idx=0--]][[--ElseStart--]],[[--ElseEnd--]][[--ifEnd--]]"[[--ArtFieldValue,[%preId%][%idx%]--]]"[[--forEnd--]]];
+      }
+      [[--ActionEnd--]]
+      console.log("[[--Write,cDateId--]]");
+      console.log(stateCodeArr);
+
+      let checkItem = stateCodeArr[calDate].split("");
+      if(checkItem[0]== 2) { //휴점일
+        $("#rest").show();
+      } else if(checkItem[0]== 3) { //연장영업
+        // $("#storeState").html("오늘은 연장영업 합니다.");
+        [[---// 천안아산점인 경우 분기처리
+        [[--ifStart,is:stor_cd=SC00009--]][[--ThenStart--]]$("#sa00024_2").append("금,토요일 1시간 연장 / 일,공휴일 30분 연장");[[--ThenEnd--]]
+        [[--ElseStart--]][[--ifStart,Exist:sa00024--]][[--ThenStart--]]$("#sa00024_2").append("연장영업&nbsp;&nbsp;[[--ArtFieldValue,sa00024--]]");
+        $("#sa00024_2").show();[[--ThenEnd--]][[--ifEnd--]][[--ElseEnd--]][[--ifEnd--]]
+        $("#diner").show();
+        ---]]
+        // $("#sa00024_2").append("연장영업&nbsp;&nbsp;[[--ArtFieldValue,sa00024--]]");
+
+        // $(".open-more").css("display","block");
+        document.getElementsByClassName('open-more')[0].style.display = 'block';
+        document.getElementsByClassName('open-more')[1].style.display = 'block';
+        [[--ifStart,Exist:sa00025t--]][[--ThenStart--]]$("#diner").show();[[--ThenEnd--]][[--ifEnd--]]
+      } else { //정상영업
+        // $("#storeState").html("오늘은 정상 영업일 입니다.");
+        [[---[[--ifStart,Exist:sa00023--]][[--ThenStart--]]$("#sa00023_2").append("정상영업&nbsp;&nbsp;[[--ArtFieldValue,sa00023--]]");
+        $("#sa00023_2").show();[[--ThenEnd--]][[--ifEnd--]]---]]
+        
+        // $(".open-normal").css("display","block");
+        document.getElementsByClassName('open-normal')[0].style.display = 'block';
+        document.getElementsByClassName('open-normal')[1].style.display = 'block';
+        [[--ifStart,Exist:sa00025t--]][[--ThenStart--]]$("#diner").show();[[--ThenEnd--]][[--ifEnd--]]
+      }
+
+      // let time = new Date().getHours();
+      // if (time >= 6 && time < 18) {
+      //     $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
+      //     $('#header').css('background-size','100% 100%');
+      // }
+      // else {
+      //   $('#header').css('background','url([[--ArtFieldValue,img_day--]]), center no-repeat');
+      //   $('#header').css('background-size','100% 100%');
+      // }
+    });
+
+    
+    </script>
+    
+
+<body class="body">
+  <div class="container-center">
+    <div class="index screen">
+      <div class="banner">
+        <div class="imgContainer img-banner-1" id="header">
+          <div class="weatherWrapper">
+            <div class="weather">
+              <img src="[[--imgRootDir--]]common/img/weather.svg" />
+            </div>
+            <span class="weatherDegree jost-normal-log-cabin-12px">°</span>
+          </div>
+        </div>
+      </div>
+      <div class="branchSelector" onclick="openStoreInfo()">
+        <span class="branchName pretendard-medium-log-cabin-20px">[[--ArtFieldValue,stor_nm--]]</span>
+        <div class="branchArrowIconContainer">
+          <img class="branchArrowIcon" src="[[--imgRootDir--]]common/img/icons/icArrowSolidDown.svg"  />
+        </div>
+      </div>
+      <div class="functionWrapper">
+        [[--IFStart,exist:sa00013--]][[--ThenStart--]]
+          [[--RecordStart,num_chk--]][[--SubStringStart,1--]][[--ArtFieldValue,sa00013--]][[--SubStringEnd--]][[--RecordEnd--]]
+          [[--IFStart,is:[%num_chk%]=0||[%num_chk%]=1||[%num_chk%]=2||[%num_chk%]=3||[%num_chk%]=4||[%num_chk%]=5||[%num_chk%]=6||[%num_chk%]=7||[%num_chk%]=8||[%num_chk%]=9--]][[--ThenStart--]]
+        <div class="functionBtn" onClick="location.href='tel:[[--ReplaceStart,regex:\-,to:--]][[--ArtFieldValue,sa00013--]][[--ReplaceEnd--]]'">
+          <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icPhone.svg"/>
+          <span class="label pretendard-medium-granite-gray-12px">전화 연결</span>
+          [[--ThenEnd--]][[--IFEnd--]]
+          [[--ThenEnd--]][[--IFEnd--]]
+        </div>    
+        <div class="verticalDivider"></div>
+        <div class="functionBtn" onclick="funcOpenBottomsheet('bottomsheet-calendar')">
+          <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icCalendar.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">영업 일정</span>
+        </div>
+        <div class="verticalDivider"></div>
+        <!-- <div class="functionBtn" onclick="onloadMapPage();"> -->[[---TOBE 231005---]]
+        <div class="functionBtn" onclick="onloadMapPage(); location.href='https://deptmapp.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'">[[---ASIS 운영 231005---]]
+        <!-- <div class="functionBtn" onclick="onloadMapPage(); location.href='https://devdeptm.shinsegae.com/store/app/mainMap.do?storeCd=[[--ArtFieldValue, stor_cd--]]'">[[---ASIS 개발 231005---]] -->
+          <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icWayFinding.svg" />
+          <span class="label pretendard-medium-granite-gray-12px">오시는 길</span>
+        </div>
+        <div class="verticalDivider"></div>
+        <div class="functionBtn" onClick="openSearch();">
+          <img class="functionIcon" src="[[--imgRootDir--]]common/img/icons/icSearchB.svg"/>
+          <span class="label pretendard-medium-granite-gray-12px">매장 검색</span>
+        </div>
+      </div>
+      <div class="businessInfo" onclick="funcOpenBottomsheet('bottomsheet-salestime')" >
+        <span class="titleLarge pretendard-medium-log-cabin-18px">영업시간 안내</span>
+        <img class="arrowRightIcon" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"/>
+      </div>
+      <div class="businessInfoContent">
+        <div class="content">
+          <!-- 휴점 -->
+          <div class="pretendard-regular-normal-granite-gray-14px" id="rest" style="display: none;">
+            오늘은 <br />휴점일/아카데미휴점일 입니다.
+          </div>
+          <!-- 정상 영업 -->
+          <div class="row open-normal"  style="display: none;">
+              <div class="label pretendard-regular-normal-granite-gray-14px">
+                정상 영업
+              </div>
+              <div class="value pretendard-regular-normal-log-cabin-14px">
+                  [[--ArtFieldValue, sa00023--]]
+              </div>
+          </div>
+          <div class="row open-normal" style="display: none;">
+              <div class="label pretendard-regular-normal-granite-gray-14px">
+                식당가
+              </div>
+              <div class="value pretendard-regular-normal-log-cabin-14px">
+                  [[--ArtFieldValue, sa00025--]]
+              </div>
+          </div>
+          <!-- </div> -->
+          <!-- 연장 영업 -->
+          <div class="row open-more"  style="display: none;">
+              <div class="label pretendard-regular-normal-granite-gray-14px">
+                연장 영업
+              </div>
+              <div class="value pretendard-regular-normal-log-cabin-14px">
+                  [[--ArtFieldValue, sa00024--]]
+              </div>
+          </div>
+          <div class="row open-more" style="display: none;">
+              <div class="label pretendard-regular-normal-granite-gray-14px">
+                식당가
+              </div>
+              <div class="value pretendard-regular-normal-log-cabin-14px">
+                  [[--ArtFieldValue, sa00025--]]
+              </div>
+          </div>
+          <!-- </div> -->
+          <!-- 식당가 주문마감 -->
+          <div class="notedText pretendard-regular-normal-suva-gray-12px"  style="display: none;" id="diner">
+              [[--ArtFieldValue, sa00025t--]]<!-- *주문마감 폐점 30분 전 -->
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-container">[[--ActionStart,[%점코드cid%]21,Row:*,Sort:buld_cd=asc--]][[--RecordStart,idx--]][[--ArtIndex--]][[--RecordEnd--]]
+        <div class="tab[[--IFStart,is:[%idx%]=1--]][[--ThenStart--]] active[[--ThenEnd--]][[--IFEnd--]]" onclick="showTabContent([[--ArtIndex--]])">[[--ArtFieldValue,buld_nm--]]</div>[[--ActionEnd--]]
+        <!-- <div class="tab" onclick="showTabContent(1)">파미에스트리트</div>
+        <div class="tab" onclick="showTabContent(2)">팩토리스토어</div> -->
+        <div class="tab" id="service-tab" onclick="showTabContent('service-tab')">서비스 시설</div>
+        [[---대구신세계점 엔터테인먼트&교육 tab 분기 Start---]]
+        [[--IfStart, is:stor_cd=SC00013--]][[--ThenStart--]]
+        <div class="tab" id="enter-tab" onclick="showTabContent('enter-tab')">엔터테인먼트&amp;교육</div>
+        [[--ThenEnd--]][[--IfEnd--]]
+        [[---대구신세계점 엔터테인먼트&교육 tab 분기 End---]]
+
+        [[---대전 Art&Science점 스마일 마켓 tab 분기 Start---]]
+        [[--IfStart, is:stor_cd=SC00060--]][[--ThenStart--]]
+        <div class="tab" id="smile-tab" onclick="showTabContent('smile-tab')">스마일 마켓</div>
+        [[--ThenEnd--]][[--IfEnd--]]
+        [[---대구신세계점 엔터테인먼트&교육 tab 분기 End---]]
+      </div>
+
+      <!-- 층별안내 리스트 [S]-->
+      [[--ActionStart,[%점코드cid%]21,Row:*,Sort:buld_cd=asc--]][[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--RecordStart,aidx--]][[--ArtIndex--]][[--RecordEnd--]]
+      <div class="tab-content"[[--IfStart, is:aidx<>1--]][[--ThenStart--]]style="display: none"[[--ThenEnd--]][[--IfEnd--]]>
+        <div class="floor-list">
+          [[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]]
+          [[--RecordStart, tab_aid--]][[--ArtID--]][[--RecordEnd--]]
+          <div class="floor" onClick="onloadFloorPage(); location.href='[[--ArtAddress, [%new_cid%]22,id:[%tab_aid%]--]]'">
+            <div class="floor-number pretendard-semi-bold-log-cabin-14px">
+              [[--ArtFieldValue,fa00027--]]
+            </div>
+            <div class="floor-name pretendard-regular-normal-log-cabin-14px">
+              [[--ArtFieldValue,fa00004--]]
+            </div>
+            [[--IFStart,exist:fa00019--]][[--ThenStart--]]
+            <a class="floor-map-icon" href='[[--ArtAddress, [%new_cid%]22,form:3, id:[%tab_aid%]--]]'>
+              <img
+              src="[[--imgRootDir--]]common/img/icons/icMap.svg"
+            />
+            </a>
+            [[--ThenEnd--]][[--IFEnd--]]
+          </div>
+          [[--ActionEnd--]]
+        </div>
+      </div>
+      [[--ActionEnd--]]
+      <!-- 층별안내 리스트 [E]-->
+
+      <!-- 서비스시설 리스트 [S]-->
+      <!-- tab-cont Start -->
+      <div class="tab-content" style="display: none" id="service-tab-contents"> 
+        <!-- floor-list Start -->
+        <div class="floor-list"> 
+
+            [[--ActionStart,[%점코드cid%]21,Row:*,Sort:#DEFAULT#--]]
+            [[--RecordStart,bld_cd--]][[--ArtFieldValue,buld_cd--]][[--RecordEnd--]][[--RecordStart,field_tmp--]]null[[--RecordEnd--]]
+            [[--RecordStart,flag--]]T[[--RecordEnd--]]
+
+          <!-- floor-category Start -->
+          <div class="floor-category"> 
+                [[--ActionStart,[%점코드cid%]22,Row:*,Search:buld_cd=[%bld_cd%],Sort:#DEFAULT#--]]
+                [[--RecordStart,flo_cd--]][[--ArtFieldValue,flor_cd--]][[--RecordEnd--]]
+                [[--RecordStart, stab_aid--]][[--ArtID--]][[--RecordEnd--]]
+
+                    [[--ActionStart,[%점코드cid%]23,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%],Row:*,Sort:#DEFAULT#--]]
+                    [[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]]
+                    [[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+                    [[--IFStart,is:ub00005=GL00010||ub00005=GL00011||ub00005=GL00012--]][[--ThenStart--]]
+                    [[--IFStart,is:flag=T--]][[--ThenStart--]]
+            <div class="floor-category-title">[[--ArtFieldValue,buld_nm--]]</div>
+                    [[--ThenEnd--]][[--IFEnd--]]
+                    [[--RecordStart,flag--]]F[[--RecordEnd--]]
+                    [[--IFStart,is:[%field_tmp%]==flor_cd--]][[--ElseStart--]]
+                    [[--RecordStart,field_tmp--]][[--write,field_tmp--]][[--ArtFieldValue,field:flor_cd--]];[[--RecordEnd--]]
+                    [[--ElseEnd--]][[--IFEnd--]]
+                    [[--ThenEnd--]][[--IFEnd--]]
+                    [[--ThenEnd--]][[--IFEnd--]]
+                    [[--ThenEnd--]][[--IFEnd--]]
+                    [[--ActionEnd--]]
+
+                [[--RecordStart,field_tmp--]][[--ReplaceStart,regex:null,to:--]][[--write,field_tmp--]][[--ReplaceEnd--]][[--RecordEnd--]]
+            
+                    [[--ForStart,var,in:[%field_tmp%]--]]
+                    [[--IFStart,is:buld_cd=[%bld_cd%]&&flor_cd=[%var%]--]][[--ThenStart--]]
+
+            <!-- floor-type-b Start -->
+            <div class="floor-type-b"> 
+              <!-- 층 정보 Start -->
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floor-number">[[--ArtFieldValue,flor_nm--]]</div>
+                  <img class="floor-map-icon" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="location.href='[[--ArtAddress, [%new_cid%]22,form:3, id:[%stab_aid%]--]]'" />
+                </div>
+              </div>
+              <!-- 층 정보 End -->
+
+              <!-- 매장정보 Start -->
+                        [[--ActionStart,[%점코드cid%]23,Row:*,Search:buld_cd=[%bld_cd%]&&flor_cd=[%flo_cd%]&&flor_cd=[%var%],Sort:shop_nm=asc--]]
+                        [[--IFStart,is:sh00004=01||sh00004=02||sh00004=04--]][[--ThenStart--]]
+                        [[--IFStart,is:sh00029=01||sh00029=04||sh00029=05||sh00029=06--]][[--ThenStart--]]
+                        [[--IFStart,is:ub00005=GL00010||ub00005=GL00011||ub00005=GL00012--]][[--ThenStart--]]
+              <div class="row">
+                <div class="mainContent">
+                  <div class="floorContent pretendard-regular-normal-log-cabin-14px">[[--ArtFieldValue,shop_nm--]]</div>
+                  [[--IFStart,exist:sh00009--]][[--ThenStart--]][[--RecordStart,num_chk--]][[--SubStringStart,1--]][[--ArtFieldValue,sh00009--]][[--SubStringEnd--]][[--RecordEnd--]][[--IFStart,is:[%num_chk%]=0||[%num_chk%]=1||[%num_chk%]=2||[%num_chk%]=3||[%num_chk%]=4||[%num_chk%]=5||[%num_chk%]=6||[%num_chk%]=7||[%num_chk%]=8||[%num_chk%]=9--]][[--ThenStart--]]
+                  <a class="floor-map-icon" href="tel:[[--ArtFieldValue,sh00009--]]">
+                    <img src="[[--imgRootDir--]]common/img/icons/icPhoneB.svg" />
+                  </a>
+                  [[--ThenEnd--]][[--IFEnd--]][[--ThenEnd--]][[--IFEnd--]]
+                </div>[[--IFStart,exist:sh00028--]][[--ThenStart--]]
+                <div class="subContent pretendard-regular-normal-suva-gray-12px">[[--ArtFieldValue,sh00028--]]</div>[[--ThenEnd--]][[--IFEnd--]]
+              </div>
+                        [[--ThenEnd--]][[--IFEnd--]]
+                        [[--ThenEnd--]][[--IFEnd--]]
+                        [[--ThenEnd--]][[--IFEnd--]]
+                        [[--ActionEnd--]]
+              <!-- 매장정보 End -->
+
+            </div> <!-- floor-type-b End -->
+                    [[--ThenEnd--]][[--IFEnd--]]
+                    [[--ForEnd--]]
+
+                [[--ActionEnd--]]
+          </div> <!-- floor-category End -->
+
+            [[--ActionEnd--]]
+        </div> <!-- floor-list End -->
+      </div>  <!-- tab-cont End -->
+      <!-- 서비스시설 리스트 [E]-->
+
+      [[--IfStart, is:stor_cd=SC00013--]][[--ThenStart--]]
+      <!-- 엔터테인먼트&교육 (대구점) [S] -->
+      <div class="tab-content" id="enter-tab-contents" style="display: none;">
+        <div class="store-list">
+          <div class="store-item">
+            <div class="left-container">
+              <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_1.png" alt="" style="height: 20px;">
+              </div>
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">리틀란드</div>
+            </div>
+            <div class="store-btn">
+              <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="alert('리틀란드 지도 데이터 없음!!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"  onclick="location.href='[[--ArtAddress, form:4--]]'"/>
+            </div>
+          </div>
+          <div class="store-item">
+            <div class="left-container">
+              <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_2.png" alt="" style="height: 14px;">
+              </div>
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">주라지 테마파크</div>
+            </div>
+            <div class="store-btn">
+              <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="alert('주라지 테마파크 지도 데이터 없음!!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"  onclick="location.href='[[--ArtAddress, form:5--]]'"/>
+            </div>
+          </div>
+          <div class="store-item">
+            <div class="left-container">
+              <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_3.png" alt="" style="height: 30px;">
+              </div>
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">대구 아쿠아리움</div>
+            </div>
+            <div class="store-btn">
+              <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="alert('대구 아쿠아리움 지도 데이터 없음!!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"  onclick="location.href='[[--ArtAddress, form:6--]]'"/>
+            </div>
+          </div>
+          <div class="store-item">
+            <div class="left-container">
+              <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_4.png" alt="" style="height: 24px;">
+              </div>
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">바운스 트램폴린 파크</div>
+            </div>
+            <div class="store-btn">
+              <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="alert('바운스 트램폴린 파크 지도 데이터 없음!!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"  onclick="location.href='[[--ArtAddress, form:7--]]'"/>
+            </div>
+          </div>
+          <div class="store-item">
+            <div class="left-container">
+              <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_5.png" alt="" style="height: 14px;">
+              </div>
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">메가박스</div>
+            </div>
+            <div class="store-btn">
+              <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg" onclick="alert('메가박스 지도 데이터 없음!!!');" />
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg"  onclick="location.href='[[--ArtAddress, form:9--]]'"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 엔터테인먼트&교육 (대구점) [E] -->
+      [[--ThenEnd--]][[--IfEnd--]]
+
+      [[--IfStart, is:stor_cd=SC00060--]][[--ThenStart--]]
+      <!-- 스마일 마켓 (대전 Art&Science점) [S] -->
+      <div class="tab-content" id="smile-tab-contents" style="display: none;">
+        <div class="store-list">
+          <div class="store-item">
+            <div class="left-container">
+              <!-- <div class="img-container">
+                <img src="[[--imgRootDir--]]common/img/storeLogo_1.png" alt="" style="height: 20px;">
+              </div> -->
+              <div class="store-name pretendard-regular-normal-log-cabin-14px">대전 스마일 마켓</div>
+            </div>
+            <div class="store-btn">
+              <!-- <img class="floor-map-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icMap.svg"  /> -->
+              <img class="arrow-right-icon icon-default-24x" src="[[--imgRootDir--]]common/img/icons/icArrowRight.svg" onclick="location.href='https://deptmapp.shinsegae.com/styleMarket/app/main.do?cust_id=C78753926&cust_nm=aTNCOUlTOEZLMkQzaGdDSDFJVy9wQT09&user_id=Q2ZIYk1vTDJZOVlTcW1HYjhqU0ZZUT09&member_no=L2pvQ0c3OTNqdldFWWVtTzZhZnFZNGFrL2wxVGlkTVlvUTZuSlVsWUpyST0=&api_key=adeedeb6-4612-487e-b921-43243b2ed02f&phone_num=RDdFNE41cytlYWcwNkViNGdWM0gvZz09&storeCd=MC00001&store_cd=SC00007&appVersion=999'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 스마일 마켓 (대전 Art&Science점) [E] -->
+      [[--ThenEnd--]][[--IfEnd--]]
+
+
+      <!-- bottom sheet -->
+      [[--bt_saletime--]]
+
+      [[--bt_calendar--]]
+      <!-- bottom sheet -->
+    </div>
+  </div>
+</body>
+
+</html>
