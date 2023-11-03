@@ -1,4 +1,4 @@
-.index {
+﻿.index {
   background-color: var(--white-color);
   scroll-behavior: smooth;
   width: 100%;
@@ -258,7 +258,7 @@
         margin-right: 8px;
       }
       &.active {
-        background: url([[--ImgRootDir--]]common/img/icons/icCheck.png) top right /22px 22px no-repeat;
+        background: url(/cms12//common/img/icons/icCheck.png) top right /22px 22px no-repeat;
         .floor-number, .floor-name {
           font-weight: 600;
           font-family: var(--font-family-pretendard-semibold);
@@ -450,7 +450,7 @@
         right: auto;
         width: 22px;
         height: 22px;
-        background: url([[--ImgRootDir--]]common/img/icons/icCopy.svg) right center no-repeat;
+        background: url(/cms12//common/img/icons/icCopy.svg) right center no-repeat;
         content: '';
       }
     }
@@ -458,7 +458,7 @@
       width: 24px;
       height: 24px;
       font-size: 0;
-      background: url([[--ImgRootDir--]]common/img/icons/icWayFindingB.png) center center /24px 24px no-repeat;
+      background: url(/cms12//common/img/icons/icWayFindingB.png) center center /24px 24px no-repeat;
       border: 0;
       flex-shrink: 0;
     }
@@ -477,7 +477,7 @@
         position: absolute;
         width: 36px;
         height: 48px;
-        background: url([[--ImgRootDir--]]common/img/icons/icMapHere.png) transparent center center /cover no-repeat;
+        background: url(/cms12//common/img/icons/icMapHere.png) transparent center center /cover no-repeat;
         border: 0;
         box-shadow: none;
       }
@@ -575,7 +575,7 @@
           left: 0;
           width: 16px;
           height: 16px;
-          background: url([[--ImgRootDir--]]common/img/icons/icBus.svg) center center no-repeat;
+          background: url(/cms12//common/img/icons/icBus.svg) center center no-repeat;
           content: '';
         }
       }
@@ -613,13 +613,13 @@
         font-family: var(--font-family-pretendard-semibold);
         font-size: var(--font-size-xxxl);
         padding-right: 24px;
-        background: url([[--ImgRootDir--]]common/img/icons/icArrowSolidDown.svg) center right no-repeat;
+        background: url(/cms12//common/img/icons/icArrowSolidDown.svg) center right no-repeat;
       }
       .btn-floor-map {
         width: 24px;
         height: 24px;
         flex-shrink: 0;
-        /* background: url([[--ImgRootDir--]]common/img/icons/icArrowSolidDown.svg) center center no-repeat; */
+        /* background: url(/cms12//common/img/icons/icArrowSolidDown.svg) center center no-repeat; */
       }
     }
     .floor-info-subTit {
@@ -709,11 +709,11 @@
       border: 1px solid var(--gray-e5);
       box-sizing: border-box;
       &.plus {
-        background: url([[--ImgRootDir--]]common/img/icons/staper_plus_b.svg) center center no-repeat;
+        background: url(/cms12//common/img/icons/staper_plus_b.svg) center center no-repeat;
       }
       &.minus {
         margin-top: -1px;
-        background: url([[--ImgRootDir--]]common/img/icons/staper_minus_b.svg) center center no-repeat;
+        background: url(/cms12//common/img/icons/staper_minus_b.svg) center center no-repeat;
       }
     }
   }
@@ -746,11 +746,11 @@
       right: 6px;
       width: 16px;
       height: 16px;
-      background: url([[--ImgRootDir--]]common/img/icons/add_circle_b.png) center center /cover no-repeat;
+      background: url(/cms12//common/img/icons/add_circle_b.png) center center /cover no-repeat;
       content: '';
     }
     &.active::after {
-      background: url([[--ImgRootDir--]]common/img/icons/check_circle_g.png) center center /cover no-repeat;
+      background: url(/cms12/common/img/icons/check_circle_g.png) center center /cover no-repeat;
     }
   }
 }
@@ -796,12 +796,12 @@
         border: 0;
         font-size: 0;
         &.export {
-          background: url([[--ImgRootDir--]]common/img/icons/share_01_b.svg) center center no-repeat;
+          background: url(/cms12//common/img/icons/share_01_b.svg) center center no-repeat;
         }
         &.save {
-          background: url([[--ImgRootDir--]]common/img/icons/bookmark_off_b.svg) center center no-repeat;
+          background: url(/cms12//common/img/icons/bookmark_off_b.svg) center center no-repeat;
           &.on {
-            background: url([[--ImgRootDir--]]common/img/icons/bookmark_off_b_on.svg) center center no-repeat;
+            background: url(/cms12//common/img/icons/bookmark_off_b_on.svg) center center no-repeat;
           }
         }
       }
@@ -823,7 +823,7 @@
 }
 /* [S] 상품상세 템플릿 */
 .content-area {
-  
+
   .detail.theme {
     padding: 0 20px;
     & * {
@@ -892,7 +892,7 @@
         width: 25px;
         height: 25px;
         margin-right: 20px;
-        background: url([[--ImgRootDir--]]common/img/icons/sp_btn.png) no-repeat -84px 0;
+        background: url(/cms12//common/img/icons/sp_btn.png) no-repeat -84px 0;
         background-size: 250px 250px;
       }
     }
