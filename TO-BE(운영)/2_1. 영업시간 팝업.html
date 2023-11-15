@@ -180,11 +180,11 @@
           let checkItem = dtCd["sale_ym"+calDate2].split("")
           
           //휴점일
-          if(checkItem[0]== 2) { 
+          if(checkItem[0] == "2") { 
               $("#store-today").addClass("pretendard-semi-bold-maximum-red-14px");
               $("#storeTime").hide();
               // 아카데미 휴점일
-              if(checkItem[1] === 2) {
+              if(checkItem[1] === "2") {
                 $("#store-today").html("휴점일/아카데미휴점일");
               }
               else{
@@ -192,12 +192,12 @@
               }
           } 
           //연장영업
-          else if(checkItem[0]== 3) { 
+          else if(checkItem[0] === "3") { 
               $("#store-today").html("연장 영업일");
               $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
               $("#openTime").html("[[--ifStart,Exist:sa00024--]][[--ThenStart--]][[--ArtFieldValue, sa00024--]][[--ThenEnd--]][[--IfEnd--]]")
               // 아카데미 휴점일
-              if(checkItem[1] === 2) {
+              if(checkItem[1] === "2") {
                 $("#academy-rest").show();
               }
           } 
@@ -207,7 +207,7 @@
               $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
               $("#openTime").html("[[--ifStart,Exist:sa00023--]][[--ThenStart--]][[--ArtFieldValue, sa00023--]][[--ThenEnd--]][[--IfEnd--]]")
               // 아카데미 휴점일
-              if(checkItem[1] === 2) {
+              if(checkItem[1] === "2") {
                 $("#academy-rest").show();
               }
           }

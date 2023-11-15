@@ -140,17 +140,17 @@
            * * storeCd === 2 : 휴점
            * * storeCd === 3 : 연장영업
            * * */ 
-          if (storeCd == 1) {}
-          else if (storeCd == 2) {$("#day_"+(cnt)).addClass("closed-day"); $("#day_"+(cnt)).addClass("inactive");}
-          else if (storeCd == 3)  $("#day_"+(cnt)).addClass("extended-business-day");
+          if (storeCd === "1") {}
+          else if (storeCd === "2") {$("#day_"+(cnt)).addClass("closed-day"); $("#day_"+(cnt)).addClass("inactive");}
+          else if (storeCd === "3")  $("#day_"+(cnt)).addClass("extended-business-day");
           /**
            * * 아카데미
            * * academyCd === 0, 1 : 정상영업
            * * academyCd === 2 : 휴점
            * * */ 
-          if (academyCd == 0){}
-          else if (academyCd == 1){}
-          else if (academyCd == 2) $("#day_"+(cnt)).addClass("academy-closed-day");
+          if (academyCd === "0"){}
+          else if (academyCd === "1"){}
+          else if (academyCd === "2") $("#day_"+(cnt)).addClass("academy-closed-day");
         }
       }
     }

@@ -160,9 +160,9 @@
       console.log(stateCodeArr);
 
       let checkItem = stateCodeArr[calDate].split("");
-      if(checkItem[0]== 2) { //휴점일
+      if(checkItem[0] === "2") { //휴점일
         $("#rest").show();
-      } else if(checkItem[0]== 3) { //연장영업
+      } else if(checkItem[0] == "3") { //연장영업
         // $("#storeState").html("오늘은 연장영업 합니다.");
         [[---// 천안아산점인 경우 분기처리
         [[--ifStart,is:stor_cd=SC00009--]][[--ThenStart--]]$("#sa00024_2").append("금,토요일 1시간 연장 / 일,공휴일 30분 연장");[[--ThenEnd--]]
