@@ -160,10 +160,21 @@
       console.log(stateCodeArr);
 
       let checkItem = stateCodeArr[calDate].split("");
-      if(checkItem[0] === "2") { //휴점일
+      /**
+       * 11 - 정상영업
+       * 21 - 백화점 휴점
+       * 22 - 백화점 / 아카데미 휴점
+       * 31 - 연장영업
+       * 32 - 연장엉업 / 아카데미 휴점
+      */
+      // 백화점 휴점일
+      if(checkItem[0] === "2") {
         $("#rest").show();
-      } else if(checkItem[0] == "3") { //연장영업
-        // $("#storeState").html("오늘은 연장영업 합니다.");
+        if(checkItem[1] === "1") $("#rest-txt").html('휴점일 입니다.');
+        else if(checkItem[1] === "2") $("#rest-txt").html('휴점일/아카데미 휴점일 입니다.');
+      } 
+      //백화점 연장영업
+      else if(checkItem[0] == "3") { 
         [[---// 천안아산점인 경우 분기처리
         [[--ifStart,is:stor_cd=SC00009--]][[--ThenStart--]]$("#sa00024_2").append("금,토요일 1시간 연장 / 일,공휴일 30분 연장");[[--ThenEnd--]]
         [[--ElseStart--]][[--ifStart,Exist:sa00024--]][[--ThenStart--]]$("#sa00024_2").append("연장영업&nbsp;&nbsp;[[--ArtFieldValue,sa00024--]]");
@@ -175,15 +186,24 @@
         // $(".open-more").css("display","block");
         document.getElementsByClassName('open-more')[0].style.display = 'block';
         document.getElementsByClassName('open-more')[1].style.display = 'block';
+
+        [[---연장영업 + 아카데미 휴점일 추가 231116---]]
+        // 연장영업 + 아카데미 휴점일
+        // if(checkItem[1] === '2') {
+        //   document.getElementById('academy-rest').style.display = 'block';
+        // }
+        [[---연장영업 + 아카데미 휴점일 추가 231116---]]
+
         [[--ifStart,Exist:sa00025t--]][[--ThenStart--]]$("#diner").show();[[--ThenEnd--]][[--ifEnd--]]
-      } else { //정상영업
-        // $("#storeState").html("오늘은 정상 영업일 입니다.");
+      } 
+      //정상영업
+      else { 
         [[---[[--ifStart,Exist:sa00023--]][[--ThenStart--]]$("#sa00023_2").append("정상영업&nbsp;&nbsp;[[--ArtFieldValue,sa00023--]]");
         $("#sa00023_2").show();[[--ThenEnd--]][[--ifEnd--]]---]]
         
         // $(".open-normal").css("display","block");
-        document.getElementsByClassName('open-normal')[0].style.display = 'block';
-        document.getElementsByClassName('open-normal')[1].style.display = 'block';
+        document.getElementsByClassName('open-normal')[0].style.display = 'flex';
+        document.getElementsByClassName('open-normal')[1].style.display = 'flex';
         [[--ifStart,Exist:sa00025t--]][[--ThenStart--]]$("#diner").show();[[--ThenEnd--]][[--ifEnd--]]
       }
 
@@ -257,7 +277,7 @@
         <div class="content">
           <!-- 휴점 -->
           <div class="pretendard-regular-normal-granite-gray-14px" id="rest" style="display: none;">
-            오늘은 <br />휴점일/아카데미휴점일 입니다.
+            오늘은 <br /><span id="rest-txt"></span>
           </div>
           <!-- 정상 영업 -->
           <div class="row open-normal"  style="display: none;">
@@ -294,6 +314,10 @@
                   [[--ArtFieldValue, sa00025--]]
               </div>
           </div>
+          <!--연장영업 + 아카데미휴점일-->
+          <!-- <div class="notedText pretendard-regular-normal-suva-gray-12px"  style="display: none;" id="academy-rest">
+            오늘은 아카데미 휴점일입니다.
+          </div> -->
           <!-- </div> -->
           <!-- 식당가 주문마감 -->
           <div class="notedText pretendard-regular-normal-suva-gray-12px"  style="display: none;" id="diner">

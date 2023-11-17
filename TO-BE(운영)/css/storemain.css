@@ -15,14 +15,15 @@
   height: 260px;
   display: flex;
   justify-content: flex-end;
-  margin: -34px -63px;
+  margin: 0;
   min-width: 360px;
-  padding: 28px 75px;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .img-banner-1 {
-  /* background: url("../img/storeBanner.png"), center no-repeat; */
-  background-size: 100% 100%;
+  background-position: center center !important;
+  background-size: 100% auto !important;
 }
 
 /* .img-banner-2 {

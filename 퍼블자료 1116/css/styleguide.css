@@ -1,0 +1,185 @@
+﻿:root { 
+  --black: #000000;
+  --black-haze: #f6f6f6;
+  --gallery: #f0f0f0;
+  --granite-gray: #666666;
+  --log-cabin: #222222;
+  --suva-gray: #888888;
+  --white-color: #ffffff;
+  --gray-e5: #E5E5E5;
+  --chinese-silver: #CCCCCC;
+  --maximum-red: #D4291E;
+  --brandeis-blue: #0073FA;
+  --bronze-metallic: #AF8A40;
+ 
+  --font-size-l: 15px;
+  --font-size-l2: 14px;
+  --font-size-m2: 12px;
+  --font-size-xl: 16px;
+  --font-size-xl2: 18px;
+  --font-size-xxxl: 20px;
+  --font-size-xxxxl: 24px;
+ 
+  --font-family-jost: "Jost", Helvetica;
+  --font-family-pretendard-medium: "Pretendard-Medium", Helvetica;
+  --font-family-pretendard-regular: "Pretendard-Regular", Helvetica;
+  --font-family-pretendard-semibold: "Pretendard-SemiBold", Helvetica;
+  --font-family-sf_pro_text-semibold: "SF Pro Text-SemiBold", Helvetica;
+}
+
+.pretendard-semi-bold-log-cabin-12px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-regular-normal-log-cabin-14px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pretendard-semi-bold-log-cabin-14px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-semi-bold-maximum-red-14px {
+  color: var(--maximum-red);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-medium-log-cabin-16px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pretendard-semi-bold-log-cabin-16px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-medium-granite-gray-12px {
+  color: var(--granite-gray);
+  font-family: var(--font-family-pretendard-medium);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pretendard-regular-normal-granite-gray-16px {
+  color: var(--granite-gray);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.sfprotext-semi-bold-black-15px {
+  color: var(--black);
+  font-family: var(--font-family-sf_pro_text-semibold);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-medium-log-cabin-18px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-medium);
+  font-size: var(--font-size-xl2);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pretendard-regular-normal-granite-gray-14px {
+  color: var(--granite-gray);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pretendard-regular-normal-suva-gray-12px {
+  color: var(--suva-gray);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pretendard-semi-bold-white-24px {
+  color: var(--white-color);
+  font-family: var(--font-family-pretendard-semibold);
+  font-size: var(--font-size-xxxxl);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pretendard-regular-normal-white-14px {
+  color: var(--white-color);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-l2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pretendard-medium-black-18px {
+  color: var(--black);
+  font-family: var(--font-family-pretendard-medium);
+  font-size: var(--font-size-xl2);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pretendard-regular-normal-log-cabin-12px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.jost-normal-log-cabin-12px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-jost);
+  font-size: var(--font-size-m2);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.pretendard-medium-log-cabin-20px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-medium);
+  font-size: var(--font-size-xxxl);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pretendard-semi-bold-log-cabin-20px {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-medium);
+  font-size: var(--font-size-xxxl);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.icon-default-24x {
+  height: 24px;
+  width: 24px;
+}

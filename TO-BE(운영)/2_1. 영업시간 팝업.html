@@ -177,13 +177,13 @@
       // }
 
       if(curTime.curYear == timeArr2[0] && curTime.curMonth == (parseInt(timeArr2[1])-1)) {
-          let checkItem = dtCd["sale_ym"+calDate2].split("")
+          let checkItem = dtCd["sale_ym"+calDate2]//.split("")
           
-          //휴점일
-          if(checkItem[0] == "2") { 
+          // 백화점 휴점일 (21, 22)
+          if(checkItem[0] === "2") { 
               $("#store-today").addClass("pretendard-semi-bold-maximum-red-14px");
               $("#storeTime").hide();
-              // 아카데미 휴점일
+              // 백화점 + 아카데미 휴점일
               if(checkItem[1] === "2") {
                 $("#store-today").html("휴점일/아카데미휴점일");
               }
@@ -191,25 +191,29 @@
                 $("#store-today").html("휴점일");
               }
           } 
-          //연장영업
+          //연장영업 (31, 32)
           else if(checkItem[0] === "3") { 
               $("#store-today").html("연장 영업일");
               $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
               $("#openTime").html("[[--ifStart,Exist:sa00024--]][[--ThenStart--]][[--ArtFieldValue, sa00024--]][[--ThenEnd--]][[--IfEnd--]]")
               // 아카데미 휴점일
               if(checkItem[1] === "2") {
-                $("#academy-rest").show();
+                // $("#academy-rest").show();
+                // $("#rest-txt").html("아카데미 휴점일");
+                document.getElementById('academy-rest-pop').style.display = 'block';
+                document.getElementById('rest-txt-pop').innerHTML = "아카데미 휴점일";
               }
           } 
-          //정상영업
+          //정상영업 (11)
           else { 
               $("#store-today").html("정상 영업일");
               $("#store-today").addClass("pretendard-semi-bold-log-cabin-14px");
               $("#openTime").html("[[--ifStart,Exist:sa00023--]][[--ThenStart--]][[--ArtFieldValue, sa00023--]][[--ThenEnd--]][[--IfEnd--]]")
               // 아카데미 휴점일
-              if(checkItem[1] === "2") {
-                $("#academy-rest").show();
-              }
+              // if(checkItem[1] === "2") {
+              //   $("#academy-rest").show();
+              //   $("#rest-txt").html("아카데미 휴점일");
+              // }
           }
       }
   }
@@ -302,8 +306,8 @@
           <div class="content pretendard-regular-normal-log-cabin-14px" id="openTime"></div>
         </div>
         <!-- 아카데미 휴점일 -->
-        <div class="row" id="academy-rest" style="display: none;">
-          <div class="pretendard-semi-bold-log-cabin-12px">※ 휴점정보 : 아카데미휴점일</div>
+        <div class="row" id="academy-rest-pop" style="display: none;">
+          <div class="pretendard-semi-bold-log-cabin-12px" >※ 휴점정보 : <span id="rest-txt-pop"></span></div>
         </div>
       </div>
     </div>
