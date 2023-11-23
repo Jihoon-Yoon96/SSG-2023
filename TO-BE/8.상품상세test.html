@@ -84,12 +84,44 @@
 					[[--ElseEnd--]][[--IFEnd--]]
 				[[--ThenEnd--]][[--IFEnd--]]
 			</div>
-
 			<!-- 2. 상품명만 -->
 			<!-- <div class="product-title-wrap">
 				<div class="product-tit">F&B</div>
 			</div> -->
 		</div>
+
+			[[---상품상세 상품설명영역 추가 231123---]]
+			<div class="content-area">
+				<!--Template : 통이미지 case-->
+				<div class="detail theme">
+					<!-- editor 영역 -->
+					<div class="editor">
+						[[---]]
+						[[--IFStart,exist:goos_expl--]][[--ThenStart--]]
+						<!-- <div class="theme_product">
+							<ul>
+								<li>
+									<p class="sub_txt">[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_expl--]][[--ReplaceEnd--]]</p>
+								</li>
+							</ul>
+						</div> -->
+						[[--ThenEnd--]][[--IFEnd--]]
+						---]]
+
+						[[--IFStart,exist:goos_expl--]][[--ThenStart--]]
+						<!-- 단순 텍스트 TYPE -->
+						<div class="textarea">
+							<p>[[--ReplaceStart,regex:\r,to:<br/>--]][[--ArtFieldValue,goos_expl--]][[--ReplaceEnd--]]</p>
+						</div>
+						[[--ThenEnd--]][[--IFEnd--]]
+
+					</div>
+					<!-- //editor 영역 -->
+				</div>
+				<!--//Template : 통이미지 case-->
+			</div>
+			[[---상품상세 상품설명영역 추가 231123---]]
+
 		<!-- <div class="content-area"> 
 				//content-area
 		</div>  -->
