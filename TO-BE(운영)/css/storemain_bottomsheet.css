@@ -9,9 +9,10 @@
   right: 0;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.6);
-  &.active {
-    display: block;
-  }
+  z-index: 11;
+}
+.dim-wrap.active {
+  display: block;
 }
 .bottomsheet {
   scroll-behavior: smooth;
@@ -22,45 +23,50 @@
   max-height: 100%;
   overflow: auto;
   background-color: #fff;
-  transition: bottom 200ms ease-out;
-  &.active {
-    bottom: 0;
-  }
-  .bottomsheet-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 18px 16px;
-    box-sizing: border-box;
-    .title {
-      color: var(--log-cabin);
-      font-family: var(--font-family-pretendard-regular);
-      font-size: var(--font-size-xl2);
-      font-weight: 600;
-    }
-    .btn-close {
-      font-size: 0;
-      width: 32px;
-      height: 32px;
-      background: url([[--ImgRootDir--]]common/img/icons/icClose_b.png) center center /cover no-repeat;
-    }
-  }
-  .bottomsheet-select-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 16px;
-    background-color: var(--log-cabin);
-    color: var(--white-color);
-    text-align: center;
-    font-size: var(--font-size-xl);
-    font-weight: 500;
-    box-sizing: border-box;
-  }
+  transition: all 200ms ease-out;
+  opacity: 0;
+  z-index: 120;
 }
-
+.bottomsheet.active {
+  bottom: 0;
+  opacity: 1;
+}
+#bottomsheet-floor {
+  height: calc(100vh - 50px);
+}
+.bottomsheet .bottomsheet-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 18px 16px;
+  box-sizing: border-box;
+}
+.bottomsheet .bottomsheet-header .title {
+  color: var(--log-cabin);
+  font-family: var(--font-family-pretendard-regular);
+  font-size: var(--font-size-xl2);
+  font-weight: 600;
+}
+.bottomsheet .bottomsheet-header .btn-close {
+  font-size: 0;
+  width: 32px;
+  height: 32px;
+  background: url([[--ImgRootDir--]]common/img/icons/icClose_b.png) center center /cover no-repeat;
+}
+.bottomsheet .bottomsheet-select-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--log-cabin);
+  color: var(--white-color);
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  box-sizing: border-box;
+}
 .branch-info {
   margin: 0 18px 0;
   padding: 24px 0;
@@ -116,4 +122,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.branch-detail-content .row .main-content .content, .branch-detail-content .row .main-content .label {
+  border: 0 !important;
+  text-decoration: none !important;
+  outline: none !important;
 }
