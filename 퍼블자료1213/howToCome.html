@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/font.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/storemain.css" />
+    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+    <script src="js/pj229803i_5296.js"></script>
+  </head>
+
+  <body class="body">
+    <div class="container-center">
+      <div class="index screen">
+        <div class="map-wrap">
+            <div class="map-store-name">강남점</div>
+            <div class="map-store-addr">
+                <span class="addr-txt" onclick="copyAddress(this)">서울 서초구 신반포로 176 (반포동 19-3)</span>
+                <button type="button" class="btn-how-come" onclick="alert('길안내 기능 넣기')">길안내</button>
+            </div>
+            <div class="map-container">
+                <!-- 지도영역 시작-->
+                <div class="map-content">
+                    <img src="img/tmp/tmpMap.png" alt="임시 이미지입니다. 개발시 img태그 지워주세요." style="width: 100%; height: 100%;">
+                    <span class="icon-here" style="top: calc(50% - 48px); left: calc(50% - 18px)"></span> <!-- top, left 값은 임시값입니다. 현재위치 아이콘 혹은 버튼에 클래스 icon-here 넣으셔도 무방합니다.  -->
+                </div>
+                <!-- //지도영역 끝 -->
+            </div>
+        </div>
+        <div class="tab-container">
+          <div class="tab active" onclick="showTabContent(0)">주차안내</div>
+          <div class="tab" onclick="showTabContent(1)">지하철</div>
+          <div class="tab" onclick="showTabContent(2)">버스</div>
+        </div>
+        <div class="tab-content">
+            <div class="cont-inner">
+                <div class="cometo-info-list">
+                    <div class="cometo-info">
+                        <div class="cometo-title">무료주차 이용안내</div>
+                        <div class="cometo-txt-dot">5만원 이상 구매 : 1시간</div>
+                        <div class="cometo-txt-dot">10만원 이상 구매 : 2시간</div>
+                        <div class="cometo-txt-dot">15만원 이상 구매 : 3시간</div>
+                        <div class="cometo-txt">* 다른 무료 주차권 또는 구매 영수증과 합산 불가 합니다.</div>
+                        <div class="cometo-txt">* 무료 주차는 최대 3시간으로 추가 요금이 부과됩니다.</div>
+                    </div>
+                    <div class="cometo-info">
+                        <div class="cometo-title">주차요금</div>
+                        <div class="cometo-txt-dot">10분당 : 1,000원</div>
+                        <div class="cometo-txt">* 구매 영수증 미지참 시 주차요금이 부과됩니다.</div>
+                        <div class="cometo-txt">* 전자 영수증으로도 확인이 가능합니다.</div>
+                        <div class="cometo-txt">* 경부선 사잇길 주차장은 무인주차 시스템이므로 사전주차등록 후 출차바랍니다.</div>
+                        <div class="cometo-txt">* '파미에주차장'의 경우 주차요금은 서울시설공단 기준에 따릅니다.</div>
+                    </div>
+                    <div class="cometo-info">
+                        <div class="cometo-title">구매 시 적용 가능 주차장</div>
+                        <div class="cometo-txt-dot">구매 시 적용 가능 주차장</div>
+                        <div class="cometo-txt">(경부선 광장 주차장 / 경부선 데크 주차장 사용 불가)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" style="display: none">
+            <div class="cont-inner">
+                <div class="cometo-info-list">
+                    <div class="cometo-info">
+                        <div class="cometo-title"><span class="num-subway line3">3</span> <span class="num-subway line7">7</span> <span class="num-subway line9">9</span> 호선</div>
+                        <div class="cometo-txt-dot">고속터미널역(식품 층 바로 연결)을 이용하시면 편안하게 오실 수 있습니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" style="display: none">
+            <div class="cont-inner">
+                <div class="cometo-info-list">
+                    <div class="cometo-info">
+                        <div class="cometo-title">고속터미널 (경부)</div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus green"></span> <span class="bus-name">지선버스</span></div>
+                            <div class="bus-num">3414, 3420, 3423, 4212, 4318, 4425, 6411</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus blue"></span> <span class="bus-name">간선버스</span></div>
+                            <div class="bus-num">143, 148, 360, 361, 362, 401, 462, 540, 640, 642, 643</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus red"></span> <span class="bus-name">광역버스</span></div>
+                            <div class="bus-num">1500-3</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus black"></span> <span class="bus-name">마을버스</span></div>
+                            <div class="bus-num">41</div>
+                        </div>
+                    </div>
+                    <div class="cometo-info">
+                        <div class="cometo-title">고속터미널 (경부)</div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus green"></span> <span class="bus-name">지선버스</span></div>
+                            <div class="bus-num">3414, 3420, 3423, 4318, 4425, 5413</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus blue"></span> <span class="bus-name">간선버스</span></div>
+                            <div class="bus-num">142, 143, 360, 361, 362, 401, 462, 540, 640, 642, 643, 8401, 8541</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus black"></span> <span class="bus-name">마을버스</span></div>
+                            <div class="bus-num">서초 10, 서초 14</div>
+                        </div>
+                    </div>
+                    <div class="cometo-info">
+                        <div class="cometo-title">서울 성모 병원 방향 하차</div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus green"></span> <span class="bus-name">지선버스</span></div>
+                            <div class="bus-num">3414, 3420, 3423, 4425, 5413</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus blue"></span> <span class="bus-name">간선버스</span></div>
+                            <div class="bus-num">143, 148, 360, 361, 362, 401, 462, 540, 640, 642, 643</div>
+                        </div>
+                        <div class="comte-bus-row">
+                            <div class="bus-tit"><span class="ico-bus red"></span> <span class="bus-name">광역버스</span></div>
+                            <div class="bus-num">1500-3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

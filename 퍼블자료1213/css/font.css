@@ -1,0 +1,70 @@
+﻿@font-face {
+  font-family: "Pretendard-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/cms12/common/fonts/Pretendard/Pretendard-SemiBold.woff2") format("woff2"),
+    url("/cms12/common/fonts/Pretendard/Pretendard-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/cms12/common/fonts/Pretendard/Pretendard-Regular.woff2") format("woff2"),
+    url("/cms12/common/fonts/Pretendard/Pretendard-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/cms12/common/fonts/Pretendard/Pretendard-Medium.woff2") format("woff2"),
+    url("/cms12/common/fonts/Pretendard/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/cms12/common/fonts/jost/Jost-Regular.woff2") format("woff2"),
+    url("/cms12/common/fonts/jost/Jost-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/cms12/common/fonts/jost/Jost-Regular.woff2") format("woff2"),
+    url("/cms12/common/fonts/jost/Jost-Regular.woff") format("woff");
+}
+
+
+/* [S] 상품상세 템플릿 */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/cms12/common/fonts/NotoSans/NotoSans-Regular.woff2') format('woff2'),
+  url('/cms12/common/fonts/NotoSans/NotoSans-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/cms12/common/fonts/NotoSans/NotoSans-Medium.woff2') format('woff2'),
+    url('/cms12/common/fonts/NotoSans/NotoSans-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/cms12/common/fonts/NotoSans/NotoSans-Bold.woff2') format('woff2'),
+  url('/cms12/common/fonts/NotoSans/NotoSans-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: url('/cms12/common/fonts/NotoSans/NotoSans-Black.woff2') format('woff2'),
+  url('/cms12/common/fonts/NotoSans/NotoSans-Black.woff') format('woff');
+}
+/* [E] 상품상세 템플릿 */
