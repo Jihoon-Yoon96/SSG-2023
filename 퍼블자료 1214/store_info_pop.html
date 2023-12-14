@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/font.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/storemain.css" />
+  <link rel="stylesheet" type="text/css" href="css/storemain_bottomsheet.css" />
+  <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <script src="js/pj229803i_5296.js"></script>
+</head>
+
+<body class="body">
+  <div class="container-center">
+	<button onclick="funcOpenBottomsheet('bottomsheet')">임시버튼 - 층 선택 열기</button>
+	<div class="dim-wrap"></div>
+
+	<div class="bottomsheet screen" id="bottomsheet">
+        <div class="bottomsheet-header">
+          <div class="title">층 선택</div>
+          <div class="btn-close" onclick="funcCloseBottomsheet('bottomsheet')">닫기버튼</div>
+        </div>
+		<div class="floor-info">
+			<div class="floor-info-container">
+				<div class="floor-list total-floor">
+					<div class="floor active" onclick="floorSelect(this)">
+						<div class="floor-number">10F</div>
+						<div class="floor-name">리틀신세계 (아동,유아)/란제리</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">9F</div>
+						<div class="floor-name">가구/홈패션/가전/키친웨어</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">8F</div>
+						<div class="floor-name">스포츠/멘즈캐주얼/진/스트리트캐주얼/영캐주얼</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">7F</div>
+						<div class="floor-name">골프/남성 캐주얼</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">6F</div>
+						<div class="floor-name">남성 부틱/남성 컨템포러리</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">5F</div>
+						<div class="floor-name">여성 클래식/뉴 컨템포러리/핸드백</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">4F</div>
+						<div class="floor-name">해외 컨템포러리/슈즈</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">3F</div>
+						<div class="floor-name">인터내셔널 디자이너/럭셔리 워치&주얼리</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">2F</div>
+						<div class="floor-name">해외유명브랜드</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">1M</div>
+						<div class="floor-name">퍼퓸/버건디 와인/F&B</div>
+					</div>
+					<div class="floor" onclick="floorSelect(this)">
+						<div class="floor-number">B1</div>
+						<div class="floor-name">신세계 푸드마켓/푸드홀</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="bottomsheet-select-footer">선택완료</div> <!-- 보였다안보이기 : display를 none/block 으로 컨트롤 -->
+    </div>
+  </div>
+</body>
+
+</html>
