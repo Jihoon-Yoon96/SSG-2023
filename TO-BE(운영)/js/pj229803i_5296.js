@@ -1,7 +1,8 @@
 function showTabContent(tabIndex) {
+
   // Get all tab elements and content elements
-  const tabs = document.querySelectorAll('.tab');
-  const tabContents = document.querySelectorAll('.tab-content');
+  let tabs = document.querySelectorAll('.tab');
+  let tabContents = document.querySelectorAll('.tab-content');
 
   // Hide all tab contents
   tabContents.forEach(content => {
@@ -13,30 +14,69 @@ function showTabContent(tabIndex) {
     tab.classList.remove('active');
   });
 
-  // Show the selected tab content and mark it as active
-  tabContents[tabIndex].style.display = 'block';
-  tabs[tabIndex].classList.add('active');
+
+  // 서비스 시설 tab, 엔터테인먼트&교육 tab
+  if(typeof tabIndex === 'string'){ // 'service-tab', 'enter-tab', 'smile-tab'
+    let etc = document.querySelector('#'+tabIndex)
+    let etcContents = document.querySelector('#'+tabIndex+'-contents')
+
+    etcContents.style.display = 'block';
+    etc.classList.add('active');
+  }
+  // 그외 tab
+  else{
+    // Show the selected tab content and mark it as active
+    tabContents[tabIndex-1].style.display = 'block';
+    tabs[tabIndex-1].classList.add('active');
+  }
 }
 
-const today = new Date();
-const thisMonth = today.getMonth() + 1;
+const today2 = new Date();
+const thisMonth = today2.getMonth() + 1;
 let currentMonth = thisMonth;
+
 function validationBtnMonth(elm) {
   const btnPrev = document.querySelector('.btn-month.prev');
   const btnNext = document.querySelector('.btn-month.next');
   if(elm.classList.contains('prev')){
     if(currentMonth > thisMonth) {
       currentMonth--;
+
+      if(calMonth-1 === 0) {
+        calMonth = 12
+        calYear--
+        calendar(calYear,calMonth);
+      } else {
+        calendar(calYear,--calMonth);
+      }
+      // else calMonth--;
+      // moveCnt--
+      // calendar(calYear,--calMonth);
+      // getNextCloseDay();
     } else {
-      alert('이전버튼은 이번달까지만 조회됩니다.');
+      // alert('이전버튼은 이번달까지만 조회됩니다.');
     }
   } else {
     if(currentMonth <= thisMonth) {
       currentMonth++;
+
+      if (calMonth + 1 === 13) {
+        calMonth = 1
+        calYear++
+        calendar(calYear,calMonth);
+      } else {
+        calendar(calYear,++calMonth);
+      }
+      // else calMonth++;
+
+      // moveCnt++
+      // calendar(calYear,calMonth);
+      // $("#closeStr").html("");
     } else {
-      alert('다음버튼은 다음달까지만 조회됩니다.');
+      // alert('다음버튼은 다음달까지만 조회됩니다.');
     }
   }
+
   if(currentMonth > thisMonth){
     btnPrev.classList.add('active');
     btnNext.classList.remove('active');
@@ -45,6 +85,7 @@ function validationBtnMonth(elm) {
     btnNext.classList.add('active');
   }
   console.log('현재 달력은 ', currentMonth , '월 입니다');
+  document.getElementsByClassName('year-month')[0].innerHTML = `${calYear}년 ${calMonth}월`
 }
 
 // 주소복사
@@ -76,4 +117,44 @@ function floorSelect(elm) {
   });
   elm.classList.add('active');
 
+}
+
+// bottom sheet
+function funcOpenBottomsheet(targetId){
+  const hiddenTarget = document.querySelector('.index.screen');
+  hiddenTarget.classList.add('openBottomSheet');
+  const openTarget = document.getElementById(targetId);
+  const dimWrap = document.querySelector('.dim-wrap');
+  openTarget.classList.add('active');
+  dimWrap.classList.add('active');
+}
+
+function funcCloseBottomsheet(targetId){
+  const hiddenTarget = document.querySelector('.index.screen');
+  const CloseTarget = document.getElementById(targetId);
+  const dimWrap = document.querySelector('.dim-wrap');
+  CloseTarget.classList.remove('active');
+  setTimeout(function() {
+    dimWrap.classList.remove('active');
+    hiddenTarget.classList.remove('openBottomSheet');
+  },200);
+}
+
+function funcZoom(elm){
+  const initWidth = window.innerWidth;
+  const target = document.getElementById('zoom_img_wrap');
+  const scrollTarget = document.getElementById('zoom_img_scroll_target');
+  let zoomNumber = target.getAttribute('data-zoom') * 1;
+  if(elm.classList.contains('plus')){
+    zoomNumber = zoomNumber >= 3 ? 3 : zoomNumber+1;
+  }else{
+    if(zoomNumber <= 1) {
+      zoomNumber = 1;
+      scrollTarget.scrollTo(0,0);
+    }else {
+      zoomNumber = zoomNumber-1;
+    }
+  }
+  target.style.width = initWidth * zoomNumber + 'px';
+  target.setAttribute('data-zoom', zoomNumber);
 }

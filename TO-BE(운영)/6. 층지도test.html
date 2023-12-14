@@ -49,13 +49,14 @@
   <div class="container-center" id="wrap">
     <div class="index screen" id="container">
 		<div class="shopping-map-wrap">
-			<div class="map-scroll-wrap d_exview_viewport" >
-                <div class="img"></div>
-                <img src="[[--ArtFieldValue,fa00019--]]" alt="[[--ArtFieldValue,stor_nm--]] [[--ArtFieldValue,buld_nm--]] [[--ArtFieldValue,flor_nm--]]" style="height: 100%; vertical-align: middle;"> <!-- 임시 이미지입니다. 개발시 삭제해주세요. -->
+			<div class="map-scroll-wrap" id="zoom_img_scroll_target">
+                <div id="zoom_img_wrap" data-zoom="1">
+                    <img src="[[--ArtFieldValue,fa00019--]]" alt="[[--ArtFieldValue,stor_nm--]] [[--ArtFieldValue,buld_nm--]] [[--ArtFieldValue,flor_nm--]]" style="height: 100%; vertical-align: middle;"> <!-- 임시 이미지입니다. 개발시 삭제해주세요. -->
+                </div>
 			</div>
 			<div class="btn-size-control">
-				<div class="btn-size plus d_exview_zoom_in">확대</div>
-				<div class="btn-size minus d_exview_zoom_out">축소</div>
+				<div class="btn-size plus" onclick="funcZoom(this)">확대</div>
+				<div class="btn-size minus" onclick="funcZoom(this)">축소</div>
 			</div>
 		</div>
     </div>
