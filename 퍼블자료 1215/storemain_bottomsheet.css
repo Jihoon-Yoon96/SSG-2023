@@ -1,4 +1,4 @@
-.dim-wrap {
+﻿.dim-wrap {
   display: none;
   position: fixed;
   width: 100%;
@@ -60,7 +60,7 @@
   font-size: 0;
   width: 32px;
   height: 32px;
-  background: url([[--ImgRootDir--]]common/img/icons/icClose_b.png) center center /cover no-repeat;
+  background: url(/cms12/common/img/icons/icClose_b.png) center center /cover no-repeat;
 }
 .bottomsheet .bottomsheet-select-footer {
   position: absolute;
