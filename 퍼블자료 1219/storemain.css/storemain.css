@@ -1,4 +1,4 @@
-.index {
+﻿.index {
   background-color: var(--white-color);
   scroll-behavior: smooth;
   width: 100%;
@@ -255,7 +255,7 @@
   color: var(--granite-gray);
 }
 .floor-list.total-floor .floor.active {
-  background: url([[--ImgRootDir--]]common/img/icons/icCheck.png) top right /22px 22px no-repeat;
+  background: url(/cms12/common/img/icons/icCheck.png) top right /22px 22px no-repeat;
 }
 .floor-list.total-floor .floor.active .floor-number, .floor-list.total-floor .floor.active .floor-name {
   font-weight: 600;
@@ -449,14 +449,14 @@
   right: auto;
   width: 22px;
   height: 22px;
-  background: url([[--ImgRootDir--]]common/img/icons/icCopy.svg) right center no-repeat;
+  background: url(/cms12/common/img/icons/icCopy.svg) right center no-repeat;
   content: '';
 }
 .map-wrap .map-store-addr .btn-how-come {
   width: 24px;
   height: 24px;
   font-size: 0;
-  background: url([[--ImgRootDir--]]common/img/icons/icWayFindingB.png) center center /24px 24px no-repeat;
+  background: url(/cms12/common/img/icons/icWayFindingB.png) center center /24px 24px no-repeat;
   border: 0;
   flex-shrink: 0;
 }
@@ -477,7 +477,7 @@
   position: absolute;
   width: 36px;
   height: 48px;
-  background: url([[--ImgRootDir--]]common/img/icons/icMapHere.png) transparent center center /cover no-repeat;
+  background: url(/cms12/common/img/icons/icMapHere.png) transparent center center /cover no-repeat;
   border: 0;
   box-shadow: none;
 }
@@ -564,7 +564,7 @@
   left: 0;
   width: 16px;
   height: 16px;
-  background: url([[--ImgRootDir--]]common/img/icons/icBus.svg) center center no-repeat;
+  background: url(/cms12/common/img/icons/icBus.svg) center center no-repeat;
   content: '';
 }
 .cometo-info-list .comte-bus-row .bus-tit .ico-bus.green {
@@ -611,13 +611,13 @@
   font-family: var(--font-family-pretendard-medium);
   font-size: var(--font-size-xxxl);
   padding-right: 24px;
-  background: url([[--ImgRootDir--]]common/img/icons/icArrowSolidDown.svg) center right no-repeat;
+  background: url(/cms12/common/img/icons/icArrowSolidDown.svg) center right no-repeat;
 }
 .floor-info .floor-info-header .floor-info-num-row .btn-floor-map {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  /* background: url([[--ImgRootDir--]]common/img/icons/icArrowSolidDown.svg) center center no-repeat; */
+  /* background: url(/cms12/common/img/icons/icArrowSolidDown.svg) center center no-repeat; */
 }
 .floor-info .floor-info-header .floor-info-subTit {
   font-family: var(--font-family-pretendard-regular);
@@ -716,11 +716,11 @@
   background-color: var(--white-color);
 }
 .shopping-map-wrap .btn-size-control .btn-size.plus {
-  background: url([[--ImgRootDir--]]common/img/icons/staper_plus_b.svg) #fff center center no-repeat;
+  background: url(/cms12/common/img/icons/staper_plus_b.svg) #fff center center no-repeat;
 }
 .shopping-map-wrap .btn-size-control .btn-size.minus {
   margin-top: -1px;
-  background: url([[--ImgRootDir--]]common/img/icons/staper_minus_b.svg) #fff center center no-repeat;
+  background: url(/cms12/common/img/icons/staper_minus_b.svg) #fff center center no-repeat;
 }
 
 /* 쇼핑정보 상세, 상품 상세 */
@@ -762,12 +762,12 @@
   right: 6px;
   width: 16px;
   height: 16px;
-  background: url([[--ImgRootDir--]]common/img/icons/add_circle_b.png) center center /cover no-repeat;
+  background: url(/cms12/common/img/icons/add_circle_b.png) center center /cover no-repeat;
   content: '';
   transform: translateY(-50%)
 }
 .top-visual .btn-brand-follow.active::after {
-  background: url([[--ImgRootDir--]]common/img/icons/check_circle_g.png) center center /cover no-repeat;
+  background: url(/cms12/common/img/icons/check_circle_g.png) center center /cover no-repeat;
 }
 .detail-container {
   padding: 24px 18px 0;
@@ -816,13 +816,13 @@
   font-size: 0;
 }
 .detail-container .product-title-wrap .btn-box .btn-product.export {
-  background: url([[--ImgRootDir--]]common/img/icons/share_01_b.svg) center center no-repeat;
+  background: url(/cms12/common/img/icons/share_01_b.svg) center center no-repeat;
 }
 .detail-container .product-title-wrap .btn-box .btn-product.save {
-  background: url([[--ImgRootDir--]]common/img/icons/bookmark_off_b.svg) center center no-repeat;
+  background: url(/cms12/common/img/icons/bookmark_off_b.svg) center center no-repeat;
 }
 .detail-container .product-title-wrap .btn-box .btn-product.save.on {
-  background: url([[--ImgRootDir--]]common/img/icons/bookmark_off_b_on.svg) center center no-repeat;
+  background: url(/cms12/common/img/icons/bookmark_off_b_on.svg) center center no-repeat;
 }
 .detail-container .period-text {
   color: var(--suva-gray);
@@ -909,7 +909,7 @@
   width: 25px;
   height: 25px;
   margin-right: 20px;
-  background: url([[--ImgRootDir--]]common/img/icons/sp_btn.png) no-repeat -84px 0;
+  background: url(/cms12/common/img/icons/sp_btn.png) no-repeat -84px 0;
   background-size: 250px 250px;
 }
 /* [S] 상품상세 템플릿 - [증정안내] case */
