@@ -10,12 +10,10 @@
   <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:5--]]" /> <!--style.css-->
   <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:4--]]" /> <!--storemain.css-->
   <link rel="stylesheet" type="text/css" href="[[--CatAddress, snpzzz_css, form:6--]]" /> <!--styleguide.css-->
-  <script src="[[--CatAddress, snpzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
-  <script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:2--]]"></script> <!--jquery-1.11.1.min.js-->
-
-  <script type="text/javascript" src="[[--CatAddress,snpzzz_js,form:4--]]"></script> <!--jquery.hammer.min.js-->
-  <!-- <script type="text/javascript" src="[[--CatAddress,spzzz_js,form:9--]]"></script>[[---../common/js/jquery.transit.min.js---]] -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <script src="[[--CatAddress, snpzzz_js, form:1--]]"></script> <!--pj229803i_5296.js-->
+  <script src="[[--CatAddress, snpzzz_js, form:8--]]"></script> <!--pinch-zoom.umd.js-->
+
 
   <script>
     var width = window.screen.width;
@@ -25,103 +23,56 @@
      document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">');
     }
     </script>
+     <script language="javascript">
+        function initPinchZoom() {
+          var el = document.querySelector('div.pinch-zoom');
+            pinchzoom = new PinchZoom.default(el, {
+              draggableUnzoomed: false,
+              maxZoom: 6,
+              minZoom: 1,
+            });
+        }
+        function zoomIn() {
+          var elemetRect = pinchzoom.el.getBoundingClientRect();
+          var startZoomFactor = pinchzoom.zoomFactor,
+          zoomFactor = Math.min(startZoomFactor + 1, pinchzoom.options.maxZoom),
+          center = {x: elemetRect.left + Math.floor(elemetRect.width / 2), y: elemetRect.top + Math.floor(elemetRect.height / 2)},
+          updateProgress = function (progress) {
+            pinchzoom.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
+          }.bind(pinchzoom);
+          pinchzoom.animate(pinchzoom.options.animationDuration, updateProgress, pinchzoom.swing);
+        }
+        function zoomOut() {
+          var elemetRect = pinchzoom.el.getBoundingClientRect();
+          var startZoomFactor = pinchzoom.zoomFactor,
+          zoomFactor = Math.max(startZoomFactor - 1, pinchzoom.options.minZoom),
+          center = {x: elemetRect.left + Math.floor(elemetRect.width / 2), y: elemetRect.top + Math.floor(elemetRect.height / 2)},
+          updateProgress = function (progress) {
+            pinchzoom.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
+          }.bind(pinchzoom);
+          if (startZoomFactor > zoomFactor) {
+              center = pinchzoom.getCurrentZoomCenter();
+          }
+          pinchzoom.animate(pinchzoom.options.animationDuration, updateProgress, pinchzoom.swing);
+        }
+      </script>
 </head>
-
-<style>
-    .d_exview_viewport {
-        overflow: hidden;
-        position: relative;
-        height: 100%
-    }
-
-    .d_exview_viewport .img {
-        position: absolute;
-        width: 100%
-    }
-
-    .d_exview_viewport .img img {
-        width: 100%;
-        vertical-align: top
-    }
-</style>
-
-<body class="body">
-  <div class="container-center" id="wrap">
-    <div class="index screen" id="container">
-		<div class="shopping-map-wrap">
-			<div class="map-scroll-wrap" id="zoom_img_scroll_target">
-                <div id="zoom_img_wrap" data-zoom="1">
-                    <img src="[[--ArtFieldValue,fa00019--]]" alt="[[--ArtFieldValue,stor_nm--]] [[--ArtFieldValue,buld_nm--]] [[--ArtFieldValue,flor_nm--]]" style="height: 100%; vertical-align: middle;"> <!-- 임시 이미지입니다. 개발시 삭제해주세요. -->
-                </div>
-			</div>
-			<div class="btn-size-control">
-				<div class="btn-size plus" onclick="funcZoom(this)">확대</div>
-				<div class="btn-size minus" onclick="funcZoom(this)">축소</div>
-			</div>
-		</div>
+<body class="body" onLoad="initPinchZoom()">
+    <div class="container-center">
+      <div class="index screen">
+          <div class="shopping-map-wrap">
+              <div class="map-scroll-wrap" id="zoom_img_scroll_target">
+          <div class="pinch-zoom" data-zoom="1">
+            <img src="[[--ArtFieldValue,fa00019--]]" alt="[[--ArtFieldValue,stor_nm--]] [[--ArtFieldValue,buld_nm--]] [[--ArtFieldValue,flor_nm--]]" style="height: 100%; vertical-align: middle;"> <!-- 임시 이미지입니다. 개발시 삭제해주세요. -->
+          </div>
+              </div>
+              <div class="btn-size-control">
+                  <div class="btn-size plus" onclick="zoomIn()">확대</div>
+                  <div class="btn-size minus" onclick="zoomOut()">축소</div>
+              </div>
+          </div>
+      </div>
     </div>
-  </div>
-</body>
-
-<script type="text/javascript" src="[[--CatAddress,s[%dev_div%]zzz_js,form:6--]]"></script>[[---../common/js/expandviewer.js---]]
-<script type="text/javascript">
-    /**
-     * 핀 위치 설정
-     * @function
-     */
-    function setPin() {
-        var $img = $('#img'),
-            r = 1;
-        
-        if (navigator.userAgent.match(/OS 5(_\d)+ like Mac OS X/i)) {
-            r = ($img[0].naturalWidth * 2) / $img.width();
-        } else {
-            r = $img[0].naturalWidth / $img.width();
-        }
-        
-        $('.my_position').each(function() {
-            var $e = $(this),
-                w = $e.width(),
-                h = $e.height(),
-                x = Number($e.attr('data-x')),
-                y = Number($e.attr('data-y'));
-            
-            x = (x / r) - (w / 2);
-            y = (y / r) - h;
-            
-            $e.css({ left: x, top: y }); 
-        }); 
-    };
-    
-    /**
-     * 핀 포커스
-     * @function
-     * @param {String} itemCd 아이템 코드
-     */
-    function focusPin(itemCd) {
-        var $item = $('.my_position[data-itemCd="' + itemCd + '"]'),
-            viewer = window.viewer || {};
-        
-        if ($item.length && viewer) {
-            viewer.setZoom('max');
-            setPin();
-            viewer.moveToElement($item);
-        }
-    };
-    
-    /*
-     * 페이지 로드 이벤트
-     */
-    $(function() {
-        window.viewer = new ExpandViewer('wrap', {
-            onReady: function() {
-                focusPin('null');
-            },
-            onTransform: function() {
-                setPin();
-            }
-        });
-    });
-    </script>
+  </body>
 
 </html>
