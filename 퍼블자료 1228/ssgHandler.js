@@ -1,4 +1,4 @@
-// url
+﻿// url
 const SERVER_URL = '/fo-api';
 const GET_SERVER_DATE = '/cmm/date/v1/today';
 const GET_STORE_WEATHER_PREFIX = '/sto/store/v1/stores/';
